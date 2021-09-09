@@ -1,0 +1,60 @@
+name: 'Install Quarto'
+author: 'Christophe Dervieux'
+description: 'This actions will install Quarto binary from https://github.com/quarto-dev/quarto-cli/'
+runs:
+  using: 'composite'
+  steps: 
+    - name: 'Select binary for OS'
+      run: |
+        # Select correct bundle for OS type
+        case $RUNNER_OS in 
+          "Linux")
+              echo "BUNDLE_EXT=deb" >> $GITHUB_ENV
+              ;;
+           "macOS")
+              echo "BUNDLE_EXT=pkg" >> $GITHUB_ENV
+              ;;
+           "Windows")
+              echo "BUNDLE_EXT=msi" >> $GITHUB_ENV
+              ;;
+            *)
+              echo "$RUNNER_OS not supported"
+              exit 1
+              ;;
+        esac
+      shell: bash
+    - name: 'Download Quarto release'
+      id: download-quarto 
+      env: 
+        GITHUB_TOKEN: ${{ github.token }}
+      run: |
+        # download the latest release
+        if [ ${{ runner.os }} != "Windows" ]; then
+         # On Windows scoop will be used so no need to download the release
+         gh release download --repo quarto-dev/quarto-cli --pattern ${{ format('*.{0}', env.BUNDLE_EXT) }}
+         echo "::set-output name=installer::$(ls quarto*.$BUNDLE_EXT)"
+        fi
+      shell: bash
+    - name: 'Install Quarto'
+      run: |
+        # Install quarto
+        [ ${{ runner.os }} != "Windows" ] && installer=${{ steps.download-quarto.outputs.installer }}
+        case $RUNNER_OS in 
+          "Linux")
+              sudo apt install ./$installer
+              ;;
+           "macOS")
+              sudo installer -pkg ./$installer -target '/'
+              ;;
+           "Windows")
+              # can't install msi for now so use scoop
+              powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1
+              ;;
+            *)
+              echo "$RUNNER_OS not supported"
+              exit 1
+              ;;
+        esac
+        [ ${{ runner.os }} != "Windows" ] && rm $installer
+        echo "Quarto Installed !"
+      shell: bash
