@@ -10,7 +10,7 @@ runs:
       shell: bash
       run: |
         # Hardcoding versions for now to make sure new versions don't break things
-        quarto_version="0.2.114"
+        quarto_version="0.2.153"
         quarto_file_name="quarto-${quarto_version}-amd64.deb"
         quarto_url="https://github.com/quarto-dev/quarto-cli/releases/download/v${quarto_version}/${quarto_file_name}"
 
