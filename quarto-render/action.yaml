@@ -2,23 +2,12 @@ name: "Quarto Render"
 branding:
   icon: 'award'  
   color: 'blue'
-description: "Renders a repo of documents with Quarto"
+description: "Renders a repository of documents with Quarto"
 runs:
   using: "composite"
   steps: 
-    - name: "Download Quarto"
+    - name: "Install Quarto"
+      uses: quarto-dev/quarto-actions/install-quarto@v1
+    - run: | 
+        quarto render
       shell: bash
-      run: |
-        # Hardcoding versions for now to make sure new versions don't break things
-        quarto_version="0.2.153"
-        quarto_file_name="quarto-${quarto_version}-amd64.deb"
-        quarto_url="https://github.com/quarto-dev/quarto-cli/releases/download/v${quarto_version}/${quarto_file_name}"
-
-        wget -q "${quarto_url}"
-
-        sudo dpkg -i "${quarto_file_name}"
-
-    - name: "Quarto render"
-      shell: bash
-      run: |
-        quarto render --execute-debug
