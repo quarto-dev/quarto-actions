@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: "Install Quarto and render"
-        uses: pommevilla/quarto-render@main
+        uses: quarto-dev/quarto-actions/render-quarto@v1
 
       - name: "Deploy to gh-pages"
         uses: peaceiris/actions-gh-pages@v3
@@ -89,7 +89,7 @@ jobs:
           renv::restore()
 
       - name: "Install Quarto and render"
-        uses: pommevilla/quarto-render@main
+        uses: quarto-dev/quarto-actions/render-quarto@v1
 
       - name: "Deploy to gh-pages"
         uses: peaceiris/actions-gh-pages@v3
