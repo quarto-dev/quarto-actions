@@ -33,7 +33,7 @@ jobs:
 ```
 
 - See [here](https://github.com/pommevilla/friendly-dollop) for an example page that runs this workflow with `freeze: true` that has both Python and R code.
-- Read more about using freeze in your Quarto project [here](https://quarto.org/docs/books/book-authoring.html?q=freeze#freezing).
+- Read more about using freeze in your Quarto project [here](https://quarto.org/docs/projects/code-execution.html#freeze).
 
 ### Installing Python or R dependencies before using `quarto-render` and publishing results to the `gh-pages` branch.
 
