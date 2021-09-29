@@ -1,4 +1,5 @@
-name: "Quarto Render"
+name: "Render Quarto"
+author: "Paul Villanueva"
 description: "Renders a repository of documents with Quarto"
 runs:
   using: "composite"
