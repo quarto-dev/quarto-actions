@@ -18,7 +18,7 @@ jobs:
         ls -l
 
     - name: "Install Quarto and render"
-      uses: pommevilla/quarto-actions/render-quarto
+      uses: pommevilla/quarto-actions/render-quarto@main
 
     - name: "Check directory"
       run: |
