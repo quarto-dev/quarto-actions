@@ -1,0 +1,18 @@
+{
+  "hash": "c8f4fb7e0f9deae87285329b55e0302c",
+  "result": {
+    "markdown": "---\ntitle: \"Matplotlib Demo\"\nauthor: \"Norah Smith\"\ndate: \"May 22nd, 2021\"\nformat: \n  html:\n    code-fold: true\n---\n\n## Freeze test\n\nThis document was run from `./tests/freeze_tests.'\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(ggplot2)\nggplot(airquality, aes(Temp, Ozone)) +\n        geom_point() +\n        geom_smooth(method = \"loess\", se = FALSE)\n```\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "dependencies": {
+      "type": "includes",
+      "data": []
+    },
+    "preserve": {},
+    "postProcess": null
+  }
+}

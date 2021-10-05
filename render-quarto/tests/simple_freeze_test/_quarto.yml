@@ -1,0 +1,24 @@
+project:
+  type: site
+  title: "Quarto Render Test"
+  output-dir: _site
+  
+execute:
+  freeze: true
+
+site:
+  title: "Quarto testing doc: Simple freeze test"
+  
+  sidebar:
+    style: "docked"
+    background: light
+    search: true
+    collapse-level: 2
+    contents:
+      - index.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true

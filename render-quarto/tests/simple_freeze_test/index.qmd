@@ -1,0 +1,23 @@
+---
+title: "Matplotlib Demo"
+author: "Norah Smith"
+date: "May 22nd, 2021"
+format: 
+  html:
+    code-fold: true
+---
+
+## Freeze test
+
+This document was run from `./tests/freeze_tests.'
+
+
+```{r}
+#| warning: false
+#| message: false
+
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) +
+        geom_point() +
+        geom_smooth(method = "loess", se = FALSE)
+```
