@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./tests/freeze_test
+        working-directory: ./render-quarto/tests/simple_freeze_test
     steps:
     - uses: actions/checkout@v2
 
