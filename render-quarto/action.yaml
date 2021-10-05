@@ -4,8 +4,22 @@ description: "Renders a repository of documents with Quarto"
 runs:
   using: "composite"
   steps: 
-    - name: "Install Quarto"
+    - name: "Install Quarto and render"
       uses: quarto-dev/quarto-actions/install-quarto@v1
-    - run: | 
-        quarto render
+    - run: |
+        if [ -z "${{ inputs.output_format }}" ]
+        then
+          pwd
+          quarto render 
+        else
+          pwd
+          quarto tools install tinytex
+          quarto render --to "${{ inputs.output_format }}"
+        fi
       shell: bash
+
+inputs:
+  output_format:
+    description: 'The format Quarto will render'
+    required: false
+    default: ""
