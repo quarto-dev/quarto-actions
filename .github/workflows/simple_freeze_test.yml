@@ -1,0 +1,27 @@
+name: Freeze test
+on: 
+  push:
+  pull_request:
+
+jobs:
+  freeze-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./tests/freeze_test
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: "Check directory"
+      run: |
+        pwd
+        ls -l
+
+    - name: "Install Quarto and render"
+      uses: pommevilla/quarto-actions/render-quarto
+
+    - name: "Check directory"
+      run: |
+        pwd
+        ls -l
+
