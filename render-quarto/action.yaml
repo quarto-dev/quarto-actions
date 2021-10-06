@@ -18,13 +18,12 @@ runs:
 
         if [ -z "${{ inputs.output_format }}" ]
         then
-          pwd
           quarto render 
-        else
-          pwd
+        elif [[ "${{ inputs.output_format }}" == "pdf" ]]
           quarto tools install tinytex
-          quarto render --to "${{ inputs.output_format }}"
         fi
+
+        quarto render --to docx
       shell: bash
 
 inputs:
