@@ -6,8 +6,6 @@ on:
 jobs:
   freeze-test:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./render-quarto/tests/simple_freeze_test
     steps:
     - uses: actions/checkout@v2
 
@@ -17,7 +15,7 @@ jobs:
         ls -l
 
     - name: "Install Quarto and render"
-      working-directory: ${{ env.working-directory }}
+      project_directory: ./render-quarto/tests/simple_freeze_test
       uses: pommevilla/quarto-actions/render-quarto@add-quarto-render
 
     - name: "Check directory"

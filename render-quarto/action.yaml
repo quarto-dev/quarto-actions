@@ -7,6 +7,15 @@ runs:
     - name: "Install Quarto and render"
       uses: quarto-dev/quarto-actions/install-quarto@v1
     - run: |
+        if [ ! -z "${{ inputs.project_directory }}" ]
+        then
+          echo "Changing to directory ${{ inputs.project }}"
+          cd "${{ inputs.project }}"
+        fi
+        
+        echo "Current directory"
+        pwd
+
         if [ -z "${{ inputs.output_format }}" ]
         then
           pwd
@@ -21,5 +30,9 @@ runs:
 inputs:
   output_format:
     description: 'The format Quarto will render'
+    required: false
+    default: ""
+  project_directory:
+    description: 'The directory to render from'
     required: false
     default: ""
