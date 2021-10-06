@@ -1,4 +1,4 @@
-name: Output format test
+name: "pdf test"
 on: 
   push:
   pull_request:

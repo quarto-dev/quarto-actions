@@ -9,12 +9,9 @@ runs:
     - run: |
         if [ ! -z "${{ inputs.project_directory }}" ]
         then
-          echo "Changing to directory ${{ inputs.project_directory }}"
+          echo "Rendering from ${{ inputs.project_directory }}"
           cd "${{ inputs.project_directory }}"
         fi
-
-        echo "Current directory"
-        pwd
 
         if [ -z "${{ inputs.output_format }}" ]
         then
