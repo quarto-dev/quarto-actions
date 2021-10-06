@@ -19,7 +19,7 @@ runs:
         if [ -z "${{ inputs.output_format }}" ]
         then
           quarto render 
-        elif [[ "${{ inputs.output_format }}" == "pdf" ]]
+        else [[ "${{ inputs.output_format }}" == "pdf" ]]
           quarto tools install tinytex
         fi
 
