@@ -15,8 +15,9 @@ jobs:
         ls -l
 
     - name: "Install Quarto and render"
-      project_directory: ./render-quarto/tests/simple_freeze_test
       uses: pommevilla/quarto-actions/render-quarto@add-quarto-render
+      with:
+        project_directory: ./render-quarto/tests/simple_freeze_test
 
     - name: "Check directory"
       run: |
