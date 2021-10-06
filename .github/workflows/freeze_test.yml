@@ -17,7 +17,7 @@ jobs:
     - name: "Install Quarto and render"
       uses: pommevilla/quarto-actions/render-quarto@add-quarto-render
       with:
-        project_directory: ./render-quarto/tests/simple_freeze_test
+        project_directory: ./render-quarto/tests/simple_project
 
     - name: "Check directory"
       run: |
