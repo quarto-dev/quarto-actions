@@ -9,10 +9,10 @@ runs:
     - run: |
         if [ ! -z "${{ inputs.project_directory }}" ]
         then
-          echo "Changing to directory ${{ inputs.project }}"
-          cd "${{ inputs.project }}"
+          echo "Changing to directory ${{ inputs.project_directory }}"
+          cd "${{ inputs.project_directory }}"
         fi
-        
+
         echo "Current directory"
         pwd
 
