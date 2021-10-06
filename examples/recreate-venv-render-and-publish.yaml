@@ -1,0 +1,49 @@
+# .github/workflows/render-and-publish.yaml
+name: Render and deploy Quarto files
+on:
+  push:
+  pull_request:
+
+jobs:
+  quarto-render-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      RENV_PATHS_ROOT: ~/.local/share/renv
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+
+      - name: "Install Python deps"
+        run: |
+          pip install -r requirements.txt
+
+      - uses: r-lib/actions/setup-r@v1
+
+      - name: "Install curl for Bioconductor"
+        run: |
+          sudo apt -y install libcurl4-openssl-dev
+
+      - name: "Install R Packages: Cache packages"
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.RENV_PATHS_ROOT }}
+          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-renv-
+
+      - name: "Install R Packages: Restore packages"
+        shell: Rscript {0}
+        run: |
+          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+          renv::restore()
+
+      - name: "Install Quarto and render"
+        uses: quarto-dev/quarto-actions/render-quarto@v1
+
+      - name: "Deploy to gh-pages"
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
