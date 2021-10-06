@@ -1,4 +1,4 @@
-name: Freeze test
+name: Output format test
 on: 
   push:
   pull_request:
