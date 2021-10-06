@@ -20,7 +20,7 @@ runs:
           quarto tools install tinytex
         fi
 
-        quarto render --to docx
+        quarto render --to "${{ inputs.output_format }}"
       shell: bash
 
 inputs:
