@@ -13,14 +13,18 @@ runs:
           cd "${{ inputs.project_directory }}"
         fi
 
-        if [ -z "${{ inputs.output_format }}" ]
-        then
-          quarto render 
-        else [[ "${{ inputs.output_format }}" == "pdf" ]]
+        if [[ "${{ inputs.output_format }}" == "pdf" ]]
+        then 
           quarto tools install tinytex
         fi
 
-        quarto render --to "${{ inputs.output_format }}"
+        if [ -z "${{ inputs.output_format }}" ]
+        then
+          quarto render 
+        else
+          quarto render --to "${{ inputs.output_format }}"
+        fi
+
       shell: bash
 
 inputs:
