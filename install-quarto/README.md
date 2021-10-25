@@ -36,4 +36,4 @@ jobs:
 This action will 
 
 * Download the Github Release of quarto on Mac and Linux and install it
-* On Windows, it will for now use Scoop to install Quarto msi, until I manage to install an MSI file on Github Action.
+* On Windows, it will for now use Scoop to install Quarto msi, until Quarto MSI file can be installed on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108)
