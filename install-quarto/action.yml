@@ -36,7 +36,7 @@ runs:
           # On Windows scoop will be used so no need to download the release
           if [ -z "${{inputs.version}}" ]; then
             # download the latest release
-            gh release download --repo quarto-dev/quarto-cli --pattern ${{ format('*.{0}', env.BUNDLE_EXT) }}
+            gh release download --repo quarto-dev/quarto-cli --pattern ${{ format('*{0}', env.BUNDLE_EXT) }}
           else
             # download a specific release
             wget https://github.com/quarto-dev/quarto-cli/releases/download/v${{inputs.version}}/quarto-${{inputs.version}}-${{env.BUNDLE_EXT}}
