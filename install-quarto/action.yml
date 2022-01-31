@@ -57,11 +57,11 @@ runs:
               ;;
            "Windows")
               # can't install msi for now so use scoop
-              if [ -z "${{ env.QUARTO_VERSION }}" ]
+              if [ -z "${{ inputs.version }}" ]
               then
                 powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1
               else
-                powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1 -version ${{ env.QUARTO_VERSION }}
+                powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1 -version ${{ inputs.version }}
               fi
               ;;
             *)
