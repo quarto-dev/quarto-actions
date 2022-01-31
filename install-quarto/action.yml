@@ -13,36 +13,36 @@ runs:
         # Select correct bundle for OS type
         case $RUNNER_OS in 
           "Linux")
-              echo "BUNDLE_EXT=deb" >> $GITHUB_ENV
+              echo "BUNDLE_EXT=linux-amd64.deb" >> $GITHUB_ENV
               ;;
            "macOS")
-              echo "BUNDLE_EXT=pkg" >> $GITHUB_ENV
+              echo "BUNDLE_EXT=macos.pkg" >> $GITHUB_ENV
               ;;
            "Windows")
-              echo "BUNDLE_EXT=msi" >> $GITHUB_ENV
+              echo "BUNDLE_EXT=win.msi" >> $GITHUB_ENV
               ;;
             *)
               echo "$RUNNER_OS not supported"
               exit 1
               ;;
         esac
-        # set version
-        if [ ! -z "${{inputs.version}}" ]
-        then
-          echo "QUARTO_VERSION=v${{inputs.version}}" >> $GITHUB_ENV
-        fi
       shell: bash
     - name: 'Download Quarto release'
       id: download-quarto 
       env: 
         GITHUB_TOKEN: ${{ github.token }}
       run: |
-        # download the latest release
         if [ ${{ runner.os }} != "Windows" ]; then
-         # On Windows scoop will be used so no need to download the release
-         gh release download ${{env.QUARTO_VERSION}} --repo quarto-dev/quarto-cli --pattern ${{ format('*.{0}', env.BUNDLE_EXT) }}
-         echo "::set-output name=installer::$(ls quarto*.$BUNDLE_EXT)"
+          # On Windows scoop will be used so no need to download the release
+          if [ -z "${{inputs.version}}" ]; then
+            # download the latest release
+            gh release download --repo quarto-dev/quarto-cli --pattern ${{ format('*.{0}', env.BUNDLE_EXT) }}
+          else
+            # download a specific release
+            wget https://github.com/quarto-dev/quarto-cli/releases/download/v${{inputs.version}}/quarto-${{inputs.version}}-${{env.BUNDLE_EXT}}
+          fi
         fi
+        echo "::set-output name=installer::$(ls quarto*${{ env.BUNDLE_EXT }})"
       shell: bash
     - name: 'Install Quarto'
       run: |
