@@ -17,7 +17,7 @@
 Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 Join-Path (Resolve-Path ~).Path "scoop\shims" >> $Env:GITHUB_PATH
 
-param ($version)
+$version=$args[0]
 scoop bucket add r-bucket https://github.com/cderv/r-bucket.git
 if ([string]::IsNullOrEmpty($version)) {
     scoop install quarto

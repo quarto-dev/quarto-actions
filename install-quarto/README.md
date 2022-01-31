@@ -7,7 +7,8 @@ Install a Quarto release (https://github.com/quarto-dev/quarto-cli/releases) usi
 This action will:
 
 * Download the Github Release of Quarto on Mac and Linux and install it
-* On Windows, it will for now use Scoop to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108)
+* On Windows, it will for now use **Scoop** (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). (**Scoop** will be installed on the runner by the action)
+* On Linux and MacOS, it will use **gh** CLI to download the last available bundle (no `version` specified as input). If you don't have **gh** on your Github Action runner, you can specify a fix `version` to directly download from a URL using `wget`.
 
 Inputs available
 
