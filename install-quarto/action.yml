@@ -1,6 +1,10 @@
 name: 'Install Quarto'
 author: 'Christophe Dervieux'
 description: 'This actions will install Quarto binary from https://github.com/quarto-dev/quarto-cli/'
+inputs:
+  version:
+    description: 'The version of Quarto CLI to install, as a release tag (https://github.com/quarto-dev/quarto-cli/releases). Ex: 0.3.73'
+    required: false
 runs:
   using: 'composite'
   steps: 
@@ -22,6 +26,11 @@ runs:
               exit 1
               ;;
         esac
+        # set version
+        if [ ! -z "${{inputs.version}}" ]
+        then
+          echo "QUARTO_VERSION=v${{inputs.version}}" >> $GITHUB_ENV
+        fi
       shell: bash
     - name: 'Download Quarto release'
       id: download-quarto 
@@ -31,7 +40,7 @@ runs:
         # download the latest release
         if [ ${{ runner.os }} != "Windows" ]; then
          # On Windows scoop will be used so no need to download the release
-         gh release download --repo quarto-dev/quarto-cli --pattern ${{ format('*.{0}', env.BUNDLE_EXT) }}
+         gh release download ${{env.QUARTO_VERSION}} --repo quarto-dev/quarto-cli --pattern ${{ format('*.{0}', env.BUNDLE_EXT) }}
          echo "::set-output name=installer::$(ls quarto*.$BUNDLE_EXT)"
         fi
       shell: bash
@@ -48,7 +57,12 @@ runs:
               ;;
            "Windows")
               # can't install msi for now so use scoop
-              powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1
+              if [ -z "${{ env.QUARTO_VERSION }}" ]
+              then
+                powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1
+              else
+                powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1 -version ${{ env.QUARTO_VERSION }}
+              fi
               ;;
             *)
               echo "$RUNNER_OS not supported"
