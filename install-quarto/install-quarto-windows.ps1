@@ -14,8 +14,8 @@
     ttps:/go.microsoft.com/fwlink/?LinkID=135170
 #>
 
-# Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
-# Join-Path (Resolve-Path ~).Path "scoop\shims" >> $Env:GITHUB_PATH
+Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+Join-Path (Resolve-Path ~).Path "scoop\shims" >> $Env:GITHUB_PATH
 
 param ($version)
 scoop bucket add r-bucket https://github.com/cderv/r-bucket.git
