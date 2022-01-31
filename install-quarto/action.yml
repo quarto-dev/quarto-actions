@@ -61,7 +61,7 @@ runs:
               then
                 powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1
               else
-                powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1 -version ${{ inputs.version }}
+                powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1 ${{ inputs.version }}
               fi
               ;;
             *)
