@@ -1,8 +1,24 @@
 # install-quarto
 
-Install last Quarto release (https://github.com/quarto-dev/quarto-cli/releases) using GitHub Actions. This action can be used to install Quarto on all runner OS and `quarto` will be available from PATH.
+Install a Quarto release (https://github.com/quarto-dev/quarto-cli/releases) using GitHub Actions. This action can be used to install Quarto on all runner OS and `quarto` will be available from PATH
 
 ## Usage
+
+This action will:
+
+* Download the Github Release of Quarto on Mac and Linux and install it
+* On Windows, it will for now use Scoop to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108)
+
+Inputs available
+
+* `version` - _optional_. If provided, the specific quarto version will be installed. Ex: `version: 0.3.71`
+
+  ```yaml
+    steps:
+      - uses: quarto-dev/quarto-actions/install-quarto@master
+        with:
+          version: 0.3.71
+  ```
 
 Example on different OS:
 
@@ -33,7 +49,3 @@ jobs:
           quarto --version
 ```
 
-This action will 
-
-* Download the Github Release of quarto on Mac and Linux and install it
-* On Windows, it will for now use Scoop to install Quarto msi, until Quarto MSI file can be installed on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108)
