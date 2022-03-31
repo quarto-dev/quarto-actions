@@ -1,0 +1,36 @@
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+  # to be able to trigger a manual build
+  workflow_dispatch:
+
+name: Render and deploy Book
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/install-quarto@v1
+        # uncomment and fill to pin a version
+        # with:
+        #   version: 0.9.105
+
+      - name: Render book to all format
+        # Add any command line argument needed
+        run: |
+          quarto render --to html
+
+      - name: Deploy 🚀
+        # only deploy when push to main
+        if: github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          # The branch the action should deploy to.
+          branch: gh-pages
+          # The folder the action should deploy. Adapt if you changed in Quarto config
+          folder: _book

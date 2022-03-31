@@ -4,3 +4,6 @@ This repository stores [Github Actions](https://github.com/features/actions) aro
 
 1. [quarto-dev/quarto-actions/install-quarto](https://github.com/quarto-dev/quarto-actions/tree/master/install-quarto) - Install Quarto binary
 
+## Examples
+
+See [Examples](./examples) for different YAML worflow file to render and deploy Quarto documents and projects
