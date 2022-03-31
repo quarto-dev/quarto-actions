@@ -16,14 +16,16 @@ jobs:
 
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/install-quarto@v1
-        # uncomment and fill to pin a version
-        # with:
-        #   version: 0.9.105
+        with:
+          # To install LaTeX to build PDF book 
+          tinytex: true 
+          # uncomment below and fill to pin a version
+          # version: 0.9.105
 
       - name: Render book to all format
         # Add any command line argument needed
         run: |
-          quarto render --to html
+          quarto render
 
       - name: Deploy 🚀
         # only deploy when push to main
