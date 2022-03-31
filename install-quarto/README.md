@@ -10,7 +10,7 @@ This action will:
 * On Windows, it will for now use **Scoop** (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). (**Scoop** will be installed on the runner by the action)
 * On Linux and MacOS, it will use **gh** CLI to download the last available bundle (no `version` specified as input). If you don't have **gh** on your Github Action runner, you can specify a fix `version` to directly download from a URL using `wget`.
 
-Inputs available
+### Inputs available
 
 * `version` - _optional_. If provided, the specific quarto version will be installed. Ex: `version: 0.3.71`
 
@@ -21,7 +21,16 @@ Inputs available
           version: 0.3.71
   ```
 
-Example on different OS:
+* `tinytex` - _optional_. Set this to `tinytex: true` to let [Quarto installs TinyTeX](https://quarto.org/docs/output-formats/pdf-engine.html#installing-tex) using `quarto tools install tinytex`.  **Only available on `main` branch**
+
+  ```yaml
+    steps:
+      - uses: quarto-dev/quarto-actions/install-quarto@main
+        with:
+          tinytex: true
+  ```
+
+### Example on different OS
 
 ```yaml
 name: quarto-setup
