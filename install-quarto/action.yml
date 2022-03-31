@@ -80,6 +80,19 @@ runs:
       if: ${{ inputs.tinytex == 'true'}}
       run: |
         quarto tools install tinytex --log-level warning
-        bin_dir=$(quarto tools info tinytex | jq -r '.["bin-directory"]')
-        echo $bin_dir >> $GITHUB_PATH
+        case $RUNNER_OS in 
+          "Linux")
+              echo "$HOME/bin" >> $GITHUB_PATH
+              ;;
+           "macOS")
+              echo "$(dirname $(find ~/Library/TinyTeX -name tlmgr))" >> $GITHUB_PATH
+              ;;
+           "Windows")
+              echo "$(dirname $(find $APPDATA/TinyTeX -name tlmgr.bat))" >> $GITHUB_PATH
+            *)
+              echo "$RUNNER_OS not supported"
+              exit 1
+              ;;
+        esac
+        echo "TinyTeX installed !"
       shell: bash
