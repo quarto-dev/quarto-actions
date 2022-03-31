@@ -14,7 +14,8 @@
     ttps:/go.microsoft.com/fwlink/?LinkID=135170
 #>
 
-Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+Invoke-WebRequest -useb get.scoop.sh -outfile 'install.ps1'
+.\install.ps1 -RunAsAdmin
 Join-Path (Resolve-Path ~).Path "scoop\shims" >> $Env:GITHUB_PATH
 
 $version=$args[0]
