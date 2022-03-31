@@ -89,6 +89,7 @@ runs:
               ;;
            "Windows")
               echo "$(dirname $(find $APPDATA/TinyTeX -name tlmgr.bat))" >> $GITHUB_PATH
+              ;;
             *)
               echo "$RUNNER_OS not supported"
               exit 1
