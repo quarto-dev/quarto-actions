@@ -80,5 +80,17 @@ runs:
       if: ${{ inputs.tinytex == 'true'}}
       run: |
         quarto tools install tinytex
-        echo "$HOME/bin" >> $GITHUB_PATH
+        case $RUNNER_OS in 
+          "Linux")
+              echo "$HOME/bin" >> $GITHUB_PATH
+              ;;
+           "macOS")
+              ;;
+           "Windows")
+              echo "%APPDATA%/TinyTeX/bin/win32" >> $GITHUB_PATH
+            *)
+              echo "$RUNNER_OS not supported"
+              exit 1
+              ;;
+        esac
       shell: bash
