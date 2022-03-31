@@ -79,8 +79,7 @@ runs:
     - name: Install TinyTeX
       if: ${{ inputs.tinytex == 'true'}}
       run: |
-        quarto tools install tinytex
-        install_dir=$(quarto tools info tinytex | jq -r '.directory')
-        bin_dir=$(dirname $(find $install_dir -name tlmgr))
+        quarto tools install tinytex --log-level warning
+        bin_dir=$(quarto tools info tinytex | jq -r '.["bin-directory"]')
         echo $bin_dir >> $GITHUB_PATH
       shell: bash
