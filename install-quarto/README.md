@@ -13,7 +13,6 @@ This action will:
 Inputs available
 
 * `version` - _optional_. If provided, the specific quarto version will be installed. Ex: `version: 0.3.71`
-  **Only available on `main` branch**
 
   ```yaml
     steps:
