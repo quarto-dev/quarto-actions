@@ -80,5 +80,5 @@ runs:
       if: ${{ inputs.tinytex == 'true'}}
       run: |
         quarto tools install tinytex
-        echo "$HOME/.TinyTeX" >> $GITHUB_PATH
+        echo "$HOME/bin" >> $GITHUB_PATH
       shell: bash
