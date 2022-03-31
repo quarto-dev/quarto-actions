@@ -5,6 +5,10 @@ inputs:
   version:
     description: 'The version of Quarto CLI to install, as a release tag (https://github.com/quarto-dev/quarto-cli/releases). Ex: 0.3.73'
     required: false
+  tinytex:
+    description: 'Should TinyTex be installed for PDF rendering using TeX Live ?'
+    required: false
+    default: 'false'
 runs:
   using: 'composite'
   steps: 
@@ -71,4 +75,10 @@ runs:
         esac
         [ ${{ runner.os }} != "Windows" ] && rm $installer
         echo "Quarto Installed !"
+      shell: bash
+    - name: Install TinyTeX
+      if: ${{ inputs.tinytex == 'true'}}
+      run: |
+        quarto tools install tinytex
+        echo "$HOME/.TinyTeX" >> $GITHUB_PATH
       shell: bash
