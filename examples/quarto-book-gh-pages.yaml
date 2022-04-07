@@ -22,6 +22,9 @@ jobs:
           # uncomment below and fill to pin a version
           # version: 0.9.105
 
+      # Install any computing dependency you may need, usually either python and Jupyter or R
+      # More specific examples will be shared on quarto-dev/quarto-actions project
+
       - name: Render book to all format
         # Add any command line argument needed
         run: |
