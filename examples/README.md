@@ -4,8 +4,12 @@
 
 ### Quarto Book
 
-- Render a HTML Quarto Book and deploy to github pages ([`quarto-book-gh-pages`](./quarto-book-gh-pages.yaml))
-- Render a HTML Quarto Book and deploy to Netlify ([`quarto-book-netlify`](./quarto-book-netlify.yaml))
+- [`quarto-book-gh-pages`](./quarto-book-gh-pages.yaml): Render a HTML Quarto Book and deploy to github pages
+
+- [`quarto-book-netlify`](./quarto-book-netlify.yaml): Render a HTML Quarto Book and deploy to [Netlify](https://www.netlify.com). You must also config 2 github secrets:
+  - `NETLIFY_AUTH_TOKEN`: [Personal access tokens](https://app.netlify.com/user/applications#personal-access-tokens) > New access token
+  - `NETLIFY_SITE_ID`: team page > your site > Settings > Site details > Site information > API ID
+  - More details see [this Netlify action](https://github.com/nwtgck/actions-netlify).
 
 ## Repositories using Quarto actions
 
