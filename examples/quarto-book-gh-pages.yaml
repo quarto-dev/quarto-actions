@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # Setup R Environment
-      - uses: r-lib/actions/setup-renv@v2
+      # uncomment below to installs R packages from renv lockfile
+      #- uses: r-lib/actions/setup-renv@v2
 
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/install-quarto@v1
