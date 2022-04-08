@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # Setup R Environment
+      # maybe needs this, too?
       - uses: r-lib/actions/setup-renv@v2
 
       - name: Install Quarto
@@ -32,12 +32,20 @@ jobs:
         run: |
           quarto render
 
-      - name: Deploy 🚀
-        # only deploy when push to main
-        if: github.event_name != 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@v4
+      # Modify from: https://github.com/tidymodels/TMwR/blob/main/.github/workflows/bookdown.yaml
+      # How to deploy to Netlify: https://www.emilhvitfeldt.com/post/bookdown-netlify-github-actions/
+      - name: Deploy to Netlify
+        id: netlify-deploy
+        uses: nwtgck/actions-netlify@v1.1
         with:
-          # The branch the action should deploy to.
-          branch: gh-pages
-          # The folder the action should deploy. Adapt if you changed in Quarto config
-          folder: _book
+          publish-dir: './_book'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message:
+            'Deploy from GHA: ${{ github.event.pull_request.title || github.event.head_commit.message }} (${{ github.sha }})'
+          enable-pull-request-comment: false
+          enable-commit-comment: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
