@@ -6,7 +6,7 @@ on:
   # to be able to trigger a manual build
   workflow_dispatch:
 
-name: Render and deploy Book
+name: Render and deploy Book to Netlify
 
 jobs:
   build-deploy:
@@ -31,20 +31,21 @@ jobs:
         # Add any command line argument needed
         run: |
           quarto render
-
-      # Modify from: https://github.com/tidymodels/TMwR/blob/main/.github/workflows/bookdown.yaml
+      # Netlify action from: https://github.com/marketplace/actions/netlify-actions
       # How to deploy to Netlify: https://www.emilhvitfeldt.com/post/bookdown-netlify-github-actions/
       - name: Deploy to Netlify
         id: netlify-deploy
-        uses: nwtgck/actions-netlify@v1.1
+        uses: nwtgck/actions-netlify@v1.2.3
         with:
+          # The folder the action should deploy. Adapt if you changed in Quarto config
           publish-dir: './_book'
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message:
             'Deploy from GHA: ${{ github.event.pull_request.title || github.event.head_commit.message }} (${{ github.sha }})'
-          enable-pull-request-comment: false
-          enable-commit-comment: false
+          enable-pull-request-comment: true #  Comment on pull request
+          enable-commit-comment: true # Comment on GitHub commit
+          enable-commit-status: true # GitHub commit status 
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
