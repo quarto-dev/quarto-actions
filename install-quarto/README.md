@@ -18,7 +18,7 @@ We recommend using this action on Linux or MacOS where it works best, especially
 
   ```yaml
     steps:
-      - uses: quarto-dev/quarto-actions/install-quarto@main
+      - uses: quarto-dev/quarto-actions/install-quarto@v1
         with:
           version: 0.3.71
   ```
