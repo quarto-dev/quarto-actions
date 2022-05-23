@@ -1,6 +1,6 @@
 # Examples of workflow YAML files
 
-You'll find here some generic workflow for Quarto projects.
+You'll find here some generic workflows for Quarto projects.
 
 ## Templates
 
