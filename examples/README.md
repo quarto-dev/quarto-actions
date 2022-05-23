@@ -1,6 +1,8 @@
 # Examples of workflow YAML files
 
-## Templates 
+You'll find here some generic workflow for Quarto projects.
+
+## Templates
 
 ### Quarto Book
 
@@ -10,6 +12,25 @@
   - `NETLIFY_AUTH_TOKEN`: [Personal access tokens](https://app.netlify.com/user/applications#personal-access-tokens) > New access token
   - `NETLIFY_SITE_ID`: team page > your site > Settings > Site details > Site information > API ID
   - More details see [this Netlify action](https://github.com/nwtgck/actions-netlify).
+
+### How to use ?
+
+1. Download one of the YAML workflow into `.github/workflows` folder of your project where [Github Actions Workflows](https://docs.github.com/en/actions/quickstart) are stored
+2. Edit the workflow file according to your need, especially adding steps to setup any computation engines you may need (Python, R, Julia, ...). 
+
+See the repository examples using Quarto actions below.
+
+#### Specific for R users
+
+With the [**usethis**](https://usethis.r-lib.org/), R users can easily add one of this example workflow in a project using [`usethis::use_github_action()`](https://usethis.r-lib.org/reference/github_actions.html) and the full url toward the raw YAML file. Example:
+
+```r
+usethis::use_github_action(
+  url = "https://raw.githubusercontent.com/quarto-dev/quarto-actions/main/examples/quarto-book-gh-pages.yaml"
+)
+```
+
+This will download the YAML file in the `.github/workflows/` folder of your project where it can be edited and adapted to your project (like adding a step to install R and R dependencies).
 
 ## Repositories using Quarto actions
 
