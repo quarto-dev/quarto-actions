@@ -8,10 +8,13 @@ You'll find here some generic workflows for Quarto projects.
 
 - [`quarto-book-gh-pages`](./quarto-book-gh-pages.yaml): Render an HTML Quarto Book and deploy to github pages
 
-- [`quarto-book-netlify`](./quarto-book-netlify.yaml): Render an HTML Quarto Book and deploy to [Netlify](https://www.netlify.com). You must also config 2 github secrets:
-  - `NETLIFY_AUTH_TOKEN`: [Personal access tokens](https://app.netlify.com/user/applications#personal-access-tokens) > New access token
-  - `NETLIFY_SITE_ID`: team page > your site > Settings > Site details > Site information > API ID
-  - More details see [this Netlify action](https://github.com/nwtgck/actions-netlify).
+- [`quarto-book-netlify`](./quarto-book-netlify.yaml): Render an HTML Quarto Book and deploy to [Netlify](https://www.netlify.com). Requires secrets, see the Netlify section below.
+
+### Quarto Blog
+
+- [`quarto-blog-netlify`](./quarto-blog-netlify.yaml): Render an HTML Quarto Blog and deploy to [Netlify](https://www.netlify.com). Requires secrets, see the Netlify section below.
+
+- [`quarto-blog-netlify-downlit`](./quarto-blog-netlify-downlit.yaml): Render an HTML Quarto Blog and deploy to [Netlify](https://www.netlify.com). Adds support for the `code-link: true` option of quarto that requires the R package, downlit. Requires secrets, see the Netlify section below.
 
 ### How to use ?
 
@@ -31,6 +34,15 @@ usethis::use_github_action(
 ```
 
 This will download the YAML file into the `.github/workflows/` folder of your project, where it can be further adapted to your project (like adding a step to install R and R dependencies).
+
+### Netlify
+
+Workflows that deploy to Netlify require two GitHub secrets, which you can add to your repo by navigating to Settings -> Secrets -> Actions -> New repository secret.
+
+- `NETLIFY_AUTH_TOKEN`: [Personal access tokens](https://app.netlify.com/user/applications#personal-access-tokens) -> New access token
+- `NETLIFY_SITE_ID`: Team Page -> Your Site -> Settings -> Site details -> Site information -> API ID
+
+For more details, see [this Netlify action](https://github.com/nwtgck/actions-netlify) that handles the deployment.
 
 ## Repositories using Quarto actions
 
