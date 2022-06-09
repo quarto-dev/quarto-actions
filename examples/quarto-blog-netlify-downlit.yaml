@@ -1,0 +1,127 @@
+# This workflow is used to render and deploy a quarto blog to Netlify.
+# It includes support for rendering with the quarto option, `code-link: true`,
+# which uses the R package downlit to generate hyperlinks on function calls that
+# take you to the corresponding function documentation.
+#
+# If you use this workflow, you don't need to commit `_site/` to GitHub.
+#
+# This workflow works best if you use the `freeze` capability on all of your
+# blog posts and render them ahead of time. Then all quarto has to do is convert
+# the frozen assets into the site, and push that to Netlify.
+#
+# This workflow requires that you add two environment variables to your repo.
+# You can add these secrets on GitHub by going to your repo and navigating to:
+# Settings -> Secrets -> Actions -> New repository secret.
+# - NETLIFY_AUTH_TOKEN: Generated on Netlify through User Settings ->
+#   Applications -> Personal Access Tokens
+# - NETLIFY_SITE_ID: On Netlify, click on your site, then click
+#   Site Settings -> General -> Site information -> Site ID
+#
+# There are 3 notable features of the Netlify action:
+# - enable-commit-status: This will create a "check" that links to a deploy
+#   preview for a successful commit. This shows up in pull requests and when
+#   you commit straight to the main branch. This is likely the most useful
+#   feature. Defaults to `true`.
+# - enable-pull-request-comment: This will comment on your pull request with a
+#   link to a deploy preview. Redundant with `enable-commit-status`.
+#   Defaults to `false`.
+# - enable-commit-comment: This will comment on your commit with a link to a
+#   deploy preview. Redundant with `enable-commit-status` and extremely noisy
+#   if you get GitHub notifications. Defaults to `false`.
+#
+# Note that when the site is deployed within a pull request, it is not
+# deployed to "production". Instead, a deploy preview is created. When you
+# merge the pull request, a production site will be built.
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+name: quarto-blog-netlify-downlit
+
+jobs:
+  render-deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Always required because the Netlify step creates a deployment
+      deployments: write
+      # For `enable-commit-status`
+      statuses: write
+      # For `enable-commit-comment` and `enable-pull-request-comment`
+      # contents: write
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      # Only install packages required to run downlit linking.
+      # These are the only R packages required if you use `freeze`.
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          # withr
+          #  Required by downlit but not listed as a dependency right now
+          #  https://github.com/r-lib/downlit/pull/141
+          # xml2
+          #  Suggested dependency of downlit that is required to run downlit
+          #  on HTML files
+          # htmltools / jsonlite / knitr / rmarkdown / xfun
+          #  Required by quarto itself to run this script:
+          #  https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/rmd/rmd.R
+          # sessioninfo
+          #  For nice lockfile printing in the action
+          packages: |
+            downlit
+            withr
+            xml2
+
+            htmltools
+            jsonlite
+            knitr
+            rmarkdown
+            xfun
+
+            any::sessioninfo
+          dependencies: '"hard"'
+
+      # Install any computational dependencies needed to render your blog here.
+      # Particularly important if you are not using the `freeze` capability
+      # of quarto.
+
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/install-quarto@v1
+        # Uncomment this to pin the quarto version
+        # with:
+          # version: 0.9.344
+
+      - name: Render blog
+        run: |
+          quarto render
+
+      - name: Deploy to Netlify
+        id: netlify-deploy
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: './_site'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message:
+            'Deploy from GHA: ${{ github.event.pull_request.title || github.event.head_commit.message }} (${{ github.sha }})'
+          enable-pull-request-comment: false
+          enable-commit-comment: false
+          enable-commit-status: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
