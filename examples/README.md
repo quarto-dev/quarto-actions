@@ -51,3 +51,5 @@ For more details, see [this Netlify action](https://github.com/nwtgck/actions-ne
 - [R Manuals Quarto website](https://rstudio.github.io/r-manuals/) ([source](https://github.com/rstudio/r-manuals)) uses a complex workflow to build several books with R and Quarto and organizes them in a unique website deployed to Github pages. [workflow file](https://github.com/rstudio/r-manuals/blob/main/.github/workflows/build-website.yaml).
 
 - [Pathology Atlas](https://www.patolojiatlasi.com/EN) is a multilingual website ([source](https://github.com/patolojiatlasi/patolojiatlasi.github.io)). Two versions are rendered and deployed using Github Action. [workflow file](https://github.com/patolojiatlasi/patolojiatlasi.github.io/blob/main/.github/workflows/Quarto-Render-Bilingual-Book-Push-Tweet-Updates.yml)
+
+- [Davis Vaughan's Blog](https://blog.davisvaughan.com) is an R focused blog that is powered by Quarto ([source](https://github.com/DavisVaughan/blog)). The blog is automatically rendered through GitHub Actions and deployed to Netlify. [workflow file](https://github.com/DavisVaughan/blog/blob/main/.github/workflows/quarto-blog-netlify-downlit.yaml).
