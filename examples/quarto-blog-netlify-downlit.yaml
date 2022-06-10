@@ -76,22 +76,15 @@ jobs:
           # xml2
           #  Suggested dependency of downlit that is required to run downlit
           #  on HTML files
-          # htmltools / jsonlite / knitr / rmarkdown / xfun
-          #  Required by quarto itself to run this script:
-          #  https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/rmd/rmd.R
+          # rmarkdown
+          #  Required by quarto itself to run the script that calls downlit
           # sessioninfo
           #  For nice lockfile printing in the action
           packages: |
             downlit
             withr
             xml2
-
-            htmltools
-            jsonlite
-            knitr
             rmarkdown
-            xfun
-
             any::sessioninfo
           dependencies: '"hard"'
 
