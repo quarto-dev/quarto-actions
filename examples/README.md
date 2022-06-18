@@ -10,7 +10,7 @@ You'll find here some generic workflows for Quarto projects.
 
 - [`quarto-book-netlify`](./quarto-book-netlify.yaml): Render an HTML Quarto Book and deploy to [Netlify](https://www.netlify.com). You must also config 2 github secrets:
   - `NETLIFY_AUTH_TOKEN`: [Personal access tokens](https://app.netlify.com/user/applications#personal-access-tokens) > New access token
-  - `NETLIFY_SITE_ID`: team page > your site > Settings > Site details > Site information > API ID
+  - `NETLIFY_SITE_ID`: team page > your site > Settings > Site details > Site information > Site ID
   - More details see [this Netlify action](https://github.com/nwtgck/actions-netlify).
 
 ### How to use ?
