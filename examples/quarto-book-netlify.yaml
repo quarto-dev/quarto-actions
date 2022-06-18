@@ -30,7 +30,7 @@ jobs:
         run: |
           quarto render
 
-      - name: Deploy to Netlify
+      - name: Deploy to Netlify 🚀
         id: netlify-deploy
         uses: nwtgck/actions-netlify@v1
         with:
@@ -40,9 +40,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message:
             'Deploy from GHA: ${{ github.event.pull_request.title || github.event.head_commit.message }} (${{ github.sha }})'
-          enable-pull-request-comment: true #  Comment on pull request
-          enable-commit-comment: true # Comment on GitHub commit
-          enable-commit-status: true # GitHub commit status 
+          # If `true`, GHA will comment with a link to deploy preview as triggered by:
+          enable-pull-request-comment: true # Pull Request.
+          enable-commit-comment: false  # Push directly to `production-branch` (i.e., main).
+          # If `true`, GHA will display a "check" (✔️) for a successful "Netlify deployment".
+          enable-commit-status: true 
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
