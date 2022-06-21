@@ -1,0 +1,45 @@
+on:
+  push:
+    branches: main
+  
+  # TODO test PR trigger
+  # pull_request:
+  #   branches: main
+
+name: Render and Publish
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2 
+        
+      - name: Set up Quarto
+        uses: cscheid/quarto-actions/setup@v1
+        with:
+          # To install LaTeX to build PDF book 
+          tinytex: true 
+          # uncomment below and fill to pin a version
+          # version: 0.9.600
+      
+      - name: Publish to Netlify (and render)
+        uses: cscheid/quarto-actions/publish@v1
+        with:
+          to: netlify
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        
+      # - name: Publish to RStudio Connect (and render)
+      #   uses: cscheid/quarto-actions/publish@v2
+      #   with:
+      #     to: connect
+      #     CONNECT_SERVER: enter-the-server-url-here
+      #     CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} 
+
+      # - name: Publish to GitHub Pages (and render)
+      #   uses: cscheid/quarto-actions/publish@v2
+      #   with:
+      #     to: gh-pages
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+      

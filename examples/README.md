@@ -1,4 +1,9 @@
-# Examples of workflow YAML files
+# Using Quarto Actions: Examples
+
+* [Basics](./example-01-basics.md)
+
+<!--
+## Basics
 
 You'll find here some generic workflows for Quarto projects.
 
@@ -22,7 +27,7 @@ See the repository examples using Quarto actions below.
 
 #### Specific for R users
 
-With the [**usethis**](https://usethis.r-lib.org/) package, R users can easily add one of these example workflow in a project using [`usethis::use_github_action()`](https://usethis.r-lib.org/reference/github_actions.html) and the full URL of the raw YAML file. Example (where `v1` indicates the version tag):
+With the [**usethis**](https://usethis.r-lib.org/) package, R users can easily add workflows to a project using [`usethis::use_github_action()`](https://usethis.r-lib.org/reference/github_actions.html):
 
 ```r
 usethis::use_github_action(
@@ -39,3 +44,4 @@ This will download the YAML file into the `.github/workflows/` folder of your pr
 - [R Manuals Quarto website](https://rstudio.github.io/r-manuals/) ([source](https://github.com/rstudio/r-manuals)) uses a complex workflow to build several books with R and Quarto and organizes them in a unique website deployed to Github pages. [workflow file](https://github.com/rstudio/r-manuals/blob/main/.github/workflows/build-website.yaml).
 
 - [Pathology Atlas](https://www.patolojiatlasi.com/EN) is a multilingual website ([source](https://github.com/patolojiatlasi/patolojiatlasi.github.io)). Two versions are rendered and deployed using Github Action. [workflow file](https://github.com/patolojiatlasi/patolojiatlasi.github.io/blob/main/.github/workflows/Quarto-Render-Bilingual-Book-Push-Tweet-Updates.yml)
+-->
