@@ -1,0 +1,27 @@
+name: 'Render Quarto project'
+author: 'Carlos Scheidegger'
+description: 'This action will render an existing quarto project'
+inputs:
+  to:
+    description: 'Service to publish to. If unspecified, use the default value derived from _publish.yml'
+    required: false
+runs:
+  using: 'composite'
+  steps: 
+    - name: 'Publish'
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      run: quarto publish
+#      quarto publish netlify
+#      shell: bash
+#    - name: 'Publish to RStudio Connect'
+#      if: ${{ inputs.to == "connect" }}
+#      run: |
+#        quarto publish netlify --no-prompt
+#      shell: bash
+#    - name: 'Publish to github pages'
+#      if: ${{ inputs.to == "gh-pages" }}
+#      run: |
+#        
+#      shell: bash
+    
