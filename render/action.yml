@@ -1,0 +1,19 @@
+name: 'Render Quarto project'
+author: 'Carlos Scheidegger'
+description: 'This action will render an existing quarto project'
+inputs:
+  to:
+    description: 'Format to render output. Use "all" to generate all outputs, when eg rendering a book in HTML and PDF'
+    required: false  
+runs:
+  using: 'composite'
+  steps: 
+    - name: 'Render'
+      run: |
+        quarto render
+        if [ -f "_book" ]; then
+          echo "QUARTO_OUTPUT=_book" >> $GITHUB_ENV
+        elif [ -f "_site"]; then
+          echo "QUARTO_OUTPUT=_site" >> $GITHUB_ENV
+        fi
+      shell: bash
