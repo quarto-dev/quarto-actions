@@ -1,10 +1,10 @@
 # Github Actions for Quarto
 
-This repository stores [Github Actions](https://github.com/features/actions) around Quarto (https://quarto.org/)
+This repository stores [Github Actions](https://github.com/features/actions) useful for building and publishing [Quarto](https://quarto.org/) documents.
 
-1. [quarto-dev/quarto-actions/setup](https://github.com/quarto-dev/actions/tree/master/setup) - Install Quarto
-2. [quarto-dev/quarto-actions/render](https://github.com/quarto-dev/actions/tree/master/render) - Render project
-3. [quarto-dev/quarto-actions/publish](https://github.com/quarto-dev/actions/tree/master/publish) - Publish project
+1. [quarto-dev/quarto-actions/setup](https://github.com/quarto-dev/actions/tree/main/setup) - Install Quarto
+2. [quarto-dev/quarto-actions/render](https://github.com/quarto-dev/actions/tree/main/render) - Render project
+3. [quarto-dev/quarto-actions/publish](https://github.com/quarto-dev/actions/tree/main/publish) - Publish project
 
 We recommend using `v2` for your actions, and our examples all use `v2`.
 
@@ -14,9 +14,9 @@ In [Examples](./examples), you will find some YAML workflow files to serve as te
 
 ## Release Management
 
-This repository is using [recommended release management for actions](https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions): 
+This repository uses [GitHub's recommended release management for actions](https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions): 
 
-* Github releases with tags are used for updates on the actions. 
+* GitHub releases with tags are used for updates on the actions. 
 * Semantic versioning is used, with major, minor and possibly patch release. 
-* Major version (such as `v1`) will always point to the last minor or patch release for this major version. (when `v1.0.2` is out, `v1` will point to this update to). This means using `quarto-dev/quarto-actions/setup@v2` in your workflow file will automatically get the updated versions. Using `quarto-dev/quarto-actions/setup@v1.0.2` will pin a specific release.
-* Major version change (`v1` to `v2`) will often come with a possible breaking change, and a workflow would require manual update.
+* Major versions (such as `v1`) will always point to the last minor or patch release for this major version. (when `v1.0.2` is out, `v1` will point to this update to). This means using `quarto-dev/quarto-actions/setup@v2` in your workflow file will automatically get the updated versions. Using `quarto-dev/quarto-actions/setup@v1.0.2` will pin a specific release.
+* Major version changes (`v1` to `v2`) will often come with breaking changes, and workflows might require manual updates.

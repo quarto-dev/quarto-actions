@@ -2,7 +2,8 @@
 
 * [Basics](./example-01-basics.md)
 * [Freeze](./example-02-freeze.md)
-* [Other dependencies](./example-03-other-dependencies.md)
+* [Dependencies](./example-03-dependencies.md)
+* [Other workflows](./example-04-other-workflows.md)
 
 
 ## Repositories using Quarto actions
