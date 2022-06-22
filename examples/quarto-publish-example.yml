@@ -23,11 +23,16 @@ jobs:
           # uncomment below and fill to pin a version
           # version: 0.9.600
       
-      - name: Publish to Netlify (and render)
-        uses: cscheid/quarto-actions/publish@v1
-        with:
-          to: netlify
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      # add software dependencies here
+
+      # To publish to Netlify, RStudio Connect, or GitHub Pages, uncomment
+      # the appropriate block below
+      
+      # - name: Publish to Netlify (and render)
+      #   uses: cscheid/quarto-actions/publish@v1
+      #   with:
+      #     to: netlify
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         
       # - name: Publish to RStudio Connect (and render)
       #   uses: cscheid/quarto-actions/publish@v2

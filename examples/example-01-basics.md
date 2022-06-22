@@ -1,8 +1,14 @@
----
-title: "Quarto Actions: Basics"
----
+# Quarto Actions: Basics
 
-The simplest workflow using Quarto Actions uses the `setup` and `publish` actions. 
+The simplest workflow using Quarto Actions uses the `setup` and `publish` actions: [quarto-publish-example.yml](quarto-publish-example.yml).
+
+## GitHub Pages
+
+1. **Add the GitHub Actions workflow to your project**
+
+   Copy [quarto-publish-example.yml](quarto-publish-example.yml) to `.github/workflows/quarto-publish.yml`. Uncomment the "Publish to GitHub Pages (and render)" action. No further changes are needed to the action (in particular, do *not* edit the line below to add a secret to this file. This file has the same permissions as your repository, and might be publicly readable)
+
+Now, add and commit the workflow file you have just created, and push the result to GitHub. This should trigger a new action from GitHub that will automatically render and publish your website through GitHub pages. Note that this will create a `gh-pages` branch in your repository if one doesn't exist.
 
 
 ## Netlify
@@ -18,6 +24,8 @@ The simplest workflow using Quarto Actions uses the `setup` and `publish` action
 3. **Add the GitHub Actions workflow to your project**
 
    Copy [quarto-publish-example.yml](quarto-publish-example.yml) to `.github/workflows/quarto-publish.yml`.
+   
+   Uncomment the "Publish to Netlify (and render)" action. No further changes are needed (in particular, do *not* edit the line below to add a secret to this file. This file has the same permissions as your repository, and might be publicly readable)
 
 4. **Add `_publish.yml` to your repository**
 
@@ -38,11 +46,13 @@ Finally, add and commit the files you have just created, and push the result to 
 
 3. **Add the GitHub Actions workflow to your project**
 
-   Copy [quarto-publish-example.yml](quarto-publish-example.yml) to `.github/workflows/quarto-publish.yml`. Uncomment the "Publish to RStudio Connect (and render)" action, and change the CONNECT_SERVER entry to the URL of your RStudio Connect server. No further changes are needed to the action (in particular, do *not* edit the line below to add the secret to this file. This file is publicly available)
+   Copy [quarto-publish-example.yml](quarto-publish-example.yml) to `.github/workflows/quarto-publish.yml`. Uncomment the "Publish to RStudio Connect (and render)" action, and change the CONNECT_SERVER entry to the URL of your RStudio Connect server. No further changes are needed to the action (in particular, do *not* edit the line below to add a secret to this file. This file has the same permissions as your repository, and might be publicly readable)
 
 4. **Add `_publish.yml` to your repository**
 
    Quarto stores publishing metadata information in `_publish.yml`. To create this file, run `quarto publish connect` locally once (TODO: how does this work in an IDE?).
 
-
 Finally, add and commit the files you have just created, and push the result to GitHub. This should trigger a new action from GitHub that will automatically render and publish your website through RStudio Connect.
+
+
+

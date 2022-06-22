@@ -22,9 +22,6 @@ inputs:
     description: 'User name to be used on gh-pages commit'
     required: false
     default: Quarto GHA Workflow Runner
-  #GITHUB_TOKEN:
-  #  description: 'Github Auth Token. (Use with github actions secrets: see documentation and examples for details)'
-  #  required: false
 runs:
   using: 'composite'
   steps: 
@@ -34,7 +31,6 @@ runs:
         CONNECT_SERVER: ${{ inputs.CONNECT_SERVER }}
         CONNECT_API_KEY: ${{ inputs.CONNECT_API_KEY }}
         NETLIFY_AUTH_TOKEN: ${{ inputs.NETLIFY_AUTH_TOKEN }}
-        #GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
       run: |
         git config --global user.email "${{ inputs.GITHUB_EMAIL }}"
         git config --global user.name "${{ inputs.GITHUB_USERNAME }}"
