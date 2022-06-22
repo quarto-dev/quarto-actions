@@ -2,9 +2,9 @@
 
 This repository stores [Github Actions](https://github.com/features/actions) useful for building and publishing [Quarto](https://quarto.org/) documents.
 
-1. [quarto-dev/quarto-actions/setup](https://github.com/quarto-dev/actions/tree/main/setup) - Install Quarto
-2. [quarto-dev/quarto-actions/render](https://github.com/quarto-dev/actions/tree/main/render) - Render project
-3. [quarto-dev/quarto-actions/publish](https://github.com/quarto-dev/actions/tree/main/publish) - Publish project
+1. [quarto-dev/quarto-actions/setup](https://github.com/quarto-dev/quarto-actions/tree/main/setup) - Install Quarto
+2. [quarto-dev/quarto-actions/render](https://github.com/quarto-dev/quarto-actions/tree/main/render) - Render project
+3. [quarto-dev/quarto-actions/publish](https://github.com/quarto-dev/quarto-actions/tree/main/publish) - Publish project
 
 We recommend using `v2` for your actions, and our examples all use `v2`.
 
