@@ -21,7 +21,7 @@ We recommend using a Linux or MacOS runner if possible, especially if TinyTeX is
 
   ```yaml
     steps:
-      - uses: quarto-dev/actions/setup@v2
+      - uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: 0.3.71
   ```
@@ -30,7 +30,7 @@ We recommend using a Linux or MacOS runner if possible, especially if TinyTeX is
 
   ```yaml
     steps:
-      - uses: quarto-dev/actions/setup@v2
+      - uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
   ```
@@ -47,19 +47,19 @@ jobs:
   quarto-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: quarto-dev/actions/setup@v2
+      - uses: quarto-dev/quarto-actions/setup@v2
       - run: |
           quarto --version
   quarto-windows:
     runs-on: windows-latest
     steps:
-      - uses: quarto-dev/actions/setup@v2
+      - uses: quarto-dev/quarto-actions/setup@v2
       - run: |
           quarto --version
   quarto-macos:
     runs-on: macos-latest
     steps:
-      - uses: quarto-dev/actions/setup@v2
+      - uses: quarto-dev/quarto-actions/setup@v2
       - run: |
           quarto --version
 ```
