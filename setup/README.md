@@ -21,16 +21,16 @@ We recommend using a Linux or MacOS runner if possible, especially if TinyTeX is
 
   ```yaml
     steps:
-      - uses: quarto-dev/actions/setup@v1
+      - uses: quarto-dev/actions/setup@v2
         with:
           version: 0.3.71
   ```
 
-* `tinytex` - _optional_, only available on `main`. Set `tinytex: true` to [install TinyTeX](https://quarto.org/docs/output-formats/pdf-engine.html#installing-tex) using `quarto tools install tinytex`. Note: Installing TinyTeX on Windows can take several minutes.
+* `tinytex` - _optional_. Set `tinytex: true` to [install TinyTeX](https://quarto.org/docs/output-formats/pdf-engine.html#installing-tex) using `quarto tools install tinytex`. Note: Installing TinyTeX on Windows can take several minutes.
 
   ```yaml
     steps:
-      - uses: quarto-dev/actions/setup@main
+      - uses: quarto-dev/actions/setup@v2
         with:
           tinytex: true
   ```
@@ -47,19 +47,19 @@ jobs:
   quarto-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: quarto-dev/actions/setup@v1
+      - uses: quarto-dev/actions/setup@v2
       - run: |
           quarto --version
   quarto-windows:
     runs-on: windows-latest
     steps:
-      - uses: quarto-dev/actions/setup@v1
+      - uses: quarto-dev/actions/setup@v2
       - run: |
           quarto --version
   quarto-macos:
     runs-on: macos-latest
     steps:
-      - uses: quarto-dev/actions/setup@v1
+      - uses: quarto-dev/actions/setup@v2
       - run: |
           quarto --version
 ```
