@@ -15,7 +15,6 @@ runs:
         else
           quarto render --to ${{ inputs.to }}
         fi
-        quarto render
         if [ -f "_book" ]; then
           echo "QUARTO_OUTPUT=_book" >> $GITHUB_ENV
         elif [ -f "_site"]; then
