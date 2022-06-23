@@ -25,7 +25,7 @@ Give this token a memorable name, and note the resulting string (or keep this wi
 2. Configure action to use gh-pages:
 
    ```yaml
-   - name: Publish to Netlify (and render)
+   - name: Publish to GitHub Pages (and render)
      uses: quarto-dev/quarto-actions/publish@v2
      with:
        to: gh-pages
