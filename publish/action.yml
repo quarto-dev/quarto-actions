@@ -1,6 +1,6 @@
-name: 'Render Quarto project'
+name: 'Publish Quarto project'
 author: 'Carlos Scheidegger'
-description: 'This action will render an existing quarto project'
+description: 'This action will publish an existing quarto project'
 inputs:
   to:
     description: 'Service to publish to. If unspecified, use the default value derived from _publish.yml'
@@ -22,6 +22,10 @@ inputs:
     description: 'User name to be used on gh-pages commit'
     required: false
     default: Quarto GHA Workflow Runner
+  path:
+    description: 'Subdirectory containing the quarto project to be published'
+    required: false
+    default: "."
 runs:
   using: 'composite'
   steps: 
@@ -34,4 +38,4 @@ runs:
       run: |
         git config --global user.email "${{ inputs.GITHUB_EMAIL }}"
         git config --global user.name "${{ inputs.GITHUB_USERNAME }}"
-        quarto publish ${{ inputs.to }}
+        quarto publish ${{ inputs.to }} ${{ inputs.path }}

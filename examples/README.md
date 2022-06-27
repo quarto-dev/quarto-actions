@@ -4,7 +4,7 @@
 * [Freeze](./example-02-freeze.md)
 * [Dependencies](./example-03-dependencies.md)
 * [Other workflows](./example-04-other-workflows.md)
-
+* [Rendering a publishing a non-top-level project](./example-05-non-top-level.md)
 
 ## Repositories using Quarto actions
 

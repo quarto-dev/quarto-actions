@@ -5,15 +5,19 @@ inputs:
   to:
     description: 'Format to render output. Use "all" to generate all outputs, when eg rendering a book in HTML and PDF'
     required: false
+  path:
+    description: 'Subdirectory containing the quarto project to be rendered'
+    required: false
+    default: "."
 runs:
   using: 'composite'
   steps: 
     - name: 'Render'
       run: |
         if [ "${{ inputs.to }}" == "" ]; then
-          quarto render
+          quarto render ${{ inputs.path }}
         else
-          quarto render --to ${{ inputs.to }}
+          quarto render ${{ inputs.path }} --to ${{ inputs.to }}
         fi
         if [ -f "_book" ]; then
           echo "QUARTO_OUTPUT=_book" >> $GITHUB_ENV
