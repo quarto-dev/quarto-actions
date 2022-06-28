@@ -5,6 +5,7 @@
 * [Dependencies](./example-03-dependencies.md)
 * [Other workflows](./example-04-other-workflows.md)
 * [Rendering a publishing a non-top-level project](./example-05-non-top-level.md)
+* [Publishing without rendering](./example-06-no-render.md)
 
 ## Repositories using Quarto actions
 

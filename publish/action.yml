@@ -26,6 +26,10 @@ inputs:
     description: 'Subdirectory containing the quarto project to be published'
     required: false
     default: "."
+  render:
+    description: 'If not true, do not render project before publishing'
+    required: false
+    default: "true"
 runs:
   using: 'composite'
   steps: 
@@ -38,4 +42,8 @@ runs:
       run: |
         git config --global user.email "${{ inputs.GITHUB_EMAIL }}"
         git config --global user.name "${{ inputs.GITHUB_USERNAME }}"
-        quarto publish ${{ inputs.to }} ${{ inputs.path }}
+        if [ "${{ inputs.render }}" != "true" ]; then
+          quarto publish ${{ inputs.to }} ${{ inputs.path }} --no-render
+        else
+          quarto publish ${{ inputs.to }} ${{ inputs.path }}
+        fi
