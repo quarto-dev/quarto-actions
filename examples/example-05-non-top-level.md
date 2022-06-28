@@ -6,6 +6,6 @@ It's possible to have a quarto project in a large GitHub repository, where the q
 - name: Publish to GitHub Pages (and render)
   uses: quarto-dev/quarto-actions/publish@v2
   with:
-    to: gh-pages
+    target: gh-pages
     path: subdirectory-to-use
 ```

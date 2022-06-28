@@ -15,7 +15,7 @@ Give this token a memorable name, and note the resulting string (or keep this wi
    - name: Publish to Netlify (and render)
      uses: quarto-dev/quarto-actions/publish@v2
      with:
-       to: netlify
+       target: netlify
    ```
 
 ## GitHub Pages
@@ -28,7 +28,7 @@ Give this token a memorable name, and note the resulting string (or keep this wi
    - name: Publish to GitHub Pages (and render)
      uses: quarto-dev/quarto-actions/publish@v2
      with:
-       to: gh-pages
+       target: gh-pages
    ```
 
 ## RStudio Connect
@@ -47,7 +47,7 @@ Give this token a memorable name, and note the resulting string (or keep this wi
    - name: Publish to Netlify (and render)
      uses: quarto-dev/quarto-actions/publish@v2
      with:
-       to: gh-pages
+       target: gh-pages
    ```
 
 

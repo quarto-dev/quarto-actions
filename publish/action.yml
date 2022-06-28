@@ -5,6 +5,9 @@ inputs:
   to:
     description: 'Service to publish to. If unspecified, use the default value derived from _publish.yml'
     required: false
+  target:
+    description: 'Alias for `to`. If unspecified, use the default value derived from _publish.yml'
+    required: false
   CONNECT_SERVER:
     description: 'RStudio Connect server. If unspecified, use the default value derived from _publish.yml'
     required: false
@@ -42,8 +45,12 @@ runs:
       run: |
         git config --global user.email "${{ inputs.GITHUB_EMAIL }}"
         git config --global user.name "${{ inputs.GITHUB_USERNAME }}"
+        TARGET="${{ inputs.to }}"
+        if [ "$TARGET" == "" ]; then
+          TARGET="${{ inputs.target }}"
+        fi
         if [ "${{ inputs.render }}" != "true" ]; then
-          quarto publish ${{ inputs.to }} ${{ inputs.path }} --no-render
+          quarto publish $TARGET ${{ inputs.path }} --no-render
         else
-          quarto publish ${{ inputs.to }} ${{ inputs.path }}
+          quarto publish $TARGET ${{ inputs.path }}
         fi

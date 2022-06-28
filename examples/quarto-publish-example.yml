@@ -1,10 +1,6 @@
 on:
   push:
     branches: main
-  
-  # TODO test PR trigger
-  # pull_request:
-  #   branches: main
 
 name: Render and Publish
 
@@ -31,20 +27,20 @@ jobs:
       # - name: Publish to Netlify (and render)
       #   uses: quarto-dev/quarto-actions/publish@v2
       #   with:
-      #     to: netlify
+      #     target: netlify
       #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         
       # - name: Publish to RStudio Connect (and render)
       #   uses: quarto-dev/quarto-actions/publish@v2
       #   with:
-      #     to: connect
+      #     target: connect
       #     CONNECT_SERVER: enter-the-server-url-here
       #     CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} 
 
       # - name: Publish to GitHub Pages (and render)
       #   uses: quarto-dev/quarto-actions/publish@v2
       #   with:
-      #     to: gh-pages
+      #     target: gh-pages
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
       

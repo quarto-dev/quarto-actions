@@ -9,7 +9,7 @@ to the `publish` action:
 - name: Publish to GitHub Pages (and render)
   uses: quarto-dev/quarto-actions/publish@v2
   with:
-    to: gh-pages
+    target: gh-pages
     render: false
 ```
 
