@@ -16,6 +16,7 @@ Give this token a memorable name, and note the resulting string (or keep this wi
      uses: quarto-dev/quarto-actions/publish@v2
      with:
        target: netlify
+       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
    ```
 
 ## GitHub Pages
@@ -41,13 +42,15 @@ Give this token a memorable name, and note the resulting string (or keep this wi
 
 4. Add `_publish.yml` to your repository. Quarto stores publishing metadata information in `_publish.yml`. To create this file, run `quarto publish connect` locally once (TODO: how does this work in IDE?).
 
-5. Configure action to use gh-pages:
+5. Configure action to use RStudio Connect:
 
    ```yaml
-   - name: Publish to Netlify (and render)
+   - name: Publish to RStudio Connect (and render)
      uses: quarto-dev/quarto-actions/publish@v2
      with:
-       target: gh-pages
+       target: connect
+       CONNECT_SERVER: enter-your-server-url-here
+       CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} 
    ```
 
 
