@@ -1,6 +1,6 @@
 # Quarto Actions: Basics
 
-The simplest workflow using Quarto Actions uses the `setup` and `publish` actions: [quarto-publish-example.yml](quarto-publish-example.yml). Note that GitHub Pages use a `gh-pages` branch in your repository, which will be automatically created if one doesn't exist.
+The simplest workflow using Quarto Actions uses the `setup` and `publish` actions: [quarto-publish-example.yml](quarto-publish-example.yml).
 
 ## GitHub Pages
 
@@ -14,6 +14,7 @@ The simplest workflow using Quarto Actions uses the `setup` and `publish` action
 
 Now, add and commit the workflow file you have just created, and push the result to GitHub. This should trigger a new action from GitHub that will automatically render and publish your website through GitHub pages.
 
+Note that GitHub Pages uses a `gh-pages` branch in your repository, which will be automatically created if one doesn't exist.
 
 ## Netlify
 
