@@ -7,7 +7,7 @@ Give this token a memorable name, and note the resulting string (or keep this wi
 
 3. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](https://github.com/quarto-dev/quarto-actions/blob/main/examples/quarto-publish-example.yml) as an example).
 
-4. Add `_publish.yml` to your repository. Quarto stores publishing metadata information in `_publish.yml`. To create this file, run `quarto publish netlify` locally once (TODO: how does this work in IDE?).
+4. Add `_publish.yml` to your repository. Quarto stores publishing metadata information in `_publish.yml`. To create this file, run `quarto publish netlify` locally once.
 
 5. Configure action to use netlify:
    
@@ -23,7 +23,9 @@ Give this token a memorable name, and note the resulting string (or keep this wi
 
 1. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](https://github.com/quarto-dev/quarto-actions/blob/main/examples/quarto-publish-example.yml) as an example).
 
-2. Configure action to use gh-pages:
+2. Add `_publish.yml` to your repository. Quarto stores publishing metadata information in `_publish.yml`. To create this file, run `quarto publish gh-pages` locally once.
+
+3. Configure action to use gh-pages:
 
    ```yaml
    - name: Publish to GitHub Pages (and render)
