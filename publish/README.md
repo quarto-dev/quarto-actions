@@ -23,7 +23,7 @@ Give this token a memorable name, and note the resulting string (or keep this wi
 
 1. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](https://github.com/quarto-dev/quarto-actions/blob/main/examples/quarto-publish-example.yml) as an example).
 
-2. Add `_publish.yml` to your repository. Quarto stores publishing metadata information in `_publish.yml`. To create this file, run `quarto publish gh-pages` locally once.
+2. Run `quarto publish gh-pages` locally, once. Quarto needs to configure the repository for publishing through GitHub Actions. To do this, run `quarto publish gh-pages` locally.
 
 3. Configure action to use gh-pages:
 
