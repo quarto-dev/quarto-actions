@@ -17,6 +17,9 @@ inputs:
   NETLIFY_AUTH_TOKEN:
     description: 'Netlify Auth Token. (Use with github actions secrets: see documentation and examples for details)'
     required: false
+  QUARTO_PUB_AUTH_TOKEN:
+    description: 'Quarto Pub Auth Token. (Use with github actions secrets: see documentation and examples for details)'
+    required: false
   GITHUB_EMAIL:
     description: 'Email to be used on gh-pages commit'
     required: false
@@ -42,6 +45,7 @@ runs:
         CONNECT_SERVER: ${{ inputs.CONNECT_SERVER }}
         CONNECT_API_KEY: ${{ inputs.CONNECT_API_KEY }}
         NETLIFY_AUTH_TOKEN: ${{ inputs.NETLIFY_AUTH_TOKEN }}
+        QUARTO_PUB_AUTH_TOKEN: ${{ inputs.QUARTO_PUB_AUTH_TOKEN }}
       run: |
         git config --global user.email "${{ inputs.GITHUB_EMAIL }}"
         git config --global user.name "${{ inputs.GITHUB_USERNAME }}"
