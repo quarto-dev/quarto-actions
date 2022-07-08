@@ -55,5 +55,9 @@ Give this token a memorable name, and note the resulting string (or keep this wi
        CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} 
    ```
 
+## Other configurations
 
+The `with` parameter can also be set to configure the following
 
+* `path`: Subdirectory containing the quarto project to be published. Default to working directory (`.`)
+* `render`: Set to `render: "false"` to skip rendering of project before publishing. By default, this `publish` action will render to all formats defined.
