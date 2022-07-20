@@ -3,7 +3,7 @@ author: 'Christophe Dervieux'
 description: 'This action will setup Quarto from the git repository https://github.com/quarto-dev/quarto-cli/'
 inputs:
   version:
-    description: 'The version of Quarto to use. Either a release tag (eg. 0.9.486) or "LATEST". If missing, uses stable version.'
+    description: 'The version of Quarto to use. Either a release tag (eg. 0.9.486) or "pre-release" for latest built dev version. If missing, uses latest stable version.'
     required: false
   tinytex:
     description: 'If true, install TinyTex, required for PDF rendering'
@@ -39,12 +39,12 @@ runs:
         if [ ${{ runner.os }} != "Windows" ]; then
           # On Windows scoop will be used so no need to download the release
           if [ -z "${{inputs.version}}" ]; then
-            STABLE_VERSION=1.0.35
             # download the latest stable release
-            wget https://github.com/quarto-dev/quarto-cli/releases/download/v${STABLE_VERSION}/quarto-${STABLE_VERSION}-${{env.BUNDLE_EXT}}
-          elif [ "${{inputs.version}}" == "LATEST" ]; then
-            # download the latest release
             gh release download --repo quarto-dev/quarto-cli --pattern ${{ format('*{0}', env.BUNDLE_EXT) }}
+          elif [ "${{inputs.version}}" == "LATEST" -o "${{inputs.version}}" == "pre-release" ]; then
+            # get latest pre release version 
+            $version=$(gh api repos/quarto-dev/quarto-cli/releases | jq -r 'map(select(.prerelease)) | first | .tag_name')
+            gh release download --repo quarto-dev/quarto-cli $version --pattern ${{ format('*{0}', env.BUNDLE_EXT) }}
           else
             # download a specific release
             wget https://github.com/quarto-dev/quarto-cli/releases/download/v${{inputs.version}}/quarto-${{inputs.version}}-${{env.BUNDLE_EXT}}
