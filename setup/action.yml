@@ -43,7 +43,7 @@ runs:
             gh release download --repo quarto-dev/quarto-cli --pattern ${{ format('*{0}', env.BUNDLE_EXT) }}
           elif [ "${{inputs.version}}" == "LATEST" -o "${{inputs.version}}" == "pre-release" ]; then
             # get latest pre release version 
-            version=$(curl https://quarto.org/docs/download/_prerelease.json | grep -o '"version": .*$' | grep -oP '[\d.]+')
+            version=$(curl https://quarto.org/docs/download/_prerelease.json | jq -r '.version')
             wget https://github.com/quarto-dev/quarto-cli/releases/download/v$version/quarto-$version-${{env.BUNDLE_EXT}}
           else
             # download a specific release
