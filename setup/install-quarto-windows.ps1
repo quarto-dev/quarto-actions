@@ -22,6 +22,8 @@ $version=$args[0]
 scoop bucket add r-bucket https://github.com/cderv/r-bucket.git
 if ([string]::IsNullOrEmpty($version)) {
     scoop install quarto
-}else{
+} elseif ($version -eq 'pre-release') {
+    Invoke-Expression -Command "scoop install quarto-prerelease"
+} else {
     Invoke-Expression -Command "scoop install quarto@$version"
 }
