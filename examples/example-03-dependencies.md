@@ -50,4 +50,7 @@ Add the following entry to your GitHub Actions workflow:
 
 ## Installing Julia
 
-TBF.
+```yaml
+- uses: julia-actions/setup-julia@v1
+- run: julia --project -e 'using Pkg; Pkg.instantiate()'
+```
