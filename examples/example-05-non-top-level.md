@@ -1,4 +1,4 @@
-# Using Quarto Actions: non-top-level projects
+# Quarto Actions: non-top-level projects
 
 It's possible to have a quarto project in a large GitHub repository, where the quarto project does not reside at the top-level directory. In this case, add a `path` input to the invocation of the `render` or `publish` action. For example:
 
