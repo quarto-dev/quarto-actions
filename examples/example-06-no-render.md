@@ -1,4 +1,4 @@
-# Using Quarto Actions: do not render
+## Publishing without rendering
 
 By default, `quarto publish` will re-render your project before publishing it.
 However, if you store the rendered project in version control, you don't need
@@ -13,13 +13,12 @@ to the `publish` action:
     render: false
 ```
 
-## Chaining render then publish
+## Rendering a single format
 
-By default, `quarto publish` will render to all format defined before publishing.  
-If you need to customize the rendering step, e.g only render one format in CI before publishing, use a two step process: 
+The `render: false` choice is all-or-nothing. If you need to customize the rendering step, e.g. only render one format in CI before publishing, use a two step process: 
 
-* `quarto render` by providing the targer output format
-* `quarto publish --no-render` to skip re-rendering before publishing
+* use the `quarto-actions/render@v2` action and provide a target output format (in this example YAML configuration, we use the HTML format)
+* use the `quarto-actions/publish@v2` action with `render: false` to skip rendering before publishing (in this example YAML configuration, we publish to GitHub Pages)
 
 ```yaml
 - name: Render Book project
@@ -32,5 +31,4 @@ If you need to customize the rendering step, e.g only render one format in CI be
   with:
     target: gh-pages
     render: false
-    path: ${{ env.QUARTO_OUTPUT }} # define this env var if you are using a non default output-dir
 ```
