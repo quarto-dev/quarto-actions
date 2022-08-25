@@ -1,6 +1,6 @@
 ## Publishing without rendering
 
-By default, `quarto publish` will re-render your project before publishing it.
+By default, the `quarto-actions/publish@v2` action will re-render your entire project before publishing.
 However, if you store the rendered project in version control, you don't need
 the GitHub action to re-render the project. In that case, add the option `render: false`
 to the `publish` action:
