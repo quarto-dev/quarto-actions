@@ -25,6 +25,10 @@ We recommend using a Linux or MacOS runner if possible, especially if TinyTeX is
         with:
           version: 0.3.71
   ```
+  
+  If not provided, `setup` will use the latest _released_ version of quarto.
+  
+  If the latest `pre-release` build is desired, use `version: pre-release`.
 
 * `tinytex` - _optional_. Set `tinytex: true` to [install TinyTeX](https://quarto.org/docs/output-formats/pdf-engine.html#installing-tex) using `quarto install tool tinytex`. Note: Installing TinyTeX on Windows can take several minutes.
 
