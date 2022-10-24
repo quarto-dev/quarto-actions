@@ -49,7 +49,7 @@ runs:
             # download a specific release
             wget https://github.com/quarto-dev/quarto-cli/releases/download/v${{inputs.version}}/quarto-${{inputs.version}}-${{env.BUNDLE_EXT}}
           fi
-        echo "::set-output name=installer::$(ls quarto*${{ env.BUNDLE_EXT }})"
+        echo "installer=$(ls quarto*${{ env.BUNDLE_EXT }})" >> $GITHUB_OUTPUT
         fi
       shell: bash
     - name: 'Install Quarto'
