@@ -9,7 +9,7 @@
 
 ## Repositories using Quarto actions
 
-- [Earthdata Cloud Cookbook](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/) ([source](https://github.com/NASA-Openscapes/earthdata-cloud-cookbook), [workflow file](https://github.com/NASA-Openscapes/earthdata-cloud-cookbook/blob/main/.github/workflows/quarto-render.yml)) This book contains `.md` and `.ipynb` files, and is built with Quarto and Python in GHA, and deployed to Github Pages. 
+- [Earthdata Cloud Cookbook](https://nasa-openscapes.github.io/earthdata-cloud-cookbook/) ([source](https://github.com/NASA-Openscapes/earthdata-cloud-cookbook), [workflow file](https://github.com/NASA-Openscapes/earthdata-cloud-cookbook/blob/main/.github/workflows/quarto-publish.yml)) This book contains `.md` and `.ipynb` files, and is built with Quarto and Python in GHA, and deployed to Github Pages. 
 
 - [R Manuals Quarto website](https://rstudio.github.io/r-manuals/) ([source](https://github.com/rstudio/r-manuals), [workflow file](https://github.com/rstudio/r-manuals/blob/main/.github/workflows/build-website.yaml)) This projects uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.
 
