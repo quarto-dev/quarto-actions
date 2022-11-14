@@ -21,7 +21,7 @@ runs:
         fi
         if [ -f "_book" ]; then
           echo "QUARTO_OUTPUT=_book" >> $GITHUB_ENV
-        elif [ -f "_site"]; then
+        elif [ -f "_site" ]; then
           echo "QUARTO_OUTPUT=_site" >> $GITHUB_ENV
         fi
       shell: bash
