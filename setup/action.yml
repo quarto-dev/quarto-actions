@@ -9,6 +9,9 @@ inputs:
     description: 'If true, install TinyTex, required for PDF rendering'
     required: false
     default: 'false'
+outputs:
+  version:
+    description: 'The installed version of quarto.'
 runs:
   using: 'composite'
   steps: 
@@ -41,15 +44,22 @@ runs:
           if [ -z "${{inputs.version}}" ]; then
             # download the latest stable release
             gh release download --repo quarto-dev/quarto-cli --pattern ${{ format('*{0}', env.BUNDLE_EXT) }}
+            version=$(curl https://quarto.org/docs/download/_download.json | jq -r '.version')
+            echo "version=${version}" >> $GITHUB_OUTPUT
           elif [ "${{inputs.version}}" == "LATEST" -o "${{inputs.version}}" == "pre-release" ]; then
             # get latest pre release version 
             version=$(curl https://quarto.org/docs/download/_prerelease.json | jq -r '.version')
             wget https://github.com/quarto-dev/quarto-cli/releases/download/v$version/quarto-$version-${{env.BUNDLE_EXT}}
+            echo "version=${version}" >> $GITHUB_OUTPUT
           else
             # download a specific release
             wget https://github.com/quarto-dev/quarto-cli/releases/download/v${{inputs.version}}/quarto-${{inputs.version}}-${{env.BUNDLE_EXT}}
+            echo "version=${{inputs.version}}" >> $GITHUB_OUTPUT
           fi
-        echo "installer=$(ls quarto*${{ env.BUNDLE_EXT }})" >> $GITHUB_OUTPUT
+          echo "installer=$(ls quarto*${{ env.BUNDLE_EXT }})" >> $GITHUB_OUTPUT
+        else
+          # FIXME: how to get version information from scoop in windows runners?
+          # send the cderv bat-signal!
         fi
       shell: bash
     - name: 'Install Quarto'
