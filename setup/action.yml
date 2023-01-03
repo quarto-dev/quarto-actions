@@ -58,6 +58,7 @@ runs:
           fi
           echo "installer=$(ls quarto*${{ env.BUNDLE_EXT }})" >> $GITHUB_OUTPUT
         else
+          : # do nothing for now (https://github.com/quarto-dev/quarto-actions/issues/59 :facepalm:)
           # FIXME: how to get version information from scoop in windows runners?
           # send the cderv bat-signal!
         fi
