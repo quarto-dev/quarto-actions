@@ -14,7 +14,7 @@ Add the following entry to your GitHub Actions workflow:
 
 If you're using `quarto-publish-example.yml`, add those right after the `# add software dependencies here` comment.
 
-### renv
+### Using **renv** to manage R packages
 
 If you are managing your R package dependencies with `renv`, the following action will install the dependencies:
 
@@ -25,6 +25,7 @@ If you are managing your R package dependencies with `renv`, the following actio
 ```
 
 See [the `setup-renv` documentation](https://github.com/r-lib/actions/tree/v2/setup-renv) for how to use `cache-version`.
+See [the `renv` documentation](https://rstudio.github.io/renv) for how to use **renv** with a project.
 
 ### Installing R packages manually
 
