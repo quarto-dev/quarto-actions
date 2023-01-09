@@ -26,6 +26,22 @@ If you are managing your R package dependencies with `renv`, the following actio
 
 See [the `setup-renv` documentation](https://github.com/r-lib/actions/tree/v2/setup-renv) for how to use `cache-version`.
 
+### Installing R packages manually
+
+You can also use `r-lib/actions/setup-r-dependencies@v2` to install required R packages for your content. See more about 
+this actions at [the `setup-r-dependencies` documentation](https://github.com/r-lib/actions/tree/v2-branch/setup-r-dependencies). 
+It can handle dependencies with a `DESCRIPTION` in your project, or you can also list manually what is needed. e.g
+
+```yaml
+- uses: r-lib/actions/setup-r-dependencies@v2
+  with:
+    packages:
+      any::knitr
+      any::rmarkdown
+      any::downlit
+      any::xml2
+```
+
 ## Installing Jupyter
 
 Add the following entry to your GitHub Actions workflow:
