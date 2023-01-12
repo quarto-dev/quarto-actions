@@ -39,6 +39,21 @@ We recommend using a Linux or MacOS runner if possible, especially if TinyTeX is
           tinytex: true
   ```
 
+### GitHub Enterprise
+
+For GitHub Enterprise Server (GHES), you may need to [generate a personal access token (PAT) on github.com](https://github.com/settings/tokens/new) to enable downloading Quarto. GitHub's [setup-python action](https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#avoiding-rate-limit-issues) uses a similar workaround, from which these instructions are adapted:
+
+  - Create a PAT on any github.com account by using [this link](https://github.com/settings/tokens/new) after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.
+  - Store this PAT in the repository / organization where you run your workflow, e.g. as `GH_GITHUB_COM_TOKEN`. You can do this by navigating to your repository -> **Settings** -> **Secrets** -> **Actions** -> **New repository secret**.
+  - In your workflow, incorporate your PAT as an environment variable. For example:
+
+    ```yaml
+    - name: Set up Quarto
+      uses: quarto-dev/quarto-actions/setup@v2
+      env:
+        GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}
+    ```
+
 ## Examples
 
 ```yaml
