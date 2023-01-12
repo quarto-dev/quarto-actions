@@ -43,7 +43,7 @@ runs:
           # On Windows scoop will be used so no need to download the release
           if [ -z "${{inputs.version}}" ]; then
             # download the latest stable release
-            gh release download --repo quarto-dev/quarto-cli --pattern ${{ format('*{0}', env.BUNDLE_EXT) }}
+            gh release download --repo github.com/quarto-dev/quarto-cli --pattern ${{ format('*{0}', env.BUNDLE_EXT) }}
             version=$(curl https://quarto.org/docs/download/_download.json | jq -r '.version')
             echo "version=${version}" >> $GITHUB_OUTPUT
           elif [ "${{inputs.version}}" == "LATEST" -o "${{inputs.version}}" == "pre-release" ]; then
