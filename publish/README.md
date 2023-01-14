@@ -59,5 +59,5 @@ Give this token a memorable name, and note the resulting string (or keep this wi
 
 The `with` parameter can also be set to configure the following
 
-* `path`: Subdirectory containing the quarto project to be published. Default to working directory (`.`)
+* `path`: Subdirectory containing the quarto project to be published or path to individual .qmd file. Default to working directory (`.`)
 * `render`: Set to `render: "false"` to skip rendering of project before publishing. By default, this `publish` action will render to all formats defined.
