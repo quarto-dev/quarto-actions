@@ -13,6 +13,8 @@ runs:
   using: 'composite'
   steps: 
     - name: 'Render'
+      env:
+        QUARTO_PRINT_STACK: true
       run: |
         if [ "${{ inputs.to }}" == "" ]; then
           quarto render ${{ inputs.path }}

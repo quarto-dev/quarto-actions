@@ -92,6 +92,8 @@ runs:
         echo "Quarto Installed !"
       shell: bash
     - name: 'Install TinyTeX'
+      env:
+        QUARTO_PRINT_STACK: true
       if: ${{ inputs.tinytex == 'true'}}
       run: |
         quarto install tool tinytex --log-level warning

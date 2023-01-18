@@ -42,6 +42,7 @@ runs:
     - name: 'Publish'
       shell: bash
       env:
+        QUARTO_PRINT_STACK: true
         CONNECT_SERVER: ${{ inputs.CONNECT_SERVER }}
         CONNECT_API_KEY: ${{ inputs.CONNECT_API_KEY }}
         NETLIFY_AUTH_TOKEN: ${{ inputs.NETLIFY_AUTH_TOKEN }}
