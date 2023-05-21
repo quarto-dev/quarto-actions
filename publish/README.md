@@ -23,9 +23,11 @@ Give this token a memorable name, and note the resulting string (or keep this wi
 
 1. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](https://github.com/quarto-dev/quarto-actions/blob/main/examples/quarto-publish-example.yml) as an example).
 
-2. Run `quarto publish gh-pages` locally, once. Quarto needs to configure the repository for publishing through GitHub Actions. To do this, run `quarto publish gh-pages` locally.
+2. Head over to your repository on GitHub. Under Settings > Pages > Build and deployment, under source, ensure **Deploy from a branch** is selected. Under the branch option, select the root of the gh-pages branch.
 
-3. Configure action to use gh-pages:
+3. Run `quarto publish gh-pages` locally, once. Quarto needs to configure the repository for publishing through GitHub Actions. To do this, run `quarto publish gh-pages` locally.
+
+4. Configure action to use gh-pages:
 
    ```yaml
    - name: Publish to GitHub Pages (and render)
