@@ -16,7 +16,7 @@ runs:
   using: 'composite'
   steps: 
     - name: 'Obtain quarto release information'
-      uses: ./actions/release-info
+      uses: ./setup/actions/release-info/action.yml
       with:
         owner: 'quarto-dev'
         repo: 'quarto-cli'
