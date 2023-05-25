@@ -17,6 +17,7 @@ runs:
     #
     # chromium is installed in the ubuntu 21 runners in GHA, so no need to install it
     - name: 'Check Chromium'
+      if: ${{ runner.os == 'Linux' }}
       run: |
         echo $(which chromium-browser)
         $(which chromium-browser) --headless https://www.chromestatus.com
