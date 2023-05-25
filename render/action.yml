@@ -12,6 +12,14 @@ inputs:
 runs:
   using: 'composite'
   steps: 
+    # The Check Chromium step appears necessary to avoid a crash/hang when rendering PDFs
+    # https://github.com/quarto-dev/quarto-actions/issues/45#issuecomment-1562599451
+    #
+    # chromium is installed in the ubuntu 21 runners in GHA, so no need to install it
+    - name: 'Check Chromium'
+      run: |
+        echo $(which chromium-browser)
+        $(which chromium-browser) --headless https://www.chromestatus.com
     - name: 'Render'
       env:
         QUARTO_PRINT_STACK: true
