@@ -1,0 +1,16 @@
+name: "Release Info"
+description: "Produce release info about the latest releases in a specific repo in env vars LATEST_RELEASE and LATEST_PRERELEASE"
+inputs:
+  owner:
+    description: "repo owner"
+    required: true
+  repo:
+    description: "repo name"
+    required: true
+  github-token:
+    description: "github token"
+    required: true
+
+runs:
+  using: "node12"
+  main: "index.js"

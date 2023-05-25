@@ -15,6 +15,12 @@ outputs:
 runs:
   using: 'composite'
   steps: 
+    - name: 'Obtain quarto release information'
+      uses: ./setup/actions/release-info
+      with:
+        owner: 'quarto-dev'
+        repo: 'quarto-cli'
+        github-token: ${{ github.token }}
     - name: 'Choose which binary to use'
       run: |
         # Select correct bundle for OS type
@@ -44,11 +50,11 @@ runs:
           if [ -z "${{inputs.version}}" ]; then
             # download the latest stable release
             gh release download --repo github.com/quarto-dev/quarto-cli --pattern ${{ format('*{0}', env.BUNDLE_EXT) }}
-            version=$(curl https://quarto.org/docs/download/_download.json | jq -r '.version')
+            version=$LATEST_RELEASE
             echo "version=${version}" >> $GITHUB_OUTPUT
           elif [ "${{inputs.version}}" == "LATEST" -o "${{inputs.version}}" == "pre-release" ]; then
             # get latest pre release version 
-            version=$(curl https://quarto.org/docs/download/_prerelease.json | jq -r '.version')
+            version=$LATEST_PRERELEASE
             wget https://github.com/quarto-dev/quarto-cli/releases/download/v$version/quarto-$version-${{env.BUNDLE_EXT}}
             echo "version=${version}" >> $GITHUB_OUTPUT
           else
