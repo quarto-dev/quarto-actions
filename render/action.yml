@@ -20,6 +20,7 @@ runs:
       run: |
         echo $(which chromium-browser)
         $(which chromium-browser) --headless https://www.chromestatus.com
+      shell: bash
     - name: 'Render'
       env:
         QUARTO_PRINT_STACK: true
