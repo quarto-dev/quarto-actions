@@ -25,7 +25,7 @@ the tutorial environment, CondaPkg to the documentation.
 
 ## Quarto Setup
 
-the `tutorials/_quarto.yml` should use common matk as rendering, here the output
+the `tutorials/_quarto.yml` should use common mark as rendering, here the output
 folder is set to fit the caching below.
 
 ```yml
@@ -98,7 +98,7 @@ using Documenter#, and all others you need
 # (d) call makedocs( to render the docs...
 ```
 
-For step d. the [makedocs](https://documenter.juliadocs.org/stable/man/guide/#Building-an-Empty-Document) documentation is recommended
+For step (d) the [makedocs](https://documenter.juliadocs.org/stable/man/guide/#Building-an-Empty-Document) documentation is recommended
 
 ## Documenter CI
 
@@ -135,7 +135,7 @@ jobs:
 
 It is probably recommended to cache the following
 
-* Julia – maybe even includeing the precompiled packages
+* Julia – maybe even including the precompiled packages
 * The CondaPkg installed dependencies
 * The Quarto freeze folder
 * The resulting Quarto markdown files
