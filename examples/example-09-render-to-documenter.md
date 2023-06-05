@@ -144,8 +144,6 @@ This can be achieved with the following steps added after setting up Julia
 
 ```yml
       - uses: julia-actions/cache@v1
-        with:
-          cache-compiled: "true"
       - uses: actions/cache@v3
         with:
           path: tutorials/_freeze
