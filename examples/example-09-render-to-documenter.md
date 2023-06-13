@@ -143,20 +143,39 @@ It is probably recommended to cache the following
 This can be achieved with the following steps added after setting up Julia
 
 ```yml
-      - uses: julia-actions/cache@v1
-      - uses: actions/cache@v3
+      - name: Julia Cache
+        uses: julia-actions/cache@v1
+      - name: Cache Quarto
+        env:
+          cache-name: cache-quarto
         with:
           path: tutorials/_freeze
-          key: ${{ runner.os }}-quarto-freeze
-      - uses: actions/cache@v3
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('tutorials/*.qmd') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
+      - name: Cache Documenter
+        id: cache-documenter
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-documenter
         with:
           path: docs/src/tutorials
-          key: ${{ runner.os }}-documenter-tutorials
-      - uses: actions/cache@v3
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('tutorials/*.qmd') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
+      - name: Cache CondaPkg
+        id: cache-condaPkg
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-condapkg
         with:
           path: docs/.CondaPkg
-          key: ${{ runner.os }}-condapkg
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('docs/CondaPkg.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-```
 ```
+
+This should be added before running the documenter call. Note that the restore keys even restore old files even in the case that the key (hash) changed. This way also only updated quarto notebooks are rerendered, but due to no exact match, the new ones are cached afterwards.
 
 ## Example
 
