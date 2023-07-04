@@ -5,7 +5,7 @@ Give this token a memorable name, and note the resulting string (or keep this wi
 
 2. Add Netlify auth token to your repository's secrets. Go to the repository that will be using this GHA. Click on "Settings". On the new page, click on "Secrets", then on the dropdown "Actions". Now, on the right-hand tab, click on the "New repository secret" button to the right of the title "Actions secrets". For the "Name" field, use `NETLIFY_AUTH_TOKEN`, and for the "Value" field, paste the string you got from step 1.
 
-3. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](https://github.com/quarto-dev/quarto-actions/blob/main/examples/quarto-publish-example.yml) as an example).
+3. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](../examples/quarto-publish-example.yml) as an example).
 
 4. Add `_publish.yml` to your repository. Quarto stores publishing metadata information in `_publish.yml`. To create this file, run `quarto publish netlify` locally once.
 
@@ -21,7 +21,7 @@ Give this token a memorable name, and note the resulting string (or keep this wi
 
 ## GitHub Pages
 
-1. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](https://github.com/quarto-dev/quarto-actions/blob/main/examples/quarto-publish-example.yml) as an example).
+1. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](../examples/quarto-publish-example.yml) as an example).
 
 2. Head over to your repository on GitHub. Under Settings > Pages > Build and deployment, under source, ensure **Deploy from a branch** is selected. Under the branch option, select the root of the gh-pages branch.
 
@@ -34,6 +34,13 @@ Give this token a memorable name, and note the resulting string (or keep this wi
      uses: quarto-dev/quarto-actions/publish@v2
      with:
        target: gh-pages
+     env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+   ```
+5. Configure the minimum required access for the `publish` action to function (see also [quarto-publish-example.yml]()). Add these two lines below and on the same level of indentation as `runs-on:`:
+   ```yaml
+   permissions:
+     contents: write
    ```
 
 ## RStudio Connect
@@ -42,7 +49,7 @@ Give this token a memorable name, and note the resulting string (or keep this wi
 
 2. Add RStudio Connect auth token to your GitHub repository. Go to the GitHub webpage for the repository that will be using this GitHub Action. Click on "Settings". On the new page, click on "Secrets", then on the dropdown "Actions". Now, on the right-hand tab, click on the "New repository secret" button to the right of the title "Actions secrets". For the "Name" field, use `CONNECT_API_KEY`, and for the "Value" field, paste the string you got from step 1.
 
-3. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](https://github.com/quarto-dev/quarto-actions/blob/main/examples/quarto-publish-example.yml) as an example).
+3. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](../examples/quarto-publish-example.yml) as an example).
 
 4. Add `_publish.yml` to your repository. Quarto stores publishing metadata information in `_publish.yml`. To create this file, run `quarto publish connect` locally once.
 
