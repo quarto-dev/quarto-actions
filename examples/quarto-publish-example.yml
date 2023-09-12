@@ -4,6 +4,11 @@ on:
 
 name: Render and Publish
 
+# you need these permissions to publish to GitHub pages
+# permissions: 
+#     contents: write
+#     pages: write
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -19,7 +24,13 @@ jobs:
           # uncomment below and fill to pin a version
           # version: SPECIFIC-QUARTO-VERSION-HERE
       
-      # add software dependencies here
+      # add software dependencies here, for example R or Python, and any dependencies
+      
+      # - name: setup Python
+      #   uses: actions/setup-python@v3
+
+      # - name: setup R
+      #   uses: r-lib/actions/setup-r@v2
 
       # To publish to Netlify, RStudio Connect, or GitHub Pages, uncomment
       # the appropriate block below
@@ -37,7 +48,8 @@ jobs:
       #     CONNECT_SERVER: enter-the-server-url-here
       #     CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} 
 
-      # - name: Publish to GitHub Pages (and render)
+      # NOTE: If Publishing to GitHub Pages, set the permissions correctly (see top of this yaml)
+      # - name: Publish to GitHub Pages (and render) 
       #   uses: quarto-dev/quarto-actions/publish@v2
       #   with:
       #     target: gh-pages
