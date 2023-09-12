@@ -24,7 +24,7 @@ jobs:
           # uncomment below and fill to pin a version
           # version: SPECIFIC-QUARTO-VERSION-HERE
       
-      # add software dependencies here, for example R or Python, and any dependencies
+      # add software dependencies here, for example R or Python, and any libraries
       
       # - name: setup Python
       #   uses: actions/setup-python@v3
