@@ -24,7 +24,7 @@ jobs:
           # uncomment below and fill to pin a version
           # version: SPECIFIC-QUARTO-VERSION-HERE
       
-      # add software dependencies here, for example R or Python, and any libraries
+      # add software dependencies here and any libraries
       
       # From https://github.com/actions/setup-python
       # - name: Setup Python
@@ -37,6 +37,8 @@ jobs:
       # From https://github.com/julia-actions/setup-julia
       # - name: Setup Julia
       #   uses: julia-actions/setup-julia@v1
+
+      # See more at https://github.com/quarto-dev/quarto-actions/blob/main/examples/example-03-dependencies.md
 
       # To publish to Netlify, RStudio Connect, or GitHub Pages, uncomment
       # the appropriate block below
