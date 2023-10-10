@@ -42,7 +42,7 @@ runs:
       run: |
         if [ ${{ runner.os }} != "Windows" ]; then
           # On Windows scoop will be used so no need to download the release
-          if [ "${{inputs.version}}" == "release"]; then
+          if [ "${{inputs.version}}" == "release" ]; then
             # download the latest stable release
             gh release download --repo github.com/quarto-dev/quarto-cli --pattern ${{ format('*{0}', env.BUNDLE_EXT) }}
             version=$(curl https://quarto.org/docs/download/_download.json | jq -r '.version')
