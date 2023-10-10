@@ -77,7 +77,7 @@ runs:
               ;;
            "Windows")
               # can't install msi for now so use scoop
-              if [ -z "${{ inputs.version }}" ]
+              if [ "${{inputs.version}}" == "release" ]
               then
                 powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1
               else
