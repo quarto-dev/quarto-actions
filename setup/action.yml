@@ -3,7 +3,7 @@ author: 'Christophe Dervieux'
 description: 'This action will setup Quarto from the git repository https://github.com/quarto-dev/quarto-cli/'
 inputs:
   version:
-    description: 'The version of Quarto to use. Either a release tag without "v" prefix (e.g., "0.9.486"), "pre-release" for latest built dev version, or 'release', for the latest stable version.'
+    description: 'The version of Quarto to use. Either a release tag without "v" prefix (e.g., "0.9.486"), "pre-release" for latest built dev version, or "release", for the latest stable version.'
     required: false
     default: 'release'
   tinytex:
