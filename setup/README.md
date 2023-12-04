@@ -17,13 +17,13 @@ We recommend using a Linux or MacOS runner if possible, especially if TinyTeX is
 
 ### Inputs available
 
-* `version` - _optional_. If provided, the specific quarto version will be installed. Ex: `version: 0.3.71`
+* `version` - _optional_. If provided, the specific quarto version will be installed. Ex: `version: 1.4.515`
 
   ```yaml
     steps:
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: 0.3.71
+          version: 1.4.515
   ```
   
   If not provided, `setup` will use the latest _released_ version of quarto.
