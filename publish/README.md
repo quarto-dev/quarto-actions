@@ -37,7 +37,9 @@ Give this token a memorable name, and note the resulting string (or keep this wi
      env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
    ```
+
 5. Configure the minimum required access for the `publish` action to function (see also [quarto-publish-example.yml]()). Add these two lines below and on the same level of indentation as `runs-on:`:
+
    ```yaml
    permissions:
      contents: write
