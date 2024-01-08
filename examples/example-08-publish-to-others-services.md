@@ -25,7 +25,7 @@ jobs:
       deployments: write # needed for Cloudflare
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2

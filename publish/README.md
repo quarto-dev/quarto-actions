@@ -43,20 +43,20 @@ Give this token a memorable name, and note the resulting string (or keep this wi
      contents: write
    ```
 
-## RStudio Connect
+## Posit Connect
 
-1. Create RStudio Connect auth token.  After logging in to your RStudio Connect server, click on your username on the top right. A sidebar should slide in from the right. Click on "API keys". On the new page, click on the "New API Key" button. Give it a memorable name and note the resulting string (or keep this browser window open).
+1. Create Posit Connect auth token.  After logging in to your Posit Connect server, click on your username on the top right. A sidebar should slide in from the right. Click on "API keys". On the new page, click on the "New API Key" button. Give it a memorable name and note the resulting string (or keep this browser window open).
 
-2. Add RStudio Connect auth token to your GitHub repository. Go to the GitHub webpage for the repository that will be using this GitHub Action. Click on "Settings". On the new page, click on "Secrets", then on the dropdown "Actions". Now, on the right-hand tab, click on the "New repository secret" button to the right of the title "Actions secrets". For the "Name" field, use `CONNECT_API_KEY`, and for the "Value" field, paste the string you got from step 1.
+2. Add Posit Connect auth token to your GitHub repository. Go to the GitHub webpage for the repository that will be using this GitHub Action. Click on "Settings". On the new page, click on "Secrets", then on the dropdown "Actions". Now, on the right-hand tab, click on the "New repository secret" button to the right of the title "Actions secrets". For the "Name" field, use `CONNECT_API_KEY`, and for the "Value" field, paste the string you got from step 1.
 
 3. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](../examples/quarto-publish-example.yml) as an example).
 
 4. Add `_publish.yml` to your repository. Quarto stores publishing metadata information in `_publish.yml`. To create this file, run `quarto publish connect` locally once.
 
-5. Configure action to use RStudio Connect:
+5. Configure action to use Posit Connect:
 
    ```yaml
-   - name: Publish to RStudio Connect (and render)
+   - name: Publish to Posit Connect (and render)
      uses: quarto-dev/quarto-actions/publish@v2
      with:
        target: connect
