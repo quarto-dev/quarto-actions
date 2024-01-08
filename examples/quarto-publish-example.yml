@@ -12,6 +12,7 @@ name: Render and Publish
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Check out repository
         uses: actions/checkout@v4

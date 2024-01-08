@@ -6,7 +6,7 @@ The simplest workflow using Quarto Actions uses the `setup` and `publish` action
 
 1. **Add the GitHub Actions workflow to your project**
 
-   Copy [quarto-publish-example.yml](quarto-publish-example.yml) to `.github/workflows/quarto-publish.yml`. Uncomment the "Publish to GitHub Pages (and render)" action. No further changes are needed to the action (in particular, do *not* edit the line below to add a secret to this file. This file has the same permissions as your repository, and might be publicly readable)
+   Copy [quarto-publish-example.yml](quarto-publish-example.yml) to `.github/workflows/quarto-publish.yml`. Uncomment the "Publish to GitHub Pages (and render)" action. Do *not* edit the line below to add a secret to this file. Also uncomment the minimum required access permissions; a general change in your repository's settings for GitHub actions permissions is **not needed**.
    
 2. **run `quarto publish gh-pages` locally, once**
 
