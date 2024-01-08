@@ -12,11 +12,6 @@ name: Render and Publish
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-
-    # Uncomment this when publishing to GitHub Pages
-    # Minimum required access needed for running the publish@v2 Quarto action
-    # permissions:
-      # contents: write
     
     steps:
       - name: Check out repository
