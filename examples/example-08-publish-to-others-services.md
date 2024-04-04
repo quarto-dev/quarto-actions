@@ -26,6 +26,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          lfs: true # needed when using lfs for image storage
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
