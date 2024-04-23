@@ -16,3 +16,18 @@
 - [R Manuals Quarto website](https://rstudio.github.io/r-manuals/) ([source](https://github.com/rstudio/r-manuals), [workflow file](https://github.com/rstudio/r-manuals/blob/main/.github/workflows/build-website.yaml)) This projects uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.
 
 - [Pathology Atlas](https://www.patolojiatlasi.com/EN) ([source](https://github.com/patolojiatlasi/patolojiatlasi.github.io), [workflow file](https://github.com/patolojiatlasi/patolojiatlasi.github.io/blob/main/.github/workflows/Quarto-Render-Bilingual-Book-Push-Other-Repos-GitLab.yml)) This multilingual website is rendered in two versions and deployed using Github Actions. 
+
+## FAQ
+
+* My project uses git lfs storage; how should I adapt the action?
+
+  If your project uses git lfs storage, you must opt-in to git lfs during `checkout` step.
+
+  ```yaml
+        - name: Check out repository
+          uses: actions/checkout@v4
+          with:
+            lfs: true # needed when using lfs for image storage
+  ```
+
+  See the [checkout action documentation](https://github.com/actions/checkout) for details.
