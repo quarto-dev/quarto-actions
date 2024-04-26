@@ -35,9 +35,13 @@ We recommend using a Linux or MacOS runner if possible, especially if TinyTeX is
   ```yaml
     steps:
       - uses: quarto-dev/quarto-actions/setup@v2
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tinytex: true
   ```
+
+  Setting `GH_TOKEN` is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails. A re-run of failed job on Github would solve it too.
 
 ### GitHub Enterprise
 
