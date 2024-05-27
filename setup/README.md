@@ -41,7 +41,7 @@ We recommend using a Linux or MacOS runner if possible, especially if TinyTeX is
           tinytex: true
   ```
 
-  Setting `GH_TOKEN` is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails. A re-run of failed job on Github would solve it too.
+  Setting `GH_TOKEN` is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.
 
 ### GitHub Enterprise
 
