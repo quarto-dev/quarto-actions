@@ -21,29 +21,11 @@ Give this token a memorable name, and note the resulting string (or keep this wi
 
 ## GitHub Pages
 
-1. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](../examples/quarto-publish-example.yml) as an example).
+1. Create the `gh-pages` branch in your repository: Follow the "Branches" link next to the current branch dropdown in the repository home, then press the "New branch" button and enter "gh-pages" as the name for the new branch.
 
-2. Head over to your repository on GitHub. Under Settings > Pages > Build and deployment, under source, ensure **Deploy from a branch** is selected. Under the branch option, select the root of the gh-pages branch.
+2. Under Settings > Pages > Build and deployment, in the Source dropdown, ensure **Deploy from a branch** is selected; then, under the Branch section, select the root of the gh-pages branch.
 
-3. Run `quarto publish gh-pages` locally, once. Quarto needs to configure the repository for publishing through GitHub Actions. To do this, run `quarto publish gh-pages` locally.
-
-4. Configure action to use gh-pages:
-
-   ```yaml
-   - name: Publish to GitHub Pages (and render)
-     uses: quarto-dev/quarto-actions/publish@v2
-     with:
-       target: gh-pages
-     env:
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
-   ```
-
-5. Configure the minimum required access for the `publish` action to function (see also [quarto-publish-example.yml]()). Add these two lines below and on the same level of indentation as `runs-on:`:
-
-   ```yaml
-   permissions:
-     contents: write
-   ```
+3. Add the GitHub Actions workflow to your project. Go to the Actions tab, press the "New workflow" button, then follow the "set up a workflow yourself" link. Use [quarto-publish-example.yml](../examples/quarto-publish-example.yml) as a template to for your action code. Make sure to uncomment the `permissions:` block at the beginning, and the GitHub Pages block.
 
 ## Posit Connect
 
