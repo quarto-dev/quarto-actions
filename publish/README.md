@@ -1,4 +1,11 @@
+
+# Publishing with Quarto using GitHub Actions
+
+This README complements the more detailed documentation on [Quarto's website](https://quarto.org/docs/publishing/).
+
 ## Netlify 
+
+> See also <https://quarto.org/docs/publishing/netlify.html> about Netlify publishing support in Quarto.
 
 1. Create Netlify auth token. Go to Netlify's [applications page](https://app.netlify.com/user/applications), and click on "New Access Token" to create a new personal access token.
 Give this token a memorable name, and note the resulting string (or keep this window open in a tab)
@@ -21,13 +28,16 @@ Give this token a memorable name, and note the resulting string (or keep this wi
 
 ## GitHub Pages
 
-1. Add the GitHub Actions workflow to your project. (Use [quarto-publish-example.yml](../examples/quarto-publish-example.yml) as an example).
+> See also <https://quarto.org/docs/publishing/github-pages.html> about Github Pages publishing support in Quarto.  
+> And <https://quarto.org/docs/publishing/github-pages.html#github-action> about using Github Actions to publish to Github Pages with Quarto.
 
-2. Head over to your repository on GitHub. Under Settings > Pages > Build and deployment, under source, ensure **Deploy from a branch** is selected. Under the branch option, select the root of the gh-pages branch.
+1. Quarto needs to configure the repository for publishing through GitHub Actions. To do this, run `quarto publish gh-pages` locally, once. This will create a new branch called `gh-pages` and push it to the remote repository, and configure the gh-pages branch to be the [publishing source for GitHub Pages](https://quarto.org/docs/publishing/github-pages.html#source-branch).
 
-3. Run `quarto publish gh-pages` locally, once. Quarto needs to configure the repository for publishing through GitHub Actions. To do this, run `quarto publish gh-pages` locally.
+2. Then you need to configure your repo to use Github Actions to publish, by adding GitHub Actions workflow to your project.
+   - Use [quarto-publish-example.yml](../examples/quarto-publish-example.yml) as an example
+   - Go over our documentation for additional details at <https://quarto.org/docs/publishing/github-pages.html#github-action>
 
-4. Configure action to use gh-pages:
+3. Configure Quarto publish action to use `gh-pages` as publishing target:
 
    ```yaml
    - name: Publish to GitHub Pages (and render)
@@ -38,7 +48,7 @@ Give this token a memorable name, and note the resulting string (or keep this wi
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
    ```
 
-5. Configure the minimum required access for the `publish` action to function (see also [quarto-publish-example.yml]()). Add these two lines below and on the same level of indentation as `runs-on:`:
+4. Configure the minimum required access for the `publish` action to function (see also [quarto-publish-example.yml](../examples/quarto-publish-example.yml)). Add these two lines below and on the same level of indentation as `runs-on:`:
 
    ```yaml
    permissions:
@@ -46,6 +56,8 @@ Give this token a memorable name, and note the resulting string (or keep this wi
    ```
 
 ## Posit Connect
+
+> See also <https://quarto.org/docs/publishing/rstudio-connect.html> about Posit Connect publishing support in Quarto.  
 
 1. Create Posit Connect auth token.  After logging in to your Posit Connect server, click on your username on the top right. A sidebar should slide in from the right. Click on "API keys". On the new page, click on the "New API Key" button. Give it a memorable name and note the resulting string (or keep this browser window open).
 
@@ -66,7 +78,7 @@ Give this token a memorable name, and note the resulting string (or keep this wi
        CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} 
    ```
 
-## Other configurations
+## Other configurations available for Quarto Publish action
 
 The `with` parameter can also be set to configure the following
 
