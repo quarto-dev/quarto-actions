@@ -37,23 +37,31 @@ Give this token a memorable name, and note the resulting string (or keep this wi
    - Use [quarto-publish-example.yml](../examples/quarto-publish-example.yml) as an example
    - Go over our documentation for additional details at <https://quarto.org/docs/publishing/github-pages.html#github-action>
 
-3. Configure Quarto publish action to use `gh-pages` as publishing target:
+### Details on how to configure the GitHub Actions workflow
 
-   ```yaml
-   - name: Publish to GitHub Pages (and render)
-     uses: quarto-dev/quarto-actions/publish@v2
-     with:
-       target: gh-pages
-     env:
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
-   ```
+When using `quarto-dev/quarto-actions/publish`, configure it to use `gh-pages` as publishing target:
 
-4. Configure the minimum required access for the `publish` action to function (see also [quarto-publish-example.yml](../examples/quarto-publish-example.yml)). Add these two lines below and on the same level of indentation as `runs-on:`:
+```yaml
+- name: Publish to GitHub Pages (and render)
+  uses: quarto-dev/quarto-actions/publish@v2
+  with:
+    target: gh-pages
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+```
 
-   ```yaml
-   permissions:
-     contents: write
-   ```
+If you not using [quarto-publish-example.yml](../examples/quarto-publish-example.yml), check the minimum required access for the `publish` action: You need to set `contents` permissions to `write`.
+
+```yaml
+permissions:
+  contents: write
+```
+
+See Github's documentation on `permissions` for more details
+- Setting permissions for a workflow: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions
+- Setting permissions for a workflow job: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idpermissions
+- About `GITHUB_TOKEN` permissions: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token
+
 
 ## Posit Connect
 
