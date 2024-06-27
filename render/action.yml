@@ -9,6 +9,9 @@ inputs:
     description: 'Subdirectory containing the quarto project to be rendered'
     required: false
     default: "."
+  profile:
+    description: 'Profiles to use when rendering the quarto project'
+    required: false
 runs:
   using: 'composite'
   steps: 
@@ -26,11 +29,14 @@ runs:
       env:
         QUARTO_PRINT_STACK: true
       run: |
-        if [ "${{ inputs.to }}" == "" ]; then
-          quarto render ${{ inputs.path }}
-        else
-          quarto render ${{ inputs.path }} --to ${{ inputs.to }}
+        render_command="quarto render ${{ inputs.path }}"
+        if [ ! -z "${{ inputs.to }}" ]; then
+          render_command="$render_command --to ${{ inputs.to }}"
         fi
+        if [ ! -z "${{ inputs.profile }}" ]; then
+          render_command="$render_command --profile ${{ inputs.profile }}"
+        fi
+        eval $render_command
         if [ -f "_book" ]; then
           echo "QUARTO_OUTPUT=_book" >> $GITHUB_ENV
         elif [ -f "_site" ]; then

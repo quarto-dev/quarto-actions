@@ -36,6 +36,10 @@ inputs:
     description: 'If not true, do not render project before publishing'
     required: false
     default: "true"
+  profile:
+    description: 'Profiles to use when rendering the quarto project'
+    required: false
+    default: ""    
 runs:
   using: 'composite'
   steps: 
@@ -50,12 +54,20 @@ runs:
       run: |
         git config --global user.email "${{ inputs.GITHUB_EMAIL }}"
         git config --global user.name "${{ inputs.GITHUB_USERNAME }}"
+        
         TARGET="${{ inputs.to }}"
-        if [ "$TARGET" == "" ]; then
+        if [ -z "$TARGET" ]; then
           TARGET="${{ inputs.target }}"
         fi
+        
+        publish_command="quarto publish $TARGET ${{ inputs.path }} --no-browser"
+        
         if [ "${{ inputs.render }}" != "true" ]; then
-          quarto publish $TARGET ${{ inputs.path }} --no-render --no-browser
-        else
-          quarto publish $TARGET ${{ inputs.path }} --no-browser
+          publish_command="$publish_command --no-render"
         fi
+
+        if [ ! -z "${{ inputs.profile }}" ]; then
+          publish_command="$publish_command --profile ${{ inputs.profile }}"
+        fi
+        
+        eval $publish_command
