@@ -92,3 +92,17 @@ The `with` parameter can also be set to configure the following
 
 * `path`: Subdirectory containing the quarto project to be published or path to individual .qmd file. Default to working directory (`.`)
 * `render`: Set to `render: "false"` to skip rendering of project before publishing. By default, this `publish` action will render to all formats defined.
+
+## Rendering with a Quarto profile
+
+`quarto publish` will render first by default. You can render with a specific profile by setting the `QUARTO_PROFILE` environment variable. For example, to publish the version correspondig with the `preview` profile of your website (i.e. you have a `_quarto-preview.yml` file in your project), you can do:
+
+```yaml
+- name: Render Quarto Project
+  uses: quarto-dev/quarto-actions/render@v2
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+    QUARTO_PROFILE: preview
+  with:
+    target: gh-pages
+```
