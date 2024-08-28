@@ -35,6 +35,7 @@ runs:
               ;;
         esac
       shell: bash
+      working-directory: ${{ runner.temp }}
     - name: 'Download Quarto'
       id: download-quarto 
       env: 
@@ -64,6 +65,7 @@ runs:
           # send the cderv bat-signal!
         fi
       shell: bash
+      working-directory: ${{ runner.temp }}
     - name: 'Install Quarto'
       run: |
         # Install quarto
@@ -92,6 +94,7 @@ runs:
         [ ${{ runner.os }} != "Windows" ] && rm $installer
         echo "Quarto Installed !"
       shell: bash
+      working-directory: ${{ runner.temp }}
     - name: 'Install TinyTeX'
       env:
         QUARTO_PRINT_STACK: true
@@ -115,3 +118,4 @@ runs:
         esac
         echo "TinyTeX installed !"
       shell: bash
+      working-directory: ${{ runner.temp }}
