@@ -12,6 +12,11 @@ inputs:
 runs:
   using: 'composite'
   steps: 
+    # Chrome v128 started to create problem. Pin previous version in the meantime
+    - name: Install Chrome
+      uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: 127
     # The Check Chromium step appears necessary to avoid a crash/hang when rendering PDFs
     # https://github.com/quarto-dev/quarto-actions/issues/45#issuecomment-1562599451
     #
