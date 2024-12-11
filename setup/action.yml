@@ -100,7 +100,7 @@ runs:
         QUARTO_PRINT_STACK: true
       if: ${{ inputs.tinytex == 'true'}}
       run: |
-        quarto install tool tinytex --log-level warning
+        quarto install tool tinytex --no-prompt --log-level warning
         case $RUNNER_OS in 
           "Linux")
               echo "$HOME/bin" >> $GITHUB_PATH
