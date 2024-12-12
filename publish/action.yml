@@ -32,13 +32,17 @@ inputs:
     description: 'Subdirectory containing the quarto project to be published'
     required: false
     default: "."
+  working-directory:
+    description: 'Working directory where `quarto render` will be called'
+    required: false
+    default: "."
   render:
     description: 'If not true, do not render project before publishing'
     required: false
     default: "true"
 runs:
   using: 'composite'
-  steps: 
+  steps:
     - name: 'Publish'
       shell: bash
       env:
@@ -54,6 +58,9 @@ runs:
         if [ "$TARGET" == "" ]; then
           TARGET="${{ inputs.target }}"
         fi
+
+        cd ${{ inputs.working-directory }}
+
         if [ "${{ inputs.render }}" != "true" ]; then
           quarto publish $TARGET ${{ inputs.path }} --no-render --no-browser
         else
