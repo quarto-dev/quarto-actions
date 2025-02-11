@@ -72,7 +72,7 @@ runs:
         [ ${{ runner.os }} != "Windows" ] && installer=${{ steps.download-quarto.outputs.installer }}
         case $RUNNER_OS in 
           "Linux")
-              sudo apt install ./$installer
+              sudo apt -y install ./$installer
               ;;
            "macOS")
               sudo installer -pkg ./$installer -target '/'
