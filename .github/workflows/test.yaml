@@ -17,22 +17,27 @@ on:
       tinytex:
         description: 'If true, install TinyTex, required for PDF rendering'
         required: false
-        default: 'true'
+        default: 'false'
 
 jobs:
   quarto-setup:
     runs-on: ${{ matrix.config.os }}
-    name: ${{ matrix.config.os }}
+    name: ${{ matrix.config.os }} (${{ inputs.version || matrix.version }})
 
     strategy:
       fail-fast: false
       matrix:
+        version: ['release', 'pre-release']
         config:
-          - { os: macos-latest     }
-          - { os: macos-13         }
-          - { os: windows-latest   }
-          - { os: ubuntu-latest    }
-          - { os: ubuntu-22.04-arm }
+          # Default config for standard platforms
+          - os: macos-latest
+          - os: macos-13
+          - os: windows-latest
+            tinytex: 'false'
+          - os: ubuntu-latest
+          # Special config for ARM
+          - os: ubuntu-22.04-arm
+            tinytex: 'false'
 
     steps:
       - uses: actions/checkout@v4
@@ -41,8 +46,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          version: ${{ inputs.version || 'release' }}
-          tinytex: ${{ inputs.tinytex == 'true'}}
+          version: ${{ inputs.version || matrix.version }}
+          tinytex: ${{ inputs.tinytex || matrix.config.tinytex || 'true' }}
 
       - run: quarto --version
 
@@ -51,4 +56,4 @@ jobs:
 
       - run: where.exe quarto
         if: ${{ runner.os == 'Windows' }}
-    
+
