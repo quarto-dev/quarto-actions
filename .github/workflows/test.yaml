@@ -28,17 +28,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [release, pre-release]
+        version: ['release', 'pre-release']
         config:
-          - { os: macos-latest     }
-          - { os: macos-13         }
-          - { os: windows-latest   }
-          - { os: ubuntu-latest    }
-          - { os: ubuntu-22.04-arm }
-        exclude:
-          # Skip matrix versions when using workflow_dispatch
-          - version: ${{ github.event_name == 'workflow_dispatch' && 'release' || '' }}
-          - version: ${{ github.event_name == 'workflow_dispatch' && 'pre-release' || '' }}
+          # Default config for standard platforms
+          - os: macos-latest
+          - os: macos-13
+          - os: windows-latest
+          - os: ubuntu-latest
+          # Special config for ARM
+          - os: ubuntu-22.04-arm
+            tinytex: false
 
     steps:
       - uses: actions/checkout@v4
@@ -48,7 +47,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           version: ${{ inputs.version || matrix.version }}
-          tinytex: ${{ inputs.tinytex || true }}
+          tinytex: ${{ inputs.tinytex || (matrix.config.tinytex != null && matrix.config.tinytex || true) }}
 
       - run: quarto --version
 
