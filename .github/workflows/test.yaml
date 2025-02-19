@@ -33,6 +33,7 @@ jobs:
           - os: macos-latest
           - os: macos-13
           - os: windows-latest
+            tinytex: 'false'
           - os: ubuntu-latest
           # Special config for ARM
           - os: ubuntu-22.04-arm
