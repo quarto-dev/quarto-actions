@@ -35,7 +35,7 @@ jobs:
 
       - uses: ./setup
         with:
-          quarto-version: ${{ inputs.version || 'release' }}
+          version: ${{ inputs.version || 'release' }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - run: quarto --version
