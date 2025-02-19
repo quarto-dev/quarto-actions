@@ -14,6 +14,10 @@ on:
         required: true
         default: 'release'
         type: string
+      tinytex:
+        description: 'If true, install TinyTex, required for PDF rendering'
+        required: false
+        default: 'true'
 
 jobs:
   quarto-setup:
@@ -34,9 +38,11 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: ./setup
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           version: ${{ inputs.version || 'release' }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          tinytex: ${{ inputs.tinytex == 'true'}}
 
       - run: quarto --version
 
