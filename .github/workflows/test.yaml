@@ -47,7 +47,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           version: ${{ inputs.version || matrix.version }}
-          tinytex: ${{ inputs.tinytex || (matrix.config.tinytex != null && matrix.config.tinytex || true) }}
+          tinytex: ${{ inputs.tinytex != null && inputs.tinytex || matrix.config.tinytex == null && true || matrix.config.tinytex }}
 
       - run: quarto --version
 
