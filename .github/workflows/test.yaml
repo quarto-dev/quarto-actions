@@ -1,0 +1,48 @@
+name: test.yaml
+
+permissions: read-all
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: |
+          Quarto version, may be "release", "pre-release" or a version number.
+        required: true
+        default: 'release'
+        type: string
+
+jobs:
+  quarto-setup:
+    runs-on: ${{ matrix.config.os }}
+    name: ${{ matrix.config.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { os: macos-latest     }
+          - { os: macos-13         }
+          - { os: windows-latest   }
+          - { os: ubuntu-latest    }
+          - { os: ubuntu-22.04-arm }
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./setup
+        with:
+          version: ${{ inputs.version || 'release' }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: quarto --version
+
+      - run: which quarto
+        if: ${{ runner.os == 'Linux' || runner.os == 'macOS' }}
+
+      - run: where.exe quarto
+        if: ${{ runner.os == 'Windows' }}
+    

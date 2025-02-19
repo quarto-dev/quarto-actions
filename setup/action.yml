@@ -21,7 +21,14 @@ runs:
         # Select correct bundle for OS type
         case $RUNNER_OS in 
           "Linux")
-              echo "BUNDLE_EXT=linux-amd64.deb" >> $GITHUB_ENV
+              case $RUNNER_ARCH in
+                ARM64|ARM)
+                  echo "BUNDLE_EXT=linux-arm64.deb" >> $GITHUB_ENV
+                  ;;
+                *)
+                  echo "BUNDLE_EXT=linux-amd64.deb" >> $GITHUB_ENV
+                  ;;
+              esac
               ;;
            "macOS")
               echo "BUNDLE_EXT=macos.pkg" >> $GITHUB_ENV
