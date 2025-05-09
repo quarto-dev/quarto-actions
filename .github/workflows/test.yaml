@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ${{ inputs.version && format('["{0}"]', inputs.version) || fromJSON('["release", "pre-release"]') }}
+        version: ${{ inputs.version && fromJSON(format('["{0}"]', inputs.version)) || fromJSON('["release", "pre-release"]') }}
         config:
           # Default config for standard platforms
           - os: macos-latest
