@@ -99,7 +99,7 @@ The `with` parameter can also be set to configure the following
 
 ```yaml
 - name: Render Quarto Project
-  uses: quarto-dev/quarto-actions/render@v2
+  uses: quarto-dev/quarto-actions/publish@v2
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
     QUARTO_PROFILE: preview
