@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Setup Action – Quarto Actions</title>
+<title>examples-readme – Quarto Actions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./setup.html" aria-current="page"> 
+    <a class="nav-link" href="./setup.html"> 
 <span class="menu-text">Setup</span></a>
   </li>  
   <li class="nav-item">
@@ -160,106 +160,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Setup Action</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="setup" class="level1">
-<h1>setup</h1>
-<p>Setup a Quarto release (https://github.com/quarto-dev/quarto-cli/releases) using GitHub Actions. This action can be used to install Quarto on all runner OSs, so that <code>quarto</code> will be available from the path.</p>
-<section id="usage" class="level2">
-<h2 class="anchored" data-anchor-id="usage">Usage</h2>
-<p>This action will:</p>
+<section id="using-quarto-actions-examples" class="level1">
+<h1>Using Quarto Actions: Examples</h1>
 <ul>
-<li>On macOS and Linux:
-<ul>
-<li>Download a release of Quarto from GitHub and install it</li>
-<li>use <code>gh</code> to download the latest available bundle, if no <code>version</code> is specified as input. If <code>gh</code> is not available on your Github Action runner, you can specify a fixed <code>version</code> which will be directly downloaded using <code>wget</code>.</li>
-<li>Install TinyTeX if requested.</li>
-</ul></li>
-<li>On Windows:
-<ul>
-<li>Use <strong>Scoop</strong> (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install <strong>Scoop</strong> on the runner.</li>
-</ul></li>
+<li><a href="https://github.com/quarto-dev/quarto-actions/tree/main/example-01-basics.md">Basics</a></li>
+<li><a href="https://github.com/quarto-dev/quarto-actions/tree/main/example-02-freeze.md">Freeze</a></li>
+<li><a href="https://github.com/quarto-dev/quarto-actions/tree/main/example-03-dependencies.md">Dependencies</a></li>
+<li><a href="https://github.com/quarto-dev/quarto-actions/tree/main/example-04-render-no-publish.md">Render with no publish</a></li>
+<li><a href="https://github.com/quarto-dev/quarto-actions/tree/main/example-05-non-top-level.md">Rendering and publishing a non-top-level project</a></li>
+<li><a href="https://github.com/quarto-dev/quarto-actions/tree/main/example-06-no-render.md">Publishing a single format, publishing without rendering</a></li>
+<li><a href="https://github.com/quarto-dev/quarto-actions/tree/main/example-07-publish-single-format.md">Publishing a single format</a></li>
+<li><a href="https://github.com/quarto-dev/quarto-actions/tree/main/example-08-publish-to-others-services.md">Publishing to other services</a></li>
 </ul>
-<p>We recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.</p>
-<section id="inputs-available" class="level3">
-<h3 class="anchored" data-anchor-id="inputs-available">Inputs available</h3>
+<section id="repositories-using-quarto-actions" class="level2">
+<h2 class="anchored" data-anchor-id="repositories-using-quarto-actions">Repositories using Quarto actions</h2>
 <ul>
-<li><p><code>version</code> - <em>optional</em>. If provided, the specific quarto version will be installed. Ex: <code>version: 1.4.515</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/setup@v2</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.4.515</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If not provided, <code>setup</code> will use the latest <em>released</em> version of quarto.</p>
-<p>If the latest <code>pre-release</code> build is desired, use <code>version: pre-release</code>.</p></li>
-<li><p><code>tinytex</code> - <em>optional</em>. Set <code>tinytex: true</code> to <a href="https://quarto.org/docs/output-formats/pdf-engine.html#installing-tex">install TinyTeX</a> using <code>quarto install tool tinytex</code>. Note: Installing TinyTeX on Windows can take several minutes.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/setup@v2</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">env</span><span class="kw">:</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">GH_TOKEN</span><span class="kw">:</span><span class="at"> ${{ secrets.GITHUB_TOKEN }}</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">tinytex</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Setting <code>GH_TOKEN</code> is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g.&nbsp;with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.</p></li>
+<li><p><a href="https://nasa-openscapes.github.io/earthdata-cloud-cookbook/">Earthdata Cloud Cookbook</a> (<a href="https://github.com/NASA-Openscapes/earthdata-cloud-cookbook">source</a>, <a href="https://github.com/NASA-Openscapes/earthdata-cloud-cookbook/blob/main/.github/workflows/quarto-publish.yml">workflow file</a>) This book contains <code>.md</code> and <code>.ipynb</code> files, and is built with Quarto and Python in GHA, and deployed to Github Pages.</p></li>
+<li><p><a href="https://rstudio.github.io/r-manuals/">R Manuals Quarto website</a> (<a href="https://github.com/rstudio/r-manuals">source</a>, <a href="https://github.com/rstudio/r-manuals/blob/main/.github/workflows/build-website.yaml">workflow file</a>) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.</p></li>
+<li><p><a href="https://www.patolojiatlasi.com/EN">Pathology Atlas</a> (<a href="https://github.com/patolojiatlasi/patolojiatlasi.github.io">source</a>, <a href="https://github.com/patolojiatlasi/patolojiatlasi.github.io/blob/main/.github/workflows/Quarto-Render-Bilingual-Book-Push-Other-Repos-GitLab.yml">workflow file</a>) This multilingual website is rendered in two versions and deployed using Github Actions.</p></li>
 </ul>
 </section>
-<section id="github-enterprise" class="level3">
-<h3 class="anchored" data-anchor-id="github-enterprise">GitHub Enterprise</h3>
-<p>For GitHub Enterprise Server (GHES), you may need to <a href="https://github.com/settings/tokens/new">generate a personal access token (PAT) on github.com</a> to enable downloading Quarto. GitHub’s <a href="https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#avoiding-rate-limit-issues">setup-python action</a> uses a similar workaround, from which these instructions are adapted:</p>
+<section id="faq" class="level2">
+<h2 class="anchored" data-anchor-id="faq">FAQ</h2>
 <ul>
-<li><p>Create a PAT on any github.com account by using <a href="https://github.com/settings/tokens/new">this link</a> after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.</p></li>
-<li><p>Store this PAT in the repository / organization where you run your workflow, e.g.&nbsp;as <code>GH_GITHUB_COM_TOKEN</code>. You can do this by navigating to your repository -&gt; <strong>Settings</strong> -&gt; <strong>Secrets</strong> -&gt; <strong>Actions</strong> -&gt; <strong>New repository secret</strong>.</p></li>
-<li><p>In your workflow, incorporate your PAT as an environment variable. For example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Quarto</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/setup@v2</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">env</span><span class="kw">:</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">GH_TOKEN</span><span class="kw">:</span><span class="at"> ${{ secrets.GH_GITHUB_COM_TOKEN }}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>My project uses git lfs storage; how should I adapt the action?</p>
+<p>If your project uses git lfs storage, you must opt-in to git lfs during the <code>checkout</code> step.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check out repository</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">lfs</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co"> # needed when using lfs for image storage</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>See the <a href="https://github.com/actions/checkout">checkout action documentation</a> for details.</p></li>
 </ul>
-</section>
-</section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> quarto-setup</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">branch</span><span class="kw">:</span><span class="at"> main</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">quarto-linux</span><span class="kw">:</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/setup@v2</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">      - </span><span class="fu">run</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>          quarto --version</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">quarto-windows</span><span class="kw">:</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> windows-latest</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/setup@v2</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="kw">      - </span><span class="fu">run</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>          quarto --version</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">quarto-macos</span><span class="kw">:</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> macos-latest</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/setup@v2</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="kw">      - </span><span class="fu">run</span><span class="kw">:</span><span class="at"> </span><span class="ch">|</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>          quarto --version</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
