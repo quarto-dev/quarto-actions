@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://quarto-dev.github.io/quarto-actions/setup.html</loc>
-    <lastmod>2025-11-25T17:06:14.577Z</lastmod>
-  </url>
-  <url>
     <loc>https://quarto-dev.github.io/quarto-actions/render.html</loc>
-    <lastmod>2025-11-25T17:06:14.654Z</lastmod>
+    <lastmod>2025-11-25T17:13:22.745Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/publish.html</loc>
-    <lastmod>2025-11-25T17:06:14.744Z</lastmod>
+    <lastmod>2025-11-25T17:13:22.746Z</lastmod>
+  </url>
+  <url>
+    <loc>https://quarto-dev.github.io/quarto-actions/setup.html</loc>
+    <lastmod>2025-11-25T17:13:22.744Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/index.html</loc>
-    <lastmod>2025-11-25T17:06:14.493Z</lastmod>
-  </url>
-  <url>
-    <loc>https://quarto-dev.github.io/quarto-actions/publish-readme.html</loc>
-    <lastmod>2025-11-25T17:06:14.389Z</lastmod>
+    <lastmod>2025-11-25T17:13:22.743Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/render-readme.html</loc>
-    <lastmod>2025-11-25T17:06:14.153Z</lastmod>
+    <lastmod>2025-11-25T17:13:22.737Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/setup-readme.html</loc>
-    <lastmod>2025-11-25T17:06:13.917Z</lastmod>
+    <lastmod>2025-11-25T17:13:22.733Z</lastmod>
+  </url>
+  <url>
+    <loc>https://quarto-dev.github.io/quarto-actions/publish-readme.html</loc>
+    <lastmod>2025-11-25T17:13:22.741Z</lastmod>
   </url>
 </urlset>
