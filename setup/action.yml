@@ -92,6 +92,20 @@ runs:
               else
                 powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1 ${{ inputs.version }}
               fi
+
+              # Check if installation succeeded
+              if [ $? -ne 0 ]; then
+                  echo "ERROR: Quarto installation failed"
+                  exit 1
+              fi
+
+              # Verify Quarto is available
+              if ! command -v quarto &> /dev/null; then
+                  echo "ERROR: Quarto installation completed but quarto command not found"
+                  exit 1
+              fi
+
+              echo "Quarto Installed !"
               ;;
             *)
               echo "$RUNNER_OS not supported"
@@ -99,7 +113,7 @@ runs:
               ;;
         esac
         [ ${{ runner.os }} != "Windows" ] && rm $installer
-        echo "Quarto Installed !"
+        [ ${{ runner.os }} != "Windows" ] && echo "Quarto Installed !"
       shell: bash
       working-directory: ${{ runner.temp }}
     - name: 'Install TinyTeX'
