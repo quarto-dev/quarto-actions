@@ -24,7 +24,9 @@ try {
         Write-Error "Scoop installation failed with exit code $LASTEXITCODE"
         exit 1
     }
-    Join-Path (Resolve-Path ~).Path "scoop\shims" >> $Env:GITHUB_PATH
+    $scoopShims = Join-Path (Resolve-Path ~).Path "scoop\shims"
+    $scoopShims >> $Env:GITHUB_PATH
+    $env:PATH = "$scoopShims;$env:PATH"
 } catch {
     Write-Error "Failed to download or install Scoop: $_"
     exit 1
