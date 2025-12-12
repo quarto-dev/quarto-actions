@@ -25,8 +25,7 @@ try {
         exit 1
     }
     $scoopShims = Join-Path (Resolve-Path ~).Path "scoop\shims"
-    $scoopShims >> $Env:GITHUB_PATH
-    $env:PATH = "$scoopShims;$env:PATH"
+    Add-Content -Path $Env:GITHUB_PATH -Value $scoopShims
 } catch {
     Write-Error "Failed to download or install Scoop: $_"
     exit 1
