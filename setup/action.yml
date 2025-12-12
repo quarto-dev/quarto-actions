@@ -77,7 +77,7 @@ runs:
       run: |
         # Install quarto
         [ ${{ runner.os }} != "Windows" ] && installer=${{ steps.download-quarto.outputs.installer }}
-        case $RUNNER_OS in 
+        case $RUNNER_OS in
           "Linux")
               sudo apt -y install ./$installer
               ;;
@@ -92,14 +92,6 @@ runs:
               else
                 powershell -File $GITHUB_ACTION_PATH/install-quarto-windows.ps1 ${{ inputs.version }}
               fi
-
-              # Check if installation succeeded
-              if [ $? -ne 0 ]; then
-                  echo "ERROR: Quarto installation failed"
-                  exit 1
-              fi
-
-              echo "Quarto Installed !"
               ;;
             *)
               echo "$RUNNER_OS not supported"
@@ -107,9 +99,17 @@ runs:
               ;;
         esac
         [ ${{ runner.os }} != "Windows" ] && rm $installer
-        [ ${{ runner.os }} != "Windows" ] && echo "Quarto Installed !"
       shell: bash
       working-directory: ${{ runner.temp }}
+    - name: 'Verify Quarto installation'
+      run: |
+        if ! command -v quarto &> /dev/null; then
+            echo "ERROR: Quarto installation completed but quarto command not found"
+            exit 1
+        fi
+        echo "Quarto Installed !"
+        quarto --version
+      shell: bash
     - name: 'Install TinyTeX'
       env:
         QUARTO_PRINT_STACK: true

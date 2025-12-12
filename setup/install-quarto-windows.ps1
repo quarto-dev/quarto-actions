@@ -59,11 +59,4 @@ if ([string]::IsNullOrEmpty($version)) {
     }
 }
 
-# Verify Quarto is available
-$quartoPath = Get-Command quarto -ErrorAction SilentlyContinue
-if (-not $quartoPath) {
-    Write-Error "Quarto installation completed but quarto command not found in PATH"
-    exit 1
-}
-
 exit 0
