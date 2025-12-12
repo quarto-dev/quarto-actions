@@ -98,7 +98,9 @@ runs:
               exit 1
               ;;
         esac
-        [ ${{ runner.os }} != "Windows" ] && rm $installer
+        if [ "${{ runner.os }}" != "Windows" ]; then
+          rm $installer
+        fi
       shell: bash
       working-directory: ${{ runner.temp }}
     - name: 'Verify Quarto installation'
