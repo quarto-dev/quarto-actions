@@ -99,12 +99,6 @@ runs:
                   exit 1
               fi
 
-              # Verify Quarto is available
-              if ! command -v quarto &> /dev/null; then
-                  echo "ERROR: Quarto installation completed but quarto command not found"
-                  exit 1
-              fi
-
               echo "Quarto Installed !"
               ;;
             *)
