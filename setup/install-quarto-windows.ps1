@@ -34,29 +34,11 @@ try {
 
 $version=$args[0]
 scoop bucket add r-bucket https://github.com/cderv/r-bucket.git
-if ($LASTEXITCODE -ne 0) {
-    Write-Error "Failed to add r-bucket with exit code $LASTEXITCODE"
-    exit 1
-}
 
 if ([string]::IsNullOrEmpty($version)) {
     scoop install quarto
-    if ($LASTEXITCODE -ne 0) {
-        Write-Error "Failed to install quarto with exit code $LASTEXITCODE"
-        exit 1
-    }
 } elseif ($version -eq 'pre-release') {
-    Invoke-Expression -Command "scoop install quarto-prerelease"
-    if ($LASTEXITCODE -ne 0) {
-        Write-Error "Failed to install quarto-prerelease with exit code $LASTEXITCODE"
-        exit 1
-    }
+    scoop install quarto-prerelease
 } else {
-    Invoke-Expression -Command "scoop install quarto@$version"
-    if ($LASTEXITCODE -ne 0) {
-        Write-Error "Failed to install quarto version $version with exit code $LASTEXITCODE"
-        exit 1
-    }
+    scoop install quarto@$version
 }
-
-exit 0
