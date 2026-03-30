@@ -1,5 +1,79 @@
 [
   {
+    "objectID": "render.html",
+    "href": "render.html",
+    "title": "Render Action",
+    "section": "",
+    "text": "- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  with:\n    to: html # If set, it will be equivalent to `quarto render --to html`\n    path: source-folder # By default, the current working dir is used i.e `quarto render .`\npath: can be a path to a subdirectory containing the quarto project to be rendered or a path to a single .qmd file\n\n\nYou can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to render with the preview profile (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  env:\n    QUARTO_PROFILE: preview\n  with:\n    to: html"
+  },
+  {
+    "objectID": "render.html#rendering-with-a-quarto-profile",
+    "href": "render.html#rendering-with-a-quarto-profile",
+    "title": "Render Action",
+    "section": "",
+    "text": "You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to render with the preview profile (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  env:\n    QUARTO_PROFILE: preview\n  with:\n    to: html"
+  },
+  {
+    "objectID": "examples/example-03-dependencies.html",
+    "href": "examples/example-03-dependencies.html",
+    "title": "Quarto Actions: Dependencies",
+    "section": "",
+    "text": "If you want to execute computational content in GitHub Actions workflows, you are going to have to install the necessary software dependencies in your action.\n\n\nAdd the following entry to your GitHub Actions workflow:\n- uses: r-lib/actions/setup-r@v2\n  with:\n    r-version: '4.2.0' # The R version to download (if necessary) and use.\nIf you’re using quarto-publish-example.yml, add those right after the # add software dependencies here comment.\n\n\nIf you are managing your R package dependencies with renv, the following action will install the dependencies:\n- uses: r-lib/actions/setup-renv@v2\n  with:\n    cache-version: 1\nSee the setup-renv documentation for how to use cache-version. See the renv documentation for how to use renv with a project.\n\n\n\nYou can also use r-lib/actions/setup-r-dependencies@v2 to install required R packages for your content. See more about this actions at the setup-r-dependencies documentation. It can handle dependencies with a DESCRIPTION in your project, or you can also list manually what is needed. e.g\n- uses: r-lib/actions/setup-r-dependencies@v2\n  with:\n    packages:\n      any::knitr\n      any::rmarkdown\n      any::downlit\n      any::xml2\n\n\n\n\nAdd the following entry to your GitHub Actions workflow:\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n- run: pip install jupyter\n\n\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n    cache: 'pip'\n- run: pip install jupyter # (if jupyter is not part of your requirements.txt)\n- run: pip install -r requirements.txt\n\n\n\n\n- uses: julia-actions/setup-julia@v1\n- run: julia --project -e 'using Pkg; Pkg.instantiate()'",
+    "crumbs": [
+      "Examples",
+      "Workflow Examples",
+      "Quarto Actions: Dependencies"
+    ]
+  },
+  {
+    "objectID": "examples/example-03-dependencies.html#installing-r",
+    "href": "examples/example-03-dependencies.html#installing-r",
+    "title": "Quarto Actions: Dependencies",
+    "section": "",
+    "text": "Add the following entry to your GitHub Actions workflow:\n- uses: r-lib/actions/setup-r@v2\n  with:\n    r-version: '4.2.0' # The R version to download (if necessary) and use.\nIf you’re using quarto-publish-example.yml, add those right after the # add software dependencies here comment.\n\n\nIf you are managing your R package dependencies with renv, the following action will install the dependencies:\n- uses: r-lib/actions/setup-renv@v2\n  with:\n    cache-version: 1\nSee the setup-renv documentation for how to use cache-version. See the renv documentation for how to use renv with a project.\n\n\n\nYou can also use r-lib/actions/setup-r-dependencies@v2 to install required R packages for your content. See more about this actions at the setup-r-dependencies documentation. It can handle dependencies with a DESCRIPTION in your project, or you can also list manually what is needed. e.g\n- uses: r-lib/actions/setup-r-dependencies@v2\n  with:\n    packages:\n      any::knitr\n      any::rmarkdown\n      any::downlit\n      any::xml2",
+    "crumbs": [
+      "Examples",
+      "Workflow Examples",
+      "Quarto Actions: Dependencies"
+    ]
+  },
+  {
+    "objectID": "examples/example-03-dependencies.html#installing-jupyter",
+    "href": "examples/example-03-dependencies.html#installing-jupyter",
+    "title": "Quarto Actions: Dependencies",
+    "section": "",
+    "text": "Add the following entry to your GitHub Actions workflow:\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n- run: pip install jupyter\n\n\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n    cache: 'pip'\n- run: pip install jupyter # (if jupyter is not part of your requirements.txt)\n- run: pip install -r requirements.txt",
+    "crumbs": [
+      "Examples",
+      "Workflow Examples",
+      "Quarto Actions: Dependencies"
+    ]
+  },
+  {
+    "objectID": "examples/example-03-dependencies.html#installing-julia",
+    "href": "examples/example-03-dependencies.html#installing-julia",
+    "title": "Quarto Actions: Dependencies",
+    "section": "",
+    "text": "- uses: julia-actions/setup-julia@v1\n- run: julia --project -e 'using Pkg; Pkg.instantiate()'",
+    "crumbs": [
+      "Examples",
+      "Workflow Examples",
+      "Quarto Actions: Dependencies"
+    ]
+  },
+  {
+    "objectID": "examples/example-06-no-render.html",
+    "href": "examples/example-06-no-render.html",
+    "title": "Quarto Actions: Publishing without rendering",
+    "section": "",
+    "text": "Quarto Actions: Publishing without rendering\nBy default, the quarto-actions/publish@v2 action will re-render your entire project before publishing. However, if you store the rendered project in version control, you don’t need the GitHub action to re-render the project. In that case, add the option render: false to the publish action:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n    render: false",
+    "crumbs": [
+      "Examples",
+      "Workflow Examples",
+      "Quarto Actions: Publishing without rendering"
+    ]
+  },
+  {
     "objectID": "examples/example-02-freeze.html",
     "href": "examples/example-02-freeze.html",
     "title": "Quarto Actions: Freeze",
@@ -45,268 +119,6 @@
       "Examples",
       "Workflow Examples",
       "Quarto Actions: Freeze"
-    ]
-  },
-  {
-    "objectID": "examples/example-08-publish-to-others-services.html",
-    "href": "examples/example-08-publish-to-others-services.html",
-    "title": "Quarto Actions: Publishing to others services not supported by quarto publish",
-    "section": "",
-    "text": "Quarto Actions: Publishing to others services not supported by quarto publish\nWith the publish action, you can publish to any supported destinations. If you need to publish to another service, the following can be done:\n\nuse the quarto-actions/render action to render the project on CI (usually to a _book or _site directory, or any other name you used)\nuse a custom Github action step to publish the rendered project to the service of your choice.\n\nThe custom step could be using a CLI tool you have installed, or another Github action from the Github marketplace.\nBelow is an example to publish to Cloudfare Pages, using their Github action cloudflare/pages-action.\non:\n  workflow_dispatch:\n  push:\n    branches: main\n\nname: Quarto Publish to Cloudfare Pages\n\njobs:\n  build-deploy:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: write\n      deployments: write # needed for Cloudflare\n    steps:\n      - name: Check out repository\n        uses: actions/checkout@v4\n\n      - name: Set up Quarto\n        uses: quarto-dev/quarto-actions/setup@v2\n        with:\n          tinytex: true\n          \n      - name: Render Quarto Project\n        uses: quarto-dev/quarto-actions/render@v2\n      \n      - name: Publish\n        uses: cloudflare/pages-action@v1\n        with:\n          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}\n          projectName: #cloudflare-project-id\n          directory: '_book' # or _site or any other directory you used as project's output-dir in `_quarto.yml`\n          gitHubToken: ${{ secrets.GITHUB_TOKEN }}",
-    "crumbs": [
-      "Examples",
-      "Workflow Examples",
-      "Quarto Actions: Publishing to others services not supported by `quarto publish`"
-    ]
-  },
-  {
-    "objectID": "examples/example-06-no-render.html",
-    "href": "examples/example-06-no-render.html",
-    "title": "Quarto Actions: Publishing without rendering",
-    "section": "",
-    "text": "Quarto Actions: Publishing without rendering\nBy default, the quarto-actions/publish@v2 action will re-render your entire project before publishing. However, if you store the rendered project in version control, you don’t need the GitHub action to re-render the project. In that case, add the option render: false to the publish action:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n    render: false",
-    "crumbs": [
-      "Examples",
-      "Workflow Examples",
-      "Quarto Actions: Publishing without rendering"
-    ]
-  },
-  {
-    "objectID": "examples/example-04-render-no-publish.html",
-    "href": "examples/example-04-render-no-publish.html",
-    "title": "Quarto Actions: Render without publishing",
-    "section": "",
-    "text": "Quarto Actions: Render without publishing\nIf you need to render your project in a GitHub Action, but will use the output for something besides publishing (or publishing to a service not supported by quarto publish), then instead of publish, use the render action:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2",
-    "crumbs": [
-      "Examples",
-      "Workflow Examples",
-      "Quarto Actions: Render without publishing"
-    ]
-  },
-  {
-    "objectID": "publish-readme.html",
-    "href": "publish-readme.html",
-    "title": "Publishing with Quarto using GitHub Actions",
-    "section": "",
-    "text": "This README complements the more detailed documentation on Quarto’s website.\n\n\n\nSee also https://quarto.org/docs/publishing/netlify.html about Netlify publishing support in Quarto.\n\n\nCreate Netlify auth token. Go to Netlify’s applications page, and click on “New Access Token” to create a new personal access token. Give this token a memorable name, and note the resulting string (or keep this window open in a tab)\nAdd Netlify auth token to your repository’s secrets. Go to the repository that will be using this GHA. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use NETLIFY_AUTH_TOKEN, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish netlify locally once.\nConfigure action to use netlify:\n- name: Publish to Netlify (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: netlify\n    NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}\n\n\n\n\n\nSee also https://quarto.org/docs/publishing/github-pages.html about Github Pages publishing support in Quarto. And https://quarto.org/docs/publishing/github-pages.html#github-action about using Github Actions to publish to Github Pages with Quarto.\n\nNote: This action is compatible with actions/checkout@v6 and later. If you experience credential errors when publishing to gh-pages (e.g., “fatal: could not read Username”), ensure you’re using actions/checkout@v6 or later, or pin to actions/checkout@v5 until you can upgrade. See #133 for details.\n\nQuarto needs to configure the repository for publishing through GitHub Actions. To do this, run quarto publish gh-pages locally, once. This will create a new branch called gh-pages and push it to the remote repository, and configure the gh-pages branch to be the publishing source for GitHub Pages.\nThen you need to configure your repo to use Github Actions to publish, by adding GitHub Actions workflow to your project.\n\nUse quarto-publish-example.yml as an example\nGo over our documentation for additional details at https://quarto.org/docs/publishing/github-pages.html#github-action\n\n\n\n\nWhen using quarto-dev/quarto-actions/publish, configure it to use gh-pages as publishing target:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\nIf you not using quarto-publish-example.yml, check the minimum required access for the publish action: You need to set contents permissions to write.\npermissions:\n  contents: write\nSee Github’s documentation on permissions for more details - Setting permissions for a workflow: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions - Setting permissions for a workflow job: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idpermissions - About GITHUB_TOKEN permissions: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token\n\n\n\n\n\nSee also https://quarto.org/docs/publishing/rstudio-connect.html about Posit Connect publishing support in Quarto.\n\n\nCreate Posit Connect auth token. After logging in to your Posit Connect server, click on your username on the top right. A sidebar should slide in from the right. Click on “API keys”. On the new page, click on the “New API Key” button. Give it a memorable name and note the resulting string (or keep this browser window open).\nAdd Posit Connect auth token to your GitHub repository. Go to the GitHub webpage for the repository that will be using this GitHub Action. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use CONNECT_API_KEY, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish connect locally once.\nConfigure action to use Posit Connect:\n- name: Publish to Posit Connect (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: connect\n    CONNECT_SERVER: enter-your-server-url-here\n    CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} \n\n\n\n\nThe with parameter can also be set to configure the following\n\npath: Subdirectory containing the quarto project to be published or path to individual .qmd file. Default to working directory (.)\nrender: Set to render: \"false\" to skip rendering of project before publishing. By default, this publish action will render to all formats defined.\n\n\n\n\nquarto publish will render first by default. You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to publish the version correspondig with the preview profile of your website (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/publish@v2\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\n    QUARTO_PROFILE: preview\n  with:\n    target: gh-pages"
-  },
-  {
-    "objectID": "publish-readme.html#netlify",
-    "href": "publish-readme.html#netlify",
-    "title": "Publishing with Quarto using GitHub Actions",
-    "section": "",
-    "text": "See also https://quarto.org/docs/publishing/netlify.html about Netlify publishing support in Quarto.\n\n\nCreate Netlify auth token. Go to Netlify’s applications page, and click on “New Access Token” to create a new personal access token. Give this token a memorable name, and note the resulting string (or keep this window open in a tab)\nAdd Netlify auth token to your repository’s secrets. Go to the repository that will be using this GHA. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use NETLIFY_AUTH_TOKEN, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish netlify locally once.\nConfigure action to use netlify:\n- name: Publish to Netlify (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: netlify\n    NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}"
-  },
-  {
-    "objectID": "publish-readme.html#github-pages",
-    "href": "publish-readme.html#github-pages",
-    "title": "Publishing with Quarto using GitHub Actions",
-    "section": "",
-    "text": "See also https://quarto.org/docs/publishing/github-pages.html about Github Pages publishing support in Quarto. And https://quarto.org/docs/publishing/github-pages.html#github-action about using Github Actions to publish to Github Pages with Quarto.\n\nNote: This action is compatible with actions/checkout@v6 and later. If you experience credential errors when publishing to gh-pages (e.g., “fatal: could not read Username”), ensure you’re using actions/checkout@v6 or later, or pin to actions/checkout@v5 until you can upgrade. See #133 for details.\n\nQuarto needs to configure the repository for publishing through GitHub Actions. To do this, run quarto publish gh-pages locally, once. This will create a new branch called gh-pages and push it to the remote repository, and configure the gh-pages branch to be the publishing source for GitHub Pages.\nThen you need to configure your repo to use Github Actions to publish, by adding GitHub Actions workflow to your project.\n\nUse quarto-publish-example.yml as an example\nGo over our documentation for additional details at https://quarto.org/docs/publishing/github-pages.html#github-action\n\n\n\n\nWhen using quarto-dev/quarto-actions/publish, configure it to use gh-pages as publishing target:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\nIf you not using quarto-publish-example.yml, check the minimum required access for the publish action: You need to set contents permissions to write.\npermissions:\n  contents: write\nSee Github’s documentation on permissions for more details - Setting permissions for a workflow: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions - Setting permissions for a workflow job: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idpermissions - About GITHUB_TOKEN permissions: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token"
-  },
-  {
-    "objectID": "publish-readme.html#posit-connect",
-    "href": "publish-readme.html#posit-connect",
-    "title": "Publishing with Quarto using GitHub Actions",
-    "section": "",
-    "text": "See also https://quarto.org/docs/publishing/rstudio-connect.html about Posit Connect publishing support in Quarto.\n\n\nCreate Posit Connect auth token. After logging in to your Posit Connect server, click on your username on the top right. A sidebar should slide in from the right. Click on “API keys”. On the new page, click on the “New API Key” button. Give it a memorable name and note the resulting string (or keep this browser window open).\nAdd Posit Connect auth token to your GitHub repository. Go to the GitHub webpage for the repository that will be using this GitHub Action. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use CONNECT_API_KEY, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish connect locally once.\nConfigure action to use Posit Connect:\n- name: Publish to Posit Connect (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: connect\n    CONNECT_SERVER: enter-your-server-url-here\n    CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }}"
-  },
-  {
-    "objectID": "publish-readme.html#other-configurations-available-for-quarto-publish-action",
-    "href": "publish-readme.html#other-configurations-available-for-quarto-publish-action",
-    "title": "Publishing with Quarto using GitHub Actions",
-    "section": "",
-    "text": "The with parameter can also be set to configure the following\n\npath: Subdirectory containing the quarto project to be published or path to individual .qmd file. Default to working directory (.)\nrender: Set to render: \"false\" to skip rendering of project before publishing. By default, this publish action will render to all formats defined."
-  },
-  {
-    "objectID": "publish-readme.html#rendering-with-a-quarto-profile",
-    "href": "publish-readme.html#rendering-with-a-quarto-profile",
-    "title": "Publishing with Quarto using GitHub Actions",
-    "section": "",
-    "text": "quarto publish will render first by default. You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to publish the version correspondig with the preview profile of your website (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/publish@v2\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\n    QUARTO_PROFILE: preview\n  with:\n    target: gh-pages"
-  },
-  {
-    "objectID": "examples-readme.html",
-    "href": "examples-readme.html",
-    "title": "Using Quarto Actions: Examples",
-    "section": "",
-    "text": "Basics\nFreeze\nDependencies\nRender with no publish\nRendering and publishing a non-top-level project\nPublishing a single format, publishing without rendering\nPublishing a single format\nPublishing to other services\n\n\n\n\nEarthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions.\n\n\n\n\n\nMy project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details."
-  },
-  {
-    "objectID": "examples-readme.html#repositories-using-quarto-actions",
-    "href": "examples-readme.html#repositories-using-quarto-actions",
-    "title": "Using Quarto Actions: Examples",
-    "section": "",
-    "text": "Earthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions."
-  },
-  {
-    "objectID": "examples-readme.html#faq",
-    "href": "examples-readme.html#faq",
-    "title": "Using Quarto Actions: Examples",
-    "section": "",
-    "text": "My project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details."
-  },
-  {
-    "objectID": "publish.html",
-    "href": "publish.html",
-    "title": "Publish Action",
-    "section": "",
-    "text": "This README complements the more detailed documentation on Quarto’s website.\n\n\n\nSee also https://quarto.org/docs/publishing/netlify.html about Netlify publishing support in Quarto.\n\n\nCreate Netlify auth token. Go to Netlify’s applications page, and click on “New Access Token” to create a new personal access token. Give this token a memorable name, and note the resulting string (or keep this window open in a tab)\nAdd Netlify auth token to your repository’s secrets. Go to the repository that will be using this GHA. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use NETLIFY_AUTH_TOKEN, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish netlify locally once.\nConfigure action to use netlify:\n- name: Publish to Netlify (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: netlify\n    NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}\n\n\n\n\n\nSee also https://quarto.org/docs/publishing/github-pages.html about Github Pages publishing support in Quarto. And https://quarto.org/docs/publishing/github-pages.html#github-action about using Github Actions to publish to Github Pages with Quarto.\n\nNote: This action is compatible with actions/checkout@v6 and later. If you experience credential errors when publishing to gh-pages (e.g., “fatal: could not read Username”), ensure you’re using actions/checkout@v6 or later, or pin to actions/checkout@v5 until you can upgrade. See #133 for details.\n\nQuarto needs to configure the repository for publishing through GitHub Actions. To do this, run quarto publish gh-pages locally, once. This will create a new branch called gh-pages and push it to the remote repository, and configure the gh-pages branch to be the publishing source for GitHub Pages.\nThen you need to configure your repo to use Github Actions to publish, by adding GitHub Actions workflow to your project.\n\nUse quarto-publish-example.yml as an example\nGo over our documentation for additional details at https://quarto.org/docs/publishing/github-pages.html#github-action\n\n\n\n\nWhen using quarto-dev/quarto-actions/publish, configure it to use gh-pages as publishing target:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\nIf you not using quarto-publish-example.yml, check the minimum required access for the publish action: You need to set contents permissions to write.\npermissions:\n  contents: write\nSee Github’s documentation on permissions for more details - Setting permissions for a workflow: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions - Setting permissions for a workflow job: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idpermissions - About GITHUB_TOKEN permissions: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token\n\n\n\n\n\nSee also https://quarto.org/docs/publishing/rstudio-connect.html about Posit Connect publishing support in Quarto.\n\n\nCreate Posit Connect auth token. After logging in to your Posit Connect server, click on your username on the top right. A sidebar should slide in from the right. Click on “API keys”. On the new page, click on the “New API Key” button. Give it a memorable name and note the resulting string (or keep this browser window open).\nAdd Posit Connect auth token to your GitHub repository. Go to the GitHub webpage for the repository that will be using this GitHub Action. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use CONNECT_API_KEY, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish connect locally once.\nConfigure action to use Posit Connect:\n- name: Publish to Posit Connect (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: connect\n    CONNECT_SERVER: enter-your-server-url-here\n    CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} \n\n\n\n\nThe with parameter can also be set to configure the following\n\npath: Subdirectory containing the quarto project to be published or path to individual .qmd file. Default to working directory (.)\nrender: Set to render: \"false\" to skip rendering of project before publishing. By default, this publish action will render to all formats defined.\n\n\n\n\nquarto publish will render first by default. You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to publish the version correspondig with the preview profile of your website (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/publish@v2\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\n    QUARTO_PROFILE: preview\n  with:\n    target: gh-pages"
-  },
-  {
-    "objectID": "publish.html#netlify",
-    "href": "publish.html#netlify",
-    "title": "Publish Action",
-    "section": "",
-    "text": "See also https://quarto.org/docs/publishing/netlify.html about Netlify publishing support in Quarto.\n\n\nCreate Netlify auth token. Go to Netlify’s applications page, and click on “New Access Token” to create a new personal access token. Give this token a memorable name, and note the resulting string (or keep this window open in a tab)\nAdd Netlify auth token to your repository’s secrets. Go to the repository that will be using this GHA. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use NETLIFY_AUTH_TOKEN, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish netlify locally once.\nConfigure action to use netlify:\n- name: Publish to Netlify (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: netlify\n    NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}"
-  },
-  {
-    "objectID": "publish.html#github-pages",
-    "href": "publish.html#github-pages",
-    "title": "Publish Action",
-    "section": "",
-    "text": "See also https://quarto.org/docs/publishing/github-pages.html about Github Pages publishing support in Quarto. And https://quarto.org/docs/publishing/github-pages.html#github-action about using Github Actions to publish to Github Pages with Quarto.\n\nNote: This action is compatible with actions/checkout@v6 and later. If you experience credential errors when publishing to gh-pages (e.g., “fatal: could not read Username”), ensure you’re using actions/checkout@v6 or later, or pin to actions/checkout@v5 until you can upgrade. See #133 for details.\n\nQuarto needs to configure the repository for publishing through GitHub Actions. To do this, run quarto publish gh-pages locally, once. This will create a new branch called gh-pages and push it to the remote repository, and configure the gh-pages branch to be the publishing source for GitHub Pages.\nThen you need to configure your repo to use Github Actions to publish, by adding GitHub Actions workflow to your project.\n\nUse quarto-publish-example.yml as an example\nGo over our documentation for additional details at https://quarto.org/docs/publishing/github-pages.html#github-action\n\n\n\n\nWhen using quarto-dev/quarto-actions/publish, configure it to use gh-pages as publishing target:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\nIf you not using quarto-publish-example.yml, check the minimum required access for the publish action: You need to set contents permissions to write.\npermissions:\n  contents: write\nSee Github’s documentation on permissions for more details - Setting permissions for a workflow: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions - Setting permissions for a workflow job: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idpermissions - About GITHUB_TOKEN permissions: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token"
-  },
-  {
-    "objectID": "publish.html#posit-connect",
-    "href": "publish.html#posit-connect",
-    "title": "Publish Action",
-    "section": "",
-    "text": "See also https://quarto.org/docs/publishing/rstudio-connect.html about Posit Connect publishing support in Quarto.\n\n\nCreate Posit Connect auth token. After logging in to your Posit Connect server, click on your username on the top right. A sidebar should slide in from the right. Click on “API keys”. On the new page, click on the “New API Key” button. Give it a memorable name and note the resulting string (or keep this browser window open).\nAdd Posit Connect auth token to your GitHub repository. Go to the GitHub webpage for the repository that will be using this GitHub Action. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use CONNECT_API_KEY, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish connect locally once.\nConfigure action to use Posit Connect:\n- name: Publish to Posit Connect (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: connect\n    CONNECT_SERVER: enter-your-server-url-here\n    CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }}"
-  },
-  {
-    "objectID": "publish.html#other-configurations-available-for-quarto-publish-action",
-    "href": "publish.html#other-configurations-available-for-quarto-publish-action",
-    "title": "Publish Action",
-    "section": "",
-    "text": "The with parameter can also be set to configure the following\n\npath: Subdirectory containing the quarto project to be published or path to individual .qmd file. Default to working directory (.)\nrender: Set to render: \"false\" to skip rendering of project before publishing. By default, this publish action will render to all formats defined."
-  },
-  {
-    "objectID": "publish.html#rendering-with-a-quarto-profile",
-    "href": "publish.html#rendering-with-a-quarto-profile",
-    "title": "Publish Action",
-    "section": "",
-    "text": "quarto publish will render first by default. You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to publish the version correspondig with the preview profile of your website (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/publish@v2\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\n    QUARTO_PROFILE: preview\n  with:\n    target: gh-pages"
-  },
-  {
-    "objectID": "setup-readme.html",
-    "href": "setup-readme.html",
-    "title": "setup",
-    "section": "",
-    "text": "Setup a Quarto release (https://github.com/quarto-dev/quarto-cli/releases) using GitHub Actions. This action can be used to install Quarto on all runner OSs, so that quarto will be available from the path.\n\n\nThis action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}\n\n\n\n\n\nname: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
-  },
-  {
-    "objectID": "setup-readme.html#usage",
-    "href": "setup-readme.html#usage",
-    "title": "setup",
-    "section": "",
-    "text": "This action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}"
-  },
-  {
-    "objectID": "setup-readme.html#examples",
-    "href": "setup-readme.html#examples",
-    "title": "setup",
-    "section": "",
-    "text": "name: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Quarto Actions",
-    "section": "",
-    "text": "This site demonstrates the quarto-actions and tests the publish action."
-  },
-  {
-    "objectID": "index.html#examples",
-    "href": "index.html#examples",
-    "title": "Quarto Actions",
-    "section": "Examples",
-    "text": "Examples\nIn Examples, you will find a YAML workflow file to serve as a template to be reused as a base for your project. We are also sharing some links to real example Github repositories using Quarto with Github Actions for rendering and deploying documents and projects. If you want to add your repository in the list, we welcome a PR."
-  },
-  {
-    "objectID": "index.html#release-management",
-    "href": "index.html#release-management",
-    "title": "Quarto Actions",
-    "section": "Release Management",
-    "text": "Release Management\nThis repository uses GitHub’s recommended release management for actions:\n\nGitHub releases with tags are used for updates on the actions.\nSemantic versioning is used, with major, minor and possibly patch release.\nMajor versions (such as v1) will always point to the last minor or patch release for this major version. (when v1.0.2 is out, v1 will point to this update, too). This means using quarto-dev/quarto-actions/setup@v2 in your workflow file will automatically get the updated versions. Using quarto-dev/quarto-actions/setup@v1.0.2 will pin a specific release.\nMajor version changes (v1 to v2) will often come with breaking changes, and workflows might require manual updates."
-  },
-  {
-    "objectID": "render.html",
-    "href": "render.html",
-    "title": "Render Action",
-    "section": "",
-    "text": "- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  with:\n    to: html # If set, it will be equivalent to `quarto render --to html`\n    path: source-folder # By default, the current working dir is used i.e `quarto render .`\npath: can be a path to a subdirectory containing the quarto project to be rendered or a path to a single .qmd file\n\n\nYou can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to render with the preview profile (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  env:\n    QUARTO_PROFILE: preview\n  with:\n    to: html"
-  },
-  {
-    "objectID": "render.html#rendering-with-a-quarto-profile",
-    "href": "render.html#rendering-with-a-quarto-profile",
-    "title": "Render Action",
-    "section": "",
-    "text": "You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to render with the preview profile (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  env:\n    QUARTO_PROFILE: preview\n  with:\n    to: html"
-  },
-  {
-    "objectID": "render-readme.html",
-    "href": "render-readme.html",
-    "title": "Usage",
-    "section": "",
-    "text": "- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  with:\n    to: html # If set, it will be equivalent to `quarto render --to html`\n    path: source-folder # By default, the current working dir is used i.e `quarto render .`\npath: can be a path to a subdirectory containing the quarto project to be rendered or a path to a single .qmd file\n\n\nYou can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to render with the preview profile (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  env:\n    QUARTO_PROFILE: preview\n  with:\n    to: html"
-  },
-  {
-    "objectID": "render-readme.html#rendering-with-a-quarto-profile",
-    "href": "render-readme.html#rendering-with-a-quarto-profile",
-    "title": "Usage",
-    "section": "",
-    "text": "You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to render with the preview profile (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  env:\n    QUARTO_PROFILE: preview\n  with:\n    to: html"
-  },
-  {
-    "objectID": "setup.html",
-    "href": "setup.html",
-    "title": "Setup Action",
-    "section": "",
-    "text": "Setup a Quarto release (https://github.com/quarto-dev/quarto-cli/releases) using GitHub Actions. This action can be used to install Quarto on all runner OSs, so that quarto will be available from the path.\n\n\nThis action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}\n\n\n\n\n\nname: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
-  },
-  {
-    "objectID": "setup.html#usage",
-    "href": "setup.html#usage",
-    "title": "Setup Action",
-    "section": "",
-    "text": "This action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}"
-  },
-  {
-    "objectID": "setup.html#examples",
-    "href": "setup.html#examples",
-    "title": "Setup Action",
-    "section": "",
-    "text": "name: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
-  },
-  {
-    "objectID": "examples.html",
-    "href": "examples.html",
-    "title": "Examples",
-    "section": "",
-    "text": "Basics\nFreeze\nDependencies\nRender with no publish\nRendering and publishing a non-top-level project\nPublishing a single format, publishing without rendering\nPublishing a single format\nPublishing to other services\n\n\n\n\nEarthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions.\n\n\n\n\n\nMy project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details.",
-    "crumbs": [
-      "Examples"
-    ]
-  },
-  {
-    "objectID": "examples.html#repositories-using-quarto-actions",
-    "href": "examples.html#repositories-using-quarto-actions",
-    "title": "Examples",
-    "section": "",
-    "text": "Earthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions.",
-    "crumbs": [
-      "Examples"
-    ]
-  },
-  {
-    "objectID": "examples.html#faq",
-    "href": "examples.html#faq",
-    "title": "Examples",
-    "section": "",
-    "text": "My project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details.",
-    "crumbs": [
-      "Examples"
     ]
   },
   {
@@ -358,6 +170,230 @@
     ]
   },
   {
+    "objectID": "examples-readme.html",
+    "href": "examples-readme.html",
+    "title": "Using Quarto Actions: Examples",
+    "section": "",
+    "text": "Basics\nFreeze\nDependencies\nRender with no publish\nRendering and publishing a non-top-level project\nPublishing a single format, publishing without rendering\nPublishing a single format\nPublishing to other services\n\n\n\n\nEarthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions.\n\n\n\n\n\nMy project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details."
+  },
+  {
+    "objectID": "examples-readme.html#repositories-using-quarto-actions",
+    "href": "examples-readme.html#repositories-using-quarto-actions",
+    "title": "Using Quarto Actions: Examples",
+    "section": "",
+    "text": "Earthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions."
+  },
+  {
+    "objectID": "examples-readme.html#faq",
+    "href": "examples-readme.html#faq",
+    "title": "Using Quarto Actions: Examples",
+    "section": "",
+    "text": "My project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Quarto Actions",
+    "section": "",
+    "text": "This site demonstrates the quarto-actions and tests the publish action."
+  },
+  {
+    "objectID": "index.html#examples",
+    "href": "index.html#examples",
+    "title": "Quarto Actions",
+    "section": "Examples",
+    "text": "Examples\nIn Examples, you will find a YAML workflow file to serve as a template to be reused as a base for your project. We are also sharing some links to real example Github repositories using Quarto with Github Actions for rendering and deploying documents and projects. If you want to add your repository in the list, we welcome a PR."
+  },
+  {
+    "objectID": "index.html#release-management",
+    "href": "index.html#release-management",
+    "title": "Quarto Actions",
+    "section": "Release Management",
+    "text": "Release Management\nThis repository uses GitHub’s recommended release management for actions:\n\nGitHub releases with tags are used for updates on the actions.\nSemantic versioning is used, with major, minor and possibly patch release.\nMajor versions (such as v1) will always point to the last minor or patch release for this major version. (when v1.0.2 is out, v1 will point to this update, too). This means using quarto-dev/quarto-actions/setup@v2 in your workflow file will automatically get the updated versions. Using quarto-dev/quarto-actions/setup@v1.0.2 will pin a specific release.\nMajor version changes (v1 to v2) will often come with breaking changes, and workflows might require manual updates."
+  },
+  {
+    "objectID": "setup-readme.html",
+    "href": "setup-readme.html",
+    "title": "setup",
+    "section": "",
+    "text": "Setup a Quarto release (https://github.com/quarto-dev/quarto-cli/releases) using GitHub Actions. This action can be used to install Quarto on all runner OSs, so that quarto will be available from the path.\n\n\nThis action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}\n\n\n\n\n\nname: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
+  },
+  {
+    "objectID": "setup-readme.html#usage",
+    "href": "setup-readme.html#usage",
+    "title": "setup",
+    "section": "",
+    "text": "This action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}"
+  },
+  {
+    "objectID": "setup-readme.html#examples",
+    "href": "setup-readme.html#examples",
+    "title": "setup",
+    "section": "",
+    "text": "name: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
+  },
+  {
+    "objectID": "render-readme.html",
+    "href": "render-readme.html",
+    "title": "Usage",
+    "section": "",
+    "text": "- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  with:\n    to: html # If set, it will be equivalent to `quarto render --to html`\n    path: source-folder # By default, the current working dir is used i.e `quarto render .`\npath: can be a path to a subdirectory containing the quarto project to be rendered or a path to a single .qmd file\n\n\nYou can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to render with the preview profile (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  env:\n    QUARTO_PROFILE: preview\n  with:\n    to: html"
+  },
+  {
+    "objectID": "render-readme.html#rendering-with-a-quarto-profile",
+    "href": "render-readme.html#rendering-with-a-quarto-profile",
+    "title": "Usage",
+    "section": "",
+    "text": "You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to render with the preview profile (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  env:\n    QUARTO_PROFILE: preview\n  with:\n    to: html"
+  },
+  {
+    "objectID": "examples.html",
+    "href": "examples.html",
+    "title": "Examples",
+    "section": "",
+    "text": "Basics\nFreeze\nDependencies\nRender with no publish\nRendering and publishing a non-top-level project\nPublishing a single format, publishing without rendering\nPublishing a single format\nPublishing to other services\n\n\n\n\nEarthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions.\n\n\n\n\n\nMy project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details.",
+    "crumbs": [
+      "Examples"
+    ]
+  },
+  {
+    "objectID": "examples.html#repositories-using-quarto-actions",
+    "href": "examples.html#repositories-using-quarto-actions",
+    "title": "Examples",
+    "section": "",
+    "text": "Earthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions.",
+    "crumbs": [
+      "Examples"
+    ]
+  },
+  {
+    "objectID": "examples.html#faq",
+    "href": "examples.html#faq",
+    "title": "Examples",
+    "section": "",
+    "text": "My project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details.",
+    "crumbs": [
+      "Examples"
+    ]
+  },
+  {
+    "objectID": "publish.html",
+    "href": "publish.html",
+    "title": "Publish Action",
+    "section": "",
+    "text": "This README complements the more detailed documentation on Quarto’s website.\n\n\n\nSee also https://quarto.org/docs/publishing/netlify.html about Netlify publishing support in Quarto.\n\n\nCreate Netlify auth token. Go to Netlify’s applications page, and click on “New Access Token” to create a new personal access token. Give this token a memorable name, and note the resulting string (or keep this window open in a tab)\nAdd Netlify auth token to your repository’s secrets. Go to the repository that will be using this GHA. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use NETLIFY_AUTH_TOKEN, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish netlify locally once.\nConfigure action to use netlify:\n- name: Publish to Netlify (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: netlify\n    NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}\n\n\n\n\n\nSee also https://quarto.org/docs/publishing/github-pages.html about Github Pages publishing support in Quarto. And https://quarto.org/docs/publishing/github-pages.html#github-action about using Github Actions to publish to Github Pages with Quarto.\n\nNote: This action is compatible with actions/checkout@v6 and later. If you experience credential errors when publishing to gh-pages (e.g., “fatal: could not read Username”), ensure you’re using actions/checkout@v6 or later, or pin to actions/checkout@v5 until you can upgrade. See #133 for details.\n\nQuarto needs to configure the repository for publishing through GitHub Actions. To do this, run quarto publish gh-pages locally, once. This will create a new branch called gh-pages and push it to the remote repository, and configure the gh-pages branch to be the publishing source for GitHub Pages.\nThen you need to configure your repo to use Github Actions to publish, by adding GitHub Actions workflow to your project.\n\nUse quarto-publish-example.yml as an example\nGo over our documentation for additional details at https://quarto.org/docs/publishing/github-pages.html#github-action\n\n\n\n\nWhen using quarto-dev/quarto-actions/publish, configure it to use gh-pages as publishing target:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\nIf you not using quarto-publish-example.yml, check the minimum required access for the publish action: You need to set contents permissions to write.\npermissions:\n  contents: write\nSee Github’s documentation on permissions for more details - Setting permissions for a workflow: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions - Setting permissions for a workflow job: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idpermissions - About GITHUB_TOKEN permissions: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token\n\n\n\n\n\nSee also https://quarto.org/docs/publishing/rstudio-connect.html about Posit Connect publishing support in Quarto.\n\n\nCreate Posit Connect auth token. After logging in to your Posit Connect server, click on your username on the top right. A sidebar should slide in from the right. Click on “API keys”. On the new page, click on the “New API Key” button. Give it a memorable name and note the resulting string (or keep this browser window open).\nAdd Posit Connect auth token to your GitHub repository. Go to the GitHub webpage for the repository that will be using this GitHub Action. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use CONNECT_API_KEY, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish connect locally once.\nConfigure action to use Posit Connect:\n- name: Publish to Posit Connect (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: connect\n    CONNECT_SERVER: enter-your-server-url-here\n    CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} \n\n\n\n\nThe with parameter can also be set to configure the following\n\npath: Subdirectory containing the quarto project to be published or path to individual .qmd file. Default to working directory (.)\nrender: Set to render: \"false\" to skip rendering of project before publishing. By default, this publish action will render to all formats defined.\n\n\n\n\nquarto publish will render first by default. You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to publish the version correspondig with the preview profile of your website (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/publish@v2\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\n    QUARTO_PROFILE: preview\n  with:\n    target: gh-pages"
+  },
+  {
+    "objectID": "publish.html#netlify",
+    "href": "publish.html#netlify",
+    "title": "Publish Action",
+    "section": "",
+    "text": "See also https://quarto.org/docs/publishing/netlify.html about Netlify publishing support in Quarto.\n\n\nCreate Netlify auth token. Go to Netlify’s applications page, and click on “New Access Token” to create a new personal access token. Give this token a memorable name, and note the resulting string (or keep this window open in a tab)\nAdd Netlify auth token to your repository’s secrets. Go to the repository that will be using this GHA. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use NETLIFY_AUTH_TOKEN, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish netlify locally once.\nConfigure action to use netlify:\n- name: Publish to Netlify (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: netlify\n    NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}"
+  },
+  {
+    "objectID": "publish.html#github-pages",
+    "href": "publish.html#github-pages",
+    "title": "Publish Action",
+    "section": "",
+    "text": "See also https://quarto.org/docs/publishing/github-pages.html about Github Pages publishing support in Quarto. And https://quarto.org/docs/publishing/github-pages.html#github-action about using Github Actions to publish to Github Pages with Quarto.\n\nNote: This action is compatible with actions/checkout@v6 and later. If you experience credential errors when publishing to gh-pages (e.g., “fatal: could not read Username”), ensure you’re using actions/checkout@v6 or later, or pin to actions/checkout@v5 until you can upgrade. See #133 for details.\n\nQuarto needs to configure the repository for publishing through GitHub Actions. To do this, run quarto publish gh-pages locally, once. This will create a new branch called gh-pages and push it to the remote repository, and configure the gh-pages branch to be the publishing source for GitHub Pages.\nThen you need to configure your repo to use Github Actions to publish, by adding GitHub Actions workflow to your project.\n\nUse quarto-publish-example.yml as an example\nGo over our documentation for additional details at https://quarto.org/docs/publishing/github-pages.html#github-action\n\n\n\n\nWhen using quarto-dev/quarto-actions/publish, configure it to use gh-pages as publishing target:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\nIf you not using quarto-publish-example.yml, check the minimum required access for the publish action: You need to set contents permissions to write.\npermissions:\n  contents: write\nSee Github’s documentation on permissions for more details - Setting permissions for a workflow: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions - Setting permissions for a workflow job: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idpermissions - About GITHUB_TOKEN permissions: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token"
+  },
+  {
+    "objectID": "publish.html#posit-connect",
+    "href": "publish.html#posit-connect",
+    "title": "Publish Action",
+    "section": "",
+    "text": "See also https://quarto.org/docs/publishing/rstudio-connect.html about Posit Connect publishing support in Quarto.\n\n\nCreate Posit Connect auth token. After logging in to your Posit Connect server, click on your username on the top right. A sidebar should slide in from the right. Click on “API keys”. On the new page, click on the “New API Key” button. Give it a memorable name and note the resulting string (or keep this browser window open).\nAdd Posit Connect auth token to your GitHub repository. Go to the GitHub webpage for the repository that will be using this GitHub Action. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use CONNECT_API_KEY, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish connect locally once.\nConfigure action to use Posit Connect:\n- name: Publish to Posit Connect (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: connect\n    CONNECT_SERVER: enter-your-server-url-here\n    CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }}"
+  },
+  {
+    "objectID": "publish.html#other-configurations-available-for-quarto-publish-action",
+    "href": "publish.html#other-configurations-available-for-quarto-publish-action",
+    "title": "Publish Action",
+    "section": "",
+    "text": "The with parameter can also be set to configure the following\n\npath: Subdirectory containing the quarto project to be published or path to individual .qmd file. Default to working directory (.)\nrender: Set to render: \"false\" to skip rendering of project before publishing. By default, this publish action will render to all formats defined."
+  },
+  {
+    "objectID": "publish.html#rendering-with-a-quarto-profile",
+    "href": "publish.html#rendering-with-a-quarto-profile",
+    "title": "Publish Action",
+    "section": "",
+    "text": "quarto publish will render first by default. You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to publish the version correspondig with the preview profile of your website (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/publish@v2\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\n    QUARTO_PROFILE: preview\n  with:\n    target: gh-pages"
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Setup Action",
+    "section": "",
+    "text": "Setup a Quarto release (https://github.com/quarto-dev/quarto-cli/releases) using GitHub Actions. This action can be used to install Quarto on all runner OSs, so that quarto will be available from the path.\n\n\nThis action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}\n\n\n\n\n\nname: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
+  },
+  {
+    "objectID": "setup.html#usage",
+    "href": "setup.html#usage",
+    "title": "Setup Action",
+    "section": "",
+    "text": "This action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}"
+  },
+  {
+    "objectID": "setup.html#examples",
+    "href": "setup.html#examples",
+    "title": "Setup Action",
+    "section": "",
+    "text": "name: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
+  },
+  {
+    "objectID": "publish-readme.html",
+    "href": "publish-readme.html",
+    "title": "Publishing with Quarto using GitHub Actions",
+    "section": "",
+    "text": "This README complements the more detailed documentation on Quarto’s website.\n\n\n\nSee also https://quarto.org/docs/publishing/netlify.html about Netlify publishing support in Quarto.\n\n\nCreate Netlify auth token. Go to Netlify’s applications page, and click on “New Access Token” to create a new personal access token. Give this token a memorable name, and note the resulting string (or keep this window open in a tab)\nAdd Netlify auth token to your repository’s secrets. Go to the repository that will be using this GHA. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use NETLIFY_AUTH_TOKEN, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish netlify locally once.\nConfigure action to use netlify:\n- name: Publish to Netlify (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: netlify\n    NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}\n\n\n\n\n\nSee also https://quarto.org/docs/publishing/github-pages.html about Github Pages publishing support in Quarto. And https://quarto.org/docs/publishing/github-pages.html#github-action about using Github Actions to publish to Github Pages with Quarto.\n\nNote: This action is compatible with actions/checkout@v6 and later. If you experience credential errors when publishing to gh-pages (e.g., “fatal: could not read Username”), ensure you’re using actions/checkout@v6 or later, or pin to actions/checkout@v5 until you can upgrade. See #133 for details.\n\nQuarto needs to configure the repository for publishing through GitHub Actions. To do this, run quarto publish gh-pages locally, once. This will create a new branch called gh-pages and push it to the remote repository, and configure the gh-pages branch to be the publishing source for GitHub Pages.\nThen you need to configure your repo to use Github Actions to publish, by adding GitHub Actions workflow to your project.\n\nUse quarto-publish-example.yml as an example\nGo over our documentation for additional details at https://quarto.org/docs/publishing/github-pages.html#github-action\n\n\n\n\nWhen using quarto-dev/quarto-actions/publish, configure it to use gh-pages as publishing target:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\nIf you not using quarto-publish-example.yml, check the minimum required access for the publish action: You need to set contents permissions to write.\npermissions:\n  contents: write\nSee Github’s documentation on permissions for more details - Setting permissions for a workflow: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions - Setting permissions for a workflow job: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idpermissions - About GITHUB_TOKEN permissions: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token\n\n\n\n\n\nSee also https://quarto.org/docs/publishing/rstudio-connect.html about Posit Connect publishing support in Quarto.\n\n\nCreate Posit Connect auth token. After logging in to your Posit Connect server, click on your username on the top right. A sidebar should slide in from the right. Click on “API keys”. On the new page, click on the “New API Key” button. Give it a memorable name and note the resulting string (or keep this browser window open).\nAdd Posit Connect auth token to your GitHub repository. Go to the GitHub webpage for the repository that will be using this GitHub Action. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use CONNECT_API_KEY, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish connect locally once.\nConfigure action to use Posit Connect:\n- name: Publish to Posit Connect (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: connect\n    CONNECT_SERVER: enter-your-server-url-here\n    CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }} \n\n\n\n\nThe with parameter can also be set to configure the following\n\npath: Subdirectory containing the quarto project to be published or path to individual .qmd file. Default to working directory (.)\nrender: Set to render: \"false\" to skip rendering of project before publishing. By default, this publish action will render to all formats defined.\n\n\n\n\nquarto publish will render first by default. You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to publish the version correspondig with the preview profile of your website (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/publish@v2\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\n    QUARTO_PROFILE: preview\n  with:\n    target: gh-pages"
+  },
+  {
+    "objectID": "publish-readme.html#netlify",
+    "href": "publish-readme.html#netlify",
+    "title": "Publishing with Quarto using GitHub Actions",
+    "section": "",
+    "text": "See also https://quarto.org/docs/publishing/netlify.html about Netlify publishing support in Quarto.\n\n\nCreate Netlify auth token. Go to Netlify’s applications page, and click on “New Access Token” to create a new personal access token. Give this token a memorable name, and note the resulting string (or keep this window open in a tab)\nAdd Netlify auth token to your repository’s secrets. Go to the repository that will be using this GHA. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use NETLIFY_AUTH_TOKEN, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish netlify locally once.\nConfigure action to use netlify:\n- name: Publish to Netlify (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: netlify\n    NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}"
+  },
+  {
+    "objectID": "publish-readme.html#github-pages",
+    "href": "publish-readme.html#github-pages",
+    "title": "Publishing with Quarto using GitHub Actions",
+    "section": "",
+    "text": "See also https://quarto.org/docs/publishing/github-pages.html about Github Pages publishing support in Quarto. And https://quarto.org/docs/publishing/github-pages.html#github-action about using Github Actions to publish to Github Pages with Quarto.\n\nNote: This action is compatible with actions/checkout@v6 and later. If you experience credential errors when publishing to gh-pages (e.g., “fatal: could not read Username”), ensure you’re using actions/checkout@v6 or later, or pin to actions/checkout@v5 until you can upgrade. See #133 for details.\n\nQuarto needs to configure the repository for publishing through GitHub Actions. To do this, run quarto publish gh-pages locally, once. This will create a new branch called gh-pages and push it to the remote repository, and configure the gh-pages branch to be the publishing source for GitHub Pages.\nThen you need to configure your repo to use Github Actions to publish, by adding GitHub Actions workflow to your project.\n\nUse quarto-publish-example.yml as an example\nGo over our documentation for additional details at https://quarto.org/docs/publishing/github-pages.html#github-action\n\n\n\n\nWhen using quarto-dev/quarto-actions/publish, configure it to use gh-pages as publishing target:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\nIf you not using quarto-publish-example.yml, check the minimum required access for the publish action: You need to set contents permissions to write.\npermissions:\n  contents: write\nSee Github’s documentation on permissions for more details - Setting permissions for a workflow: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#permissions - Setting permissions for a workflow job: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idpermissions - About GITHUB_TOKEN permissions: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token"
+  },
+  {
+    "objectID": "publish-readme.html#posit-connect",
+    "href": "publish-readme.html#posit-connect",
+    "title": "Publishing with Quarto using GitHub Actions",
+    "section": "",
+    "text": "See also https://quarto.org/docs/publishing/rstudio-connect.html about Posit Connect publishing support in Quarto.\n\n\nCreate Posit Connect auth token. After logging in to your Posit Connect server, click on your username on the top right. A sidebar should slide in from the right. Click on “API keys”. On the new page, click on the “New API Key” button. Give it a memorable name and note the resulting string (or keep this browser window open).\nAdd Posit Connect auth token to your GitHub repository. Go to the GitHub webpage for the repository that will be using this GitHub Action. Click on “Settings”. On the new page, click on “Secrets”, then on the dropdown “Actions”. Now, on the right-hand tab, click on the “New repository secret” button to the right of the title “Actions secrets”. For the “Name” field, use CONNECT_API_KEY, and for the “Value” field, paste the string you got from step 1.\nAdd the GitHub Actions workflow to your project. (Use quarto-publish-example.yml as an example).\nAdd _publish.yml to your repository. Quarto stores publishing metadata information in _publish.yml. To create this file, run quarto publish connect locally once.\nConfigure action to use Posit Connect:\n- name: Publish to Posit Connect (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: connect\n    CONNECT_SERVER: enter-your-server-url-here\n    CONNECT_API_KEY: ${{ secrets.CONNECT_API_KEY }}"
+  },
+  {
+    "objectID": "publish-readme.html#other-configurations-available-for-quarto-publish-action",
+    "href": "publish-readme.html#other-configurations-available-for-quarto-publish-action",
+    "title": "Publishing with Quarto using GitHub Actions",
+    "section": "",
+    "text": "The with parameter can also be set to configure the following\n\npath: Subdirectory containing the quarto project to be published or path to individual .qmd file. Default to working directory (.)\nrender: Set to render: \"false\" to skip rendering of project before publishing. By default, this publish action will render to all formats defined."
+  },
+  {
+    "objectID": "publish-readme.html#rendering-with-a-quarto-profile",
+    "href": "publish-readme.html#rendering-with-a-quarto-profile",
+    "title": "Publishing with Quarto using GitHub Actions",
+    "section": "",
+    "text": "quarto publish will render first by default. You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to publish the version correspondig with the preview profile of your website (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/publish@v2\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\n    QUARTO_PROFILE: preview\n  with:\n    target: gh-pages"
+  },
+  {
+    "objectID": "examples/example-08-publish-to-others-services.html",
+    "href": "examples/example-08-publish-to-others-services.html",
+    "title": "Quarto Actions: Publishing to others services not supported by quarto publish",
+    "section": "",
+    "text": "Quarto Actions: Publishing to others services not supported by quarto publish\nWith the publish action, you can publish to any supported destinations. If you need to publish to another service, the following can be done:\n\nuse the quarto-actions/render action to render the project on CI (usually to a _book or _site directory, or any other name you used)\nuse a custom Github action step to publish the rendered project to the service of your choice.\n\nThe custom step could be using a CLI tool you have installed, or another Github action from the Github marketplace.\nBelow is an example to publish to Cloudfare Pages, using their Github action cloudflare/pages-action.\non:\n  workflow_dispatch:\n  push:\n    branches: main\n\nname: Quarto Publish to Cloudfare Pages\n\njobs:\n  build-deploy:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: write\n      deployments: write # needed for Cloudflare\n    steps:\n      - name: Check out repository\n        uses: actions/checkout@v4\n\n      - name: Set up Quarto\n        uses: quarto-dev/quarto-actions/setup@v2\n        with:\n          tinytex: true\n          \n      - name: Render Quarto Project\n        uses: quarto-dev/quarto-actions/render@v2\n      \n      - name: Publish\n        uses: cloudflare/pages-action@v1\n        with:\n          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}\n          projectName: #cloudflare-project-id\n          directory: '_book' # or _site or any other directory you used as project's output-dir in `_quarto.yml`\n          gitHubToken: ${{ secrets.GITHUB_TOKEN }}",
+    "crumbs": [
+      "Examples",
+      "Workflow Examples",
+      "Quarto Actions: Publishing to others services not supported by `quarto publish`"
+    ]
+  },
+  {
     "objectID": "examples/example-05-non-top-level.html",
     "href": "examples/example-05-non-top-level.html",
     "title": "Quarto Actions: non-top-level projects",
@@ -382,51 +418,15 @@
     ]
   },
   {
-    "objectID": "examples/example-03-dependencies.html",
-    "href": "examples/example-03-dependencies.html",
-    "title": "Quarto Actions: Dependencies",
+    "objectID": "examples/example-04-render-no-publish.html",
+    "href": "examples/example-04-render-no-publish.html",
+    "title": "Quarto Actions: Render without publishing",
     "section": "",
-    "text": "If you want to execute computational content in GitHub Actions workflows, you are going to have to install the necessary software dependencies in your action.\n\n\nAdd the following entry to your GitHub Actions workflow:\n- uses: r-lib/actions/setup-r@v2\n  with:\n    r-version: '4.2.0' # The R version to download (if necessary) and use.\nIf you’re using quarto-publish-example.yml, add those right after the # add software dependencies here comment.\n\n\nIf you are managing your R package dependencies with renv, the following action will install the dependencies:\n- uses: r-lib/actions/setup-renv@v2\n  with:\n    cache-version: 1\nSee the setup-renv documentation for how to use cache-version. See the renv documentation for how to use renv with a project.\n\n\n\nYou can also use r-lib/actions/setup-r-dependencies@v2 to install required R packages for your content. See more about this actions at the setup-r-dependencies documentation. It can handle dependencies with a DESCRIPTION in your project, or you can also list manually what is needed. e.g\n- uses: r-lib/actions/setup-r-dependencies@v2\n  with:\n    packages:\n      any::knitr\n      any::rmarkdown\n      any::downlit\n      any::xml2\n\n\n\n\nAdd the following entry to your GitHub Actions workflow:\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n- run: pip install jupyter\n\n\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n    cache: 'pip'\n- run: pip install jupyter # (if jupyter is not part of your requirements.txt)\n- run: pip install -r requirements.txt\n\n\n\n\n- uses: julia-actions/setup-julia@v1\n- run: julia --project -e 'using Pkg; Pkg.instantiate()'",
+    "text": "Quarto Actions: Render without publishing\nIf you need to render your project in a GitHub Action, but will use the output for something besides publishing (or publishing to a service not supported by quarto publish), then instead of publish, use the render action:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2",
     "crumbs": [
       "Examples",
       "Workflow Examples",
-      "Quarto Actions: Dependencies"
-    ]
-  },
-  {
-    "objectID": "examples/example-03-dependencies.html#installing-r",
-    "href": "examples/example-03-dependencies.html#installing-r",
-    "title": "Quarto Actions: Dependencies",
-    "section": "",
-    "text": "Add the following entry to your GitHub Actions workflow:\n- uses: r-lib/actions/setup-r@v2\n  with:\n    r-version: '4.2.0' # The R version to download (if necessary) and use.\nIf you’re using quarto-publish-example.yml, add those right after the # add software dependencies here comment.\n\n\nIf you are managing your R package dependencies with renv, the following action will install the dependencies:\n- uses: r-lib/actions/setup-renv@v2\n  with:\n    cache-version: 1\nSee the setup-renv documentation for how to use cache-version. See the renv documentation for how to use renv with a project.\n\n\n\nYou can also use r-lib/actions/setup-r-dependencies@v2 to install required R packages for your content. See more about this actions at the setup-r-dependencies documentation. It can handle dependencies with a DESCRIPTION in your project, or you can also list manually what is needed. e.g\n- uses: r-lib/actions/setup-r-dependencies@v2\n  with:\n    packages:\n      any::knitr\n      any::rmarkdown\n      any::downlit\n      any::xml2",
-    "crumbs": [
-      "Examples",
-      "Workflow Examples",
-      "Quarto Actions: Dependencies"
-    ]
-  },
-  {
-    "objectID": "examples/example-03-dependencies.html#installing-jupyter",
-    "href": "examples/example-03-dependencies.html#installing-jupyter",
-    "title": "Quarto Actions: Dependencies",
-    "section": "",
-    "text": "Add the following entry to your GitHub Actions workflow:\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n- run: pip install jupyter\n\n\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n    cache: 'pip'\n- run: pip install jupyter # (if jupyter is not part of your requirements.txt)\n- run: pip install -r requirements.txt",
-    "crumbs": [
-      "Examples",
-      "Workflow Examples",
-      "Quarto Actions: Dependencies"
-    ]
-  },
-  {
-    "objectID": "examples/example-03-dependencies.html#installing-julia",
-    "href": "examples/example-03-dependencies.html#installing-julia",
-    "title": "Quarto Actions: Dependencies",
-    "section": "",
-    "text": "- uses: julia-actions/setup-julia@v1\n- run: julia --project -e 'using Pkg; Pkg.instantiate()'",
-    "crumbs": [
-      "Examples",
-      "Workflow Examples",
-      "Quarto Actions: Dependencies"
+      "Quarto Actions: Render without publishing"
     ]
   }
 ]
