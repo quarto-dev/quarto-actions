@@ -1,24 +1,15 @@
 [
   {
-    "objectID": "setup-readme.html",
-    "href": "setup-readme.html",
-    "title": "setup",
+    "objectID": "examples/example-05-non-top-level.html",
+    "href": "examples/example-05-non-top-level.html",
+    "title": "Quarto Actions: non-top-level projects",
     "section": "",
-    "text": "Setup a Quarto release (https://github.com/quarto-dev/quarto-cli/releases) using GitHub Actions. This action can be used to install Quarto on all runner OSs, so that quarto will be available from the path.\n\n\nThis action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}\n\n\n\n\n\nname: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
-  },
-  {
-    "objectID": "setup-readme.html#usage",
-    "href": "setup-readme.html#usage",
-    "title": "setup",
-    "section": "",
-    "text": "This action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}"
-  },
-  {
-    "objectID": "setup-readme.html#examples",
-    "href": "setup-readme.html#examples",
-    "title": "setup",
-    "section": "",
-    "text": "name: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
+    "text": "Quarto Actions: non-top-level projects\nIt’s possible to have a quarto project in a large GitHub repository, where the quarto project does not reside at the top-level directory. In this case, add a path input to the invocation of the render or publish action. For example:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n    path: subdirectory-to-use",
+    "crumbs": [
+      "Examples",
+      "Workflow Examples",
+      "Quarto Actions: non-top-level projects"
+    ]
   },
   {
     "objectID": "examples/example-01-basics.html",
@@ -69,15 +60,15 @@
     ]
   },
   {
-    "objectID": "examples/example-04-render-no-publish.html",
-    "href": "examples/example-04-render-no-publish.html",
-    "title": "Quarto Actions: Render without publishing",
+    "objectID": "examples/example-06-no-render.html",
+    "href": "examples/example-06-no-render.html",
+    "title": "Quarto Actions: Publishing without rendering",
     "section": "",
-    "text": "Quarto Actions: Render without publishing\nIf you need to render your project in a GitHub Action, but will use the output for something besides publishing (or publishing to a service not supported by quarto publish), then instead of publish, use the render action:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2",
+    "text": "Quarto Actions: Publishing without rendering\nBy default, the quarto-actions/publish@v2 action will re-render your entire project before publishing. However, if you store the rendered project in version control, you don’t need the GitHub action to re-render the project. In that case, add the option render: false to the publish action:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n    render: false",
     "crumbs": [
       "Examples",
       "Workflow Examples",
-      "Quarto Actions: Render without publishing"
+      "Quarto Actions: Publishing without rendering"
     ]
   },
   {
@@ -91,126 +82,6 @@
       "Workflow Examples",
       "Quarto Actions: Publishing to others services not supported by `quarto publish`"
     ]
-  },
-  {
-    "objectID": "examples/example-03-dependencies.html",
-    "href": "examples/example-03-dependencies.html",
-    "title": "Quarto Actions: Dependencies",
-    "section": "",
-    "text": "If you want to execute computational content in GitHub Actions workflows, you are going to have to install the necessary software dependencies in your action.\n\n\nAdd the following entry to your GitHub Actions workflow:\n- uses: r-lib/actions/setup-r@v2\n  with:\n    r-version: '4.2.0' # The R version to download (if necessary) and use.\nIf you’re using quarto-publish-example.yml, add those right after the # add software dependencies here comment.\n\n\nIf you are managing your R package dependencies with renv, the following action will install the dependencies:\n- uses: r-lib/actions/setup-renv@v2\n  with:\n    cache-version: 1\nSee the setup-renv documentation for how to use cache-version. See the renv documentation for how to use renv with a project.\n\n\n\nYou can also use r-lib/actions/setup-r-dependencies@v2 to install required R packages for your content. See more about this actions at the setup-r-dependencies documentation. It can handle dependencies with a DESCRIPTION in your project, or you can also list manually what is needed. e.g\n- uses: r-lib/actions/setup-r-dependencies@v2\n  with:\n    packages:\n      any::knitr\n      any::rmarkdown\n      any::downlit\n      any::xml2\n\n\n\n\nAdd the following entry to your GitHub Actions workflow:\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n- run: pip install jupyter\n\n\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n    cache: 'pip'\n- run: pip install jupyter # (if jupyter is not part of your requirements.txt)\n- run: pip install -r requirements.txt\n\n\n\n\n- uses: julia-actions/setup-julia@v1\n- run: julia --project -e 'using Pkg; Pkg.instantiate()'",
-    "crumbs": [
-      "Examples",
-      "Workflow Examples",
-      "Quarto Actions: Dependencies"
-    ]
-  },
-  {
-    "objectID": "examples/example-03-dependencies.html#installing-r",
-    "href": "examples/example-03-dependencies.html#installing-r",
-    "title": "Quarto Actions: Dependencies",
-    "section": "",
-    "text": "Add the following entry to your GitHub Actions workflow:\n- uses: r-lib/actions/setup-r@v2\n  with:\n    r-version: '4.2.0' # The R version to download (if necessary) and use.\nIf you’re using quarto-publish-example.yml, add those right after the # add software dependencies here comment.\n\n\nIf you are managing your R package dependencies with renv, the following action will install the dependencies:\n- uses: r-lib/actions/setup-renv@v2\n  with:\n    cache-version: 1\nSee the setup-renv documentation for how to use cache-version. See the renv documentation for how to use renv with a project.\n\n\n\nYou can also use r-lib/actions/setup-r-dependencies@v2 to install required R packages for your content. See more about this actions at the setup-r-dependencies documentation. It can handle dependencies with a DESCRIPTION in your project, or you can also list manually what is needed. e.g\n- uses: r-lib/actions/setup-r-dependencies@v2\n  with:\n    packages:\n      any::knitr\n      any::rmarkdown\n      any::downlit\n      any::xml2",
-    "crumbs": [
-      "Examples",
-      "Workflow Examples",
-      "Quarto Actions: Dependencies"
-    ]
-  },
-  {
-    "objectID": "examples/example-03-dependencies.html#installing-jupyter",
-    "href": "examples/example-03-dependencies.html#installing-jupyter",
-    "title": "Quarto Actions: Dependencies",
-    "section": "",
-    "text": "Add the following entry to your GitHub Actions workflow:\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n- run: pip install jupyter\n\n\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n    cache: 'pip'\n- run: pip install jupyter # (if jupyter is not part of your requirements.txt)\n- run: pip install -r requirements.txt",
-    "crumbs": [
-      "Examples",
-      "Workflow Examples",
-      "Quarto Actions: Dependencies"
-    ]
-  },
-  {
-    "objectID": "examples/example-03-dependencies.html#installing-julia",
-    "href": "examples/example-03-dependencies.html#installing-julia",
-    "title": "Quarto Actions: Dependencies",
-    "section": "",
-    "text": "- uses: julia-actions/setup-julia@v1\n- run: julia --project -e 'using Pkg; Pkg.instantiate()'",
-    "crumbs": [
-      "Examples",
-      "Workflow Examples",
-      "Quarto Actions: Dependencies"
-    ]
-  },
-  {
-    "objectID": "setup.html",
-    "href": "setup.html",
-    "title": "Setup Action",
-    "section": "",
-    "text": "Setup a Quarto release (https://github.com/quarto-dev/quarto-cli/releases) using GitHub Actions. This action can be used to install Quarto on all runner OSs, so that quarto will be available from the path.\n\n\nThis action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}\n\n\n\n\n\nname: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
-  },
-  {
-    "objectID": "setup.html#usage",
-    "href": "setup.html#usage",
-    "title": "Setup Action",
-    "section": "",
-    "text": "This action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}"
-  },
-  {
-    "objectID": "setup.html#examples",
-    "href": "setup.html#examples",
-    "title": "Setup Action",
-    "section": "",
-    "text": "name: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
-  },
-  {
-    "objectID": "examples.html",
-    "href": "examples.html",
-    "title": "Examples",
-    "section": "",
-    "text": "Basics\nFreeze\nDependencies\nRender with no publish\nRendering and publishing a non-top-level project\nPublishing a single format, publishing without rendering\nPublishing a single format\nPublishing to other services\n\n\n\n\nEarthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions.\n\n\n\n\n\nMy project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details.",
-    "crumbs": [
-      "Examples"
-    ]
-  },
-  {
-    "objectID": "examples.html#repositories-using-quarto-actions",
-    "href": "examples.html#repositories-using-quarto-actions",
-    "title": "Examples",
-    "section": "",
-    "text": "Earthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions.",
-    "crumbs": [
-      "Examples"
-    ]
-  },
-  {
-    "objectID": "examples.html#faq",
-    "href": "examples.html#faq",
-    "title": "Examples",
-    "section": "",
-    "text": "My project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details.",
-    "crumbs": [
-      "Examples"
-    ]
-  },
-  {
-    "objectID": "examples-readme.html",
-    "href": "examples-readme.html",
-    "title": "Using Quarto Actions: Examples",
-    "section": "",
-    "text": "Basics\nFreeze\nDependencies\nRender with no publish\nRendering and publishing a non-top-level project\nPublishing a single format, publishing without rendering\nPublishing a single format\nPublishing to other services\n\n\n\n\nEarthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions.\n\n\n\n\n\nMy project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details."
-  },
-  {
-    "objectID": "examples-readme.html#repositories-using-quarto-actions",
-    "href": "examples-readme.html#repositories-using-quarto-actions",
-    "title": "Using Quarto Actions: Examples",
-    "section": "",
-    "text": "Earthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions."
-  },
-  {
-    "objectID": "examples-readme.html#faq",
-    "href": "examples-readme.html#faq",
-    "title": "Using Quarto Actions: Examples",
-    "section": "",
-    "text": "My project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details."
   },
   {
     "objectID": "publish.html",
@@ -255,18 +126,67 @@
     "text": "quarto publish will render first by default. You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to publish the version correspondig with the preview profile of your website (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/publish@v2\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\n    QUARTO_PROFILE: preview\n  with:\n    target: gh-pages"
   },
   {
-    "objectID": "render-readme.html",
-    "href": "render-readme.html",
-    "title": "Usage",
+    "objectID": "setup-readme.html",
+    "href": "setup-readme.html",
+    "title": "setup",
     "section": "",
-    "text": "- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  with:\n    to: html # If set, it will be equivalent to `quarto render --to html`\n    path: source-folder # By default, the current working dir is used i.e `quarto render .`\npath: can be a path to a subdirectory containing the quarto project to be rendered or a path to a single .qmd file\n\n\nYou can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to render with the preview profile (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  env:\n    QUARTO_PROFILE: preview\n  with:\n    to: html"
+    "text": "Setup a Quarto release (https://github.com/quarto-dev/quarto-cli/releases) using GitHub Actions. This action can be used to install Quarto on all runner OSs, so that quarto will be available from the path.\n\n\nThis action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}\n\n\n\n\n\nname: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
   },
   {
-    "objectID": "render-readme.html#rendering-with-a-quarto-profile",
-    "href": "render-readme.html#rendering-with-a-quarto-profile",
-    "title": "Usage",
+    "objectID": "setup-readme.html#usage",
+    "href": "setup-readme.html#usage",
+    "title": "setup",
     "section": "",
-    "text": "You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to render with the preview profile (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  env:\n    QUARTO_PROFILE: preview\n  with:\n    to: html"
+    "text": "This action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}"
+  },
+  {
+    "objectID": "setup-readme.html#examples",
+    "href": "setup-readme.html#examples",
+    "title": "setup",
+    "section": "",
+    "text": "name: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Setup Action",
+    "section": "",
+    "text": "Setup a Quarto release (https://github.com/quarto-dev/quarto-cli/releases) using GitHub Actions. This action can be used to install Quarto on all runner OSs, so that quarto will be available from the path.\n\n\nThis action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}\n\n\n\n\n\nname: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
+  },
+  {
+    "objectID": "setup.html#usage",
+    "href": "setup.html#usage",
+    "title": "Setup Action",
+    "section": "",
+    "text": "This action will:\n\nOn macOS and Linux:\n\nDownload a release of Quarto from GitHub and install it\nuse gh to download the latest available bundle, if no version is specified as input. If gh is not available on your Github Action runner, you can specify a fixed version which will be directly downloaded using wget.\nInstall TinyTeX if requested.\n\nOn Windows:\n\nUse Scoop (https://github.com/ScoopInstaller/Scoop) to install Quarto, as we have still an issue with Quarto MSI on Github Action (https://github.com/quarto-dev/quarto-cli/issues/108). The action will also install Scoop on the runner.\n\n\nWe recommend using a Linux or MacOS runner if possible, especially if TinyTeX is needed.\n\n\n\nversion - optional. If provided, the specific quarto version will be installed. Ex: version: 1.4.515\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      with:\n        version: 1.4.515\nIf not provided, setup will use the latest released version of quarto.\nIf the latest pre-release build is desired, use version: pre-release.\ntinytex - optional. Set tinytex: true to install TinyTeX using quarto install tool tinytex. Note: Installing TinyTeX on Windows can take several minutes.\n  steps:\n    - uses: quarto-dev/quarto-actions/setup@v2\n      env:\n        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      with:\n        tinytex: true\nSetting GH_TOKEN is recommended as installing TinyTeX will query the github API. Otherwise, some API rate limit issue could happen which will make the step fails (e.g. with an explicit 403 - Forbidden error). A re-run of failed job on Github would solve it too.\n\n\n\n\nFor GitHub Enterprise Server (GHES), you may need to generate a personal access token (PAT) on github.com to enable downloading Quarto. GitHub’s setup-python action uses a similar workaround, from which these instructions are adapted:\n\nCreate a PAT on any github.com account by using this link after logging into github.com (not your GHES instance). This PAT does not need any rights, so make sure all the boxes are unchecked.\nStore this PAT in the repository / organization where you run your workflow, e.g. as GH_GITHUB_COM_TOKEN. You can do this by navigating to your repository -&gt; Settings -&gt; Secrets -&gt; Actions -&gt; New repository secret.\nIn your workflow, incorporate your PAT as an environment variable. For example:\n- name: Set up Quarto\n  uses: quarto-dev/quarto-actions/setup@v2\n  env:\n    GH_TOKEN: ${{ secrets.GH_GITHUB_COM_TOKEN }}"
+  },
+  {
+    "objectID": "setup.html#examples",
+    "href": "setup.html#examples",
+    "title": "Setup Action",
+    "section": "",
+    "text": "name: quarto-setup\n\non: \n  branch: main\n\njobs:\n  quarto-linux:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-windows:\n    runs-on: windows-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version\n  quarto-macos:\n    runs-on: macos-latest\n    steps:\n      - uses: quarto-dev/quarto-actions/setup@v2\n      - run: |\n          quarto --version"
+  },
+  {
+    "objectID": "examples-readme.html",
+    "href": "examples-readme.html",
+    "title": "Using Quarto Actions: Examples",
+    "section": "",
+    "text": "Basics\nFreeze\nDependencies\nRender with no publish\nRendering and publishing a non-top-level project\nPublishing a single format, publishing without rendering\nPublishing a single format\nPublishing to other services\n\n\n\n\nEarthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions.\n\n\n\n\n\nMy project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details."
+  },
+  {
+    "objectID": "examples-readme.html#repositories-using-quarto-actions",
+    "href": "examples-readme.html#repositories-using-quarto-actions",
+    "title": "Using Quarto Actions: Examples",
+    "section": "",
+    "text": "Earthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions."
+  },
+  {
+    "objectID": "examples-readme.html#faq",
+    "href": "examples-readme.html#faq",
+    "title": "Using Quarto Actions: Examples",
+    "section": "",
+    "text": "My project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details."
   },
   {
     "objectID": "publish-readme.html",
@@ -309,6 +229,50 @@
     "title": "Publishing with Quarto using GitHub Actions",
     "section": "",
     "text": "quarto publish will render first by default. You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to publish the version correspondig with the preview profile of your website (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/publish@v2\n  env:\n    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions\n    QUARTO_PROFILE: preview\n  with:\n    target: gh-pages"
+  },
+  {
+    "objectID": "render-readme.html",
+    "href": "render-readme.html",
+    "title": "Usage",
+    "section": "",
+    "text": "- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  with:\n    to: html # If set, it will be equivalent to `quarto render --to html`\n    path: source-folder # By default, the current working dir is used i.e `quarto render .`\npath: can be a path to a subdirectory containing the quarto project to be rendered or a path to a single .qmd file\n\n\nYou can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to render with the preview profile (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  env:\n    QUARTO_PROFILE: preview\n  with:\n    to: html"
+  },
+  {
+    "objectID": "render-readme.html#rendering-with-a-quarto-profile",
+    "href": "render-readme.html#rendering-with-a-quarto-profile",
+    "title": "Usage",
+    "section": "",
+    "text": "You can render with a specific profile by setting the QUARTO_PROFILE environment variable. For example, to render with the preview profile (i.e. you have a _quarto-preview.yml file in your project), you can do:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2\n  env:\n    QUARTO_PROFILE: preview\n  with:\n    to: html"
+  },
+  {
+    "objectID": "examples.html",
+    "href": "examples.html",
+    "title": "Examples",
+    "section": "",
+    "text": "Basics\nFreeze\nDependencies\nRender with no publish\nRendering and publishing a non-top-level project\nPublishing a single format, publishing without rendering\nPublishing a single format\nPublishing to other services\n\n\n\n\nEarthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions.\n\n\n\n\n\nMy project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details.",
+    "crumbs": [
+      "Examples"
+    ]
+  },
+  {
+    "objectID": "examples.html#repositories-using-quarto-actions",
+    "href": "examples.html#repositories-using-quarto-actions",
+    "title": "Examples",
+    "section": "",
+    "text": "Earthdata Cloud Cookbook (source, workflow file) This book contains .md and .ipynb files, and is built with Quarto and Python in GHA, and deployed to Github Pages.\nR Manuals Quarto website (source, workflow file) This project uses a workflow to build several books with R and Quarto and organizes them in a website deployed to Github pages.\nPathology Atlas (source, workflow file) This multilingual website is rendered in two versions and deployed using Github Actions.",
+    "crumbs": [
+      "Examples"
+    ]
+  },
+  {
+    "objectID": "examples.html#faq",
+    "href": "examples.html#faq",
+    "title": "Examples",
+    "section": "",
+    "text": "My project uses git lfs storage; how should I adapt the action?\nIf your project uses git lfs storage, you must opt-in to git lfs during the checkout step.\n      - name: Check out repository\n        uses: actions/checkout@v4\n        with:\n          lfs: true # needed when using lfs for image storage\nSee the checkout action documentation for details.",
+    "crumbs": [
+      "Examples"
+    ]
   },
   {
     "objectID": "render.html",
@@ -358,27 +322,15 @@
     ]
   },
   {
-    "objectID": "examples/example-05-non-top-level.html",
-    "href": "examples/example-05-non-top-level.html",
-    "title": "Quarto Actions: non-top-level projects",
+    "objectID": "examples/example-04-render-no-publish.html",
+    "href": "examples/example-04-render-no-publish.html",
+    "title": "Quarto Actions: Render without publishing",
     "section": "",
-    "text": "Quarto Actions: non-top-level projects\nIt’s possible to have a quarto project in a large GitHub repository, where the quarto project does not reside at the top-level directory. In this case, add a path input to the invocation of the render or publish action. For example:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n    path: subdirectory-to-use",
+    "text": "Quarto Actions: Render without publishing\nIf you need to render your project in a GitHub Action, but will use the output for something besides publishing (or publishing to a service not supported by quarto publish), then instead of publish, use the render action:\n- name: Render Quarto Project\n  uses: quarto-dev/quarto-actions/render@v2",
     "crumbs": [
       "Examples",
       "Workflow Examples",
-      "Quarto Actions: non-top-level projects"
-    ]
-  },
-  {
-    "objectID": "examples/example-06-no-render.html",
-    "href": "examples/example-06-no-render.html",
-    "title": "Quarto Actions: Publishing without rendering",
-    "section": "",
-    "text": "Quarto Actions: Publishing without rendering\nBy default, the quarto-actions/publish@v2 action will re-render your entire project before publishing. However, if you store the rendered project in version control, you don’t need the GitHub action to re-render the project. In that case, add the option render: false to the publish action:\n- name: Publish to GitHub Pages (and render)\n  uses: quarto-dev/quarto-actions/publish@v2\n  with:\n    target: gh-pages\n    render: false",
-    "crumbs": [
-      "Examples",
-      "Workflow Examples",
-      "Quarto Actions: Publishing without rendering"
+      "Quarto Actions: Render without publishing"
     ]
   },
   {
@@ -427,6 +379,54 @@
       "Examples",
       "Workflow Examples",
       "Quarto Actions: Freeze"
+    ]
+  },
+  {
+    "objectID": "examples/example-03-dependencies.html",
+    "href": "examples/example-03-dependencies.html",
+    "title": "Quarto Actions: Dependencies",
+    "section": "",
+    "text": "If you want to execute computational content in GitHub Actions workflows, you are going to have to install the necessary software dependencies in your action.\n\n\nAdd the following entry to your GitHub Actions workflow:\n- uses: r-lib/actions/setup-r@v2\n  with:\n    r-version: '4.2.0' # The R version to download (if necessary) and use.\nIf you’re using quarto-publish-example.yml, add those right after the # add software dependencies here comment.\n\n\nIf you are managing your R package dependencies with renv, the following action will install the dependencies:\n- uses: r-lib/actions/setup-renv@v2\n  with:\n    cache-version: 1\nSee the setup-renv documentation for how to use cache-version. See the renv documentation for how to use renv with a project.\n\n\n\nYou can also use r-lib/actions/setup-r-dependencies@v2 to install required R packages for your content. See more about this actions at the setup-r-dependencies documentation. It can handle dependencies with a DESCRIPTION in your project, or you can also list manually what is needed. e.g\n- uses: r-lib/actions/setup-r-dependencies@v2\n  with:\n    packages:\n      any::knitr\n      any::rmarkdown\n      any::downlit\n      any::xml2\n\n\n\n\nAdd the following entry to your GitHub Actions workflow:\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n- run: pip install jupyter\n\n\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n    cache: 'pip'\n- run: pip install jupyter # (if jupyter is not part of your requirements.txt)\n- run: pip install -r requirements.txt\n\n\n\n\n- uses: julia-actions/setup-julia@v1\n- run: julia --project -e 'using Pkg; Pkg.instantiate()'",
+    "crumbs": [
+      "Examples",
+      "Workflow Examples",
+      "Quarto Actions: Dependencies"
+    ]
+  },
+  {
+    "objectID": "examples/example-03-dependencies.html#installing-r",
+    "href": "examples/example-03-dependencies.html#installing-r",
+    "title": "Quarto Actions: Dependencies",
+    "section": "",
+    "text": "Add the following entry to your GitHub Actions workflow:\n- uses: r-lib/actions/setup-r@v2\n  with:\n    r-version: '4.2.0' # The R version to download (if necessary) and use.\nIf you’re using quarto-publish-example.yml, add those right after the # add software dependencies here comment.\n\n\nIf you are managing your R package dependencies with renv, the following action will install the dependencies:\n- uses: r-lib/actions/setup-renv@v2\n  with:\n    cache-version: 1\nSee the setup-renv documentation for how to use cache-version. See the renv documentation for how to use renv with a project.\n\n\n\nYou can also use r-lib/actions/setup-r-dependencies@v2 to install required R packages for your content. See more about this actions at the setup-r-dependencies documentation. It can handle dependencies with a DESCRIPTION in your project, or you can also list manually what is needed. e.g\n- uses: r-lib/actions/setup-r-dependencies@v2\n  with:\n    packages:\n      any::knitr\n      any::rmarkdown\n      any::downlit\n      any::xml2",
+    "crumbs": [
+      "Examples",
+      "Workflow Examples",
+      "Quarto Actions: Dependencies"
+    ]
+  },
+  {
+    "objectID": "examples/example-03-dependencies.html#installing-jupyter",
+    "href": "examples/example-03-dependencies.html#installing-jupyter",
+    "title": "Quarto Actions: Dependencies",
+    "section": "",
+    "text": "Add the following entry to your GitHub Actions workflow:\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n- run: pip install jupyter\n\n\n- uses: actions/setup-python@v4\n  with:\n    python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax\n    cache: 'pip'\n- run: pip install jupyter # (if jupyter is not part of your requirements.txt)\n- run: pip install -r requirements.txt",
+    "crumbs": [
+      "Examples",
+      "Workflow Examples",
+      "Quarto Actions: Dependencies"
+    ]
+  },
+  {
+    "objectID": "examples/example-03-dependencies.html#installing-julia",
+    "href": "examples/example-03-dependencies.html#installing-julia",
+    "title": "Quarto Actions: Dependencies",
+    "section": "",
+    "text": "- uses: julia-actions/setup-julia@v1\n- run: julia --project -e 'using Pkg; Pkg.instantiate()'",
+    "crumbs": [
+      "Examples",
+      "Workflow Examples",
+      "Quarto Actions: Dependencies"
     ]
   }
 ]
