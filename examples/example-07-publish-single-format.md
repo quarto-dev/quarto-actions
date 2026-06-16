@@ -12,7 +12,7 @@ With the `publish` action, it is either rendering all format by default, or none
     to: html
 
 - name: Publish HTML book
-    uses: quarto-dev/quarto-actions/publish@v2
+  uses: quarto-dev/quarto-actions/publish@v2
   with:
     target: gh-pages
     render: false
