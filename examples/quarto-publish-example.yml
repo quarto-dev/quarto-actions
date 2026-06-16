@@ -16,7 +16,7 @@ jobs:
     
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -76,4 +76,3 @@ jobs:
       #     CONFLUENCE_USER_EMAIL: ${{ secrets.CONFLUENCE_USER_EMAIL }}
       #     CONFLUENCE_AUTH_TOKEN: ${{ secrets.CONFLUENCE_AUTH_TOKEN }}
       #     CONFLUENCE_DOMAIN: ${{ secrets.CONFLUENCE_DOMAIN }}
-      
