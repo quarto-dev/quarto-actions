@@ -7,7 +7,7 @@ With the `publish` action, you can publish to [any supported destinations](https
 
 The custom step could be using a CLI tool you have installed, or another Github action from the Github marketplace. 
 
-Below is an example to publish to Cloudfare Pages, using their Github action  [`cloudflare/pages-action`](https://github.com/marketplace/actions/cloudflare-pages-github-action).
+Below is an example to publish to Cloudfare Pages, using their Github action [`cloudflare/wrangler-action`](https://github.com/cloudflare/wrangler-action).
 
 ```yaml
 on:
@@ -25,7 +25,7 @@ jobs:
       deployments: write # needed for Cloudflare
     steps:
       - name: Check out repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -36,11 +36,10 @@ jobs:
         uses: quarto-dev/quarto-actions/render@v2
       
       - name: Publish
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: #cloudflare-project-id
-          directory: '_book' # or _site or any other directory you used as project's output-dir in `_quarto.yml`
+          command: pages deploy _book --project-name=cloudflare-project-name # replace _book with _site or your output-dir from `_quarto.yml`
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 ```
