@@ -25,7 +25,7 @@
 
   ```yaml
         - name: Check out repository
-          uses: actions/checkout@v4
+          uses: actions/checkout@v6
           with:
             lfs: true # needed when using lfs for image storage
   ```
