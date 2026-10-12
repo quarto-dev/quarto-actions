@@ -2,70 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/render-readme.html</loc>
-    <lastmod>2026-10-05T01:00:53.328Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.417Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/examples-readme.html</loc>
-    <lastmod>2026-10-05T01:00:53.336Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.425Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/publish-readme.html</loc>
-    <lastmod>2026-10-05T01:00:53.332Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.421Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/setup-readme.html</loc>
-    <lastmod>2026-10-05T01:00:53.324Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.412Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/examples/example-05-non-top-level.html</loc>
-    <lastmod>2026-10-05T01:00:53.384Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.474Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/examples/example-06-no-render.html</loc>
-    <lastmod>2026-10-05T01:00:53.394Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.483Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/examples/example-01-basics.html</loc>
-    <lastmod>2026-10-05T01:00:53.347Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.435Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/examples/example-04-render-no-publish.html</loc>
-    <lastmod>2026-10-05T01:00:53.375Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.464Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/render.html</loc>
-    <lastmod>2026-10-05T01:00:53.424Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.511Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/examples/example-03-dependencies.html</loc>
-    <lastmod>2026-10-05T01:00:53.366Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.455Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/examples/example-08-publish-to-others-services.html</loc>
-    <lastmod>2026-10-05T01:00:53.415Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.503Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/examples/example-07-publish-single-format.html</loc>
-    <lastmod>2026-10-05T01:00:53.405Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.493Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/examples/example-02-freeze.html</loc>
-    <lastmod>2026-10-05T01:00:53.356Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.445Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/index.html</loc>
-    <lastmod>2026-10-05T01:00:53.422Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.509Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/setup.html</loc>
-    <lastmod>2026-10-05T01:00:53.423Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.510Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/examples.html</loc>
-    <lastmod>2026-10-05T01:00:53.426Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.513Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-dev.github.io/quarto-actions/publish.html</loc>
-    <lastmod>2026-10-05T01:00:53.425Z</lastmod>
+    <lastmod>2026-10-12T01:04:08.512Z</lastmod>
   </url>
 </urlset>
